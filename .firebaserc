@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "login-c8dcb": {
+      "hosting": {
+        "access_authentication": [
+          "login-c8dcb"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "login-c8dcb"
+  }
+}

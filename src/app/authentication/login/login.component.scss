@@ -1,0 +1,20 @@
+.login-container {
+  width: 300px;
+  margin: auto;
+  background-color: darkgray;
+  padding: 30px;
+  border-radius: 10px;
+  margin-top: 80px;
+
+  form .form-field {
+    width: 300px;
+
+    .field-input {
+      border-radius: 10px;
+    }
+  }
+  .sub-btn {
+    width: 300px;
+    border-radius: 20px;
+  }
+}

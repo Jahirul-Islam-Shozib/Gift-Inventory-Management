@@ -1,0 +1,47 @@
+<div class="login-container">
+  <h1>Login</h1>
+  <form
+    [formGroup]="loginForm"
+    (ngSubmit)="onSubmit()"
+    fxLayout="column"
+    fxLayoutAlign="center center"
+    fxLayoutGap="5px"
+  >
+    <div>
+      <mat-form-field class="form-field">
+        <mat-label>User Email</mat-label>
+        <input matInput placeholder="Email" formControlName="email" />
+        <mat-error *ngIf="email?.errors?.['required']"
+          >Email is required!</mat-error
+        >
+        <mat-error *ngIf="email?.errors?.['email']"
+          >Please enter a valid email!</mat-error
+        >
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field class="form-field">
+        <mat-label>Password</mat-label>
+        <input matInput placeholder="Password" formControlName="password" />
+        <mat-error *ngIf="password?.errors?.['required']"
+          >Password is required!</mat-error
+        >
+      </mat-form-field>
+    </div>
+    <div>
+      <button
+        [disabled]="!loginForm.valid"
+        type="submit"
+        class="sub-btn"
+        mat-raised-button
+        color="primary"
+      >
+        Submit
+      </button>
+    </div>
+    <div class="sign-up">
+      <a href="#">Forget Password?</a>
+    </div>
+  </form>
+</div>
