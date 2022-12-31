@@ -1,0 +1,9 @@
+.budget-container {
+  width: 100%;
+  padding: 10px;
+  height: calc(100vh - 120px);
+  .budget-content {
+    height: 100%;
+    width: 100%;
+  }
+}

@@ -10,6 +10,7 @@ import { AuthService } from 'src/app/authentication/auth.service';
 })
 export class ToolbarComponent implements OnInit, OnDestroy {
   isAuth = false;
+
   authSubscription!: Subscription;
   constructor(private authService: AuthService, private router: Router) {}
 

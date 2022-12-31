@@ -28,9 +28,25 @@ export class SignupComponent implements OnInit {
   }
   onSubmit() {
     // console.log(this.loginForm.value);
-    this.authService.registerUser({
-      email: this.signupForm.value.email,
-      password: this.signupForm.value.password,
-    });
+    // this.authService.registerUser({
+    //   email: this.signupForm.value.email,
+    //   password: this.signupForm.value.password,
+    // });
+
+    this.authService
+      .signUp({
+        email: this.signupForm.value.email,
+        password: this.signupForm.value.password,
+      })
+      .subscribe(
+        (resData) => {
+          console.log(resData);
+          this.authService.authSuccessfully();
+        },
+        (errorRes) => {
+          console.log(errorRes);
+        }
+      );
+    this.signupForm.reset();
   }
 }

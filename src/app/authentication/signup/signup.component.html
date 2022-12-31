@@ -1,5 +1,5 @@
 <div class="signup-container">
-  <h1>Sign Up</h1>
+  <h1>Register</h1>
   <form
     [formGroup]="signupForm"
     (ngSubmit)="onSubmit()"
@@ -11,9 +11,9 @@
       <mat-form-field class="form-field">
         <mat-label>User Email</mat-label>
         <input matInput placeholder="Email" formControlName="email" />
-        <mat-error *ngIf="email?.errors?.['required']"
+        <!-- <mat-error *ngIf="email?.errors?.['required']"
           >Email is required!</mat-error
-        >
+        > -->
         <mat-error *ngIf="email?.errors?.['email']"
           >Please enter a valid email!</mat-error
         >
@@ -24,9 +24,9 @@
       <mat-form-field class="form-field">
         <mat-label>Password</mat-label>
         <input matInput placeholder="Password" formControlName="password" />
-        <mat-error *ngIf="password?.errors?.['required']"
+        <!-- <mat-error *ngIf="password?.errors?.['required']"
           >Password is required!</mat-error
-        >
+        > -->
       </mat-form-field>
     </div>
     <div>
@@ -35,13 +35,16 @@
         type="submit"
         class="sub-btn"
         mat-raised-button
-        color="primary"
       >
-        Submit
+        Create Account
       </button>
     </div>
-    <div class="sign-up">
+    <!-- <div class="sign-up">
       <a href="#">Forget Password?</a>
-    </div>
+    </div> -->
   </form>
+  <div class="signup-footer">
+    <p>Already have an account?</p>
+    <a routerLink="/login">Log in</a>
+  </div>
 </div>

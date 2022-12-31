@@ -1,0 +1,53 @@
+<div
+  class="depot-container"
+  fxFlex
+  fxLayout="row"
+  fxLayoutAlign="center"
+  fxLayoutGap="10px"
+>
+  <div fxFlex="17%">
+    <app-menubar></app-menubar>
+  </div>
+  <div class="depot-content" fxFlex="80%">
+    <p-table
+      fxFlex="100%"
+      [columns]="cols"
+      [value]="depotItems"
+      styleClass="p-datatable-gridlines"
+      [scrollable]="true"
+    >
+      <ng-template pTemplate="header" let-columns>
+        <tr>
+          <th *ngFor="let col of columns">
+            {{ col.header }}
+          </th>
+          <th>{{ "Action" }}</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-rowData let-columns="columns">
+        <tr>
+          <td *ngFor="let col of columns">
+            {{ rowData[col.field] }}
+          </td>
+          <td class="btn-action">
+            <button
+              pButton
+              pRipple
+              icon="pi pi-pencil"
+              class="p-button-outlined p-button-success mr-2"
+              (click)="onEditDepot(rowData)"
+            ></button>
+            <button
+              pButton
+              pRipple
+              icon="pi pi-trash"
+              class="p-button-outlined p-button-warning"
+              (click)="onDeleteDepot(rowData.id)"
+            ></button>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>
+

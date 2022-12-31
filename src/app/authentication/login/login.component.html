@@ -29,19 +29,22 @@
         >
       </mat-form-field>
     </div>
+    <div fxLayoutAlign="flex-end" class="forgot-p">
+      <a href="#">Forgot Password?</a>
+    </div>
     <div>
       <button
         [disabled]="!loginForm.valid"
         type="submit"
-        class="sub-btn"
+        class="log-btn"
         mat-raised-button
-        color="primary"
       >
-        Submit
+        Log in
       </button>
     </div>
-    <div class="sign-up">
-      <a href="#">Forget Password?</a>
-    </div>
   </form>
+  <div class="login-footer">
+    <p>Don't have an account?</p>
+    <a routerLink="/signup">Sign up</a>
+  </div>
 </div>

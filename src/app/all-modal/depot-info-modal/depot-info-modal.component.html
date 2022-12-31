@@ -1,0 +1,98 @@
+<form
+  [formGroup]="depotInfoForm"
+  (ngSubmit)="onAddDepot()"
+  class="depot-container"
+>
+  <div fxFlex="100%" fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="center">
+    <div fxFlex="50%" fxLayoutAlign="flex-start">
+      <span class="p-label">
+        <label for="depotName">Depot Name</label>
+        <input
+          class="input-row"
+          type="text"
+          id="inputDepotName"
+          pInputText
+          formControlName="depotName"
+        />
+      </span>
+    </div>
+    <div fxFlex="50%" fxLayoutAlign="flex-end">
+      <span class="p-label">
+        <label for="depotCode">Depot Code</label>
+        <input
+          class="input-row"
+          type="text"
+          id="inputDepotCode"
+          pInputText
+          formControlName="depotCode"
+        />
+      </span>
+    </div>
+  </div>
+
+  <div>
+    <span class="p-label">
+      <label for="depotAddress">Depot Address</label>
+      <input
+        class="input-column"
+        type="text"
+        id="inputDepotAddress"
+        pInputText
+        formControlName="depotAddress"
+      />
+    </span>
+  </div>
+  <div fxFlex="100%" fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="center">
+    <div fxFlex="50%" fxLayoutAlign="flex-start">
+      <span class="p-label">
+        <label for="adminName">Admin Name</label>
+        <input
+          class="input-row"
+          type="text"
+          id="inputAdminName"
+          pInputText
+          formControlName="adminName"
+        />
+      </span>
+    </div>
+
+    <div fxFlex="50%" fxLayoutAlign="flex-end">
+      <span class="p-label">
+        <label for="adminMobile">Admin Mobile</label>
+        <input
+          class="input-row"
+          type="text"
+          id="inputAdminMobile"
+          pInputText
+          formControlName="adminMobile"
+        />
+      </span>
+    </div>
+  </div>
+
+  <div>
+    <span class="p-label">
+      <label for="adminEmail">Admin Email</label>
+      <input
+        class="input-column"
+        type="text"
+        id="inputAdminEmail"
+        pInputText
+        formControlName="adminEmail"
+      />
+    </span>
+  </div>
+</form>
+
+<div class="btn-modal">
+  <button
+    icon="pi pi-fw pi-plus"
+    pButton
+    type="submit"
+    class="p-button-sm"
+    [disabled]="!depotInfoForm.valid"
+    (click)="onAddDepot()"
+  >
+    {{ editMode ? "Update" : "Add" }}
+  </button>
+</div>
