@@ -1,1 +1,34 @@
-<p>depot-budget works!</p>
+<div
+  class="specific-depot-container"
+  fxFlex
+  fxLayout="row"
+  fxLayoutAlign="center"
+  fxLayoutGap="10px"
+>
+  <div fxFlex="17%">
+    <app-menubar></app-menubar>
+  </div>
+  <div class="specific-depot-content" fxFlex="80%" fxLayout="column">
+    <div class="col-12 md:col-4" fxFlex="10%">
+      <div class="p-inputgroup">
+        <button
+          type="button"
+          pButton
+          pRipple
+          label="Search Depot"
+          (click)="sendDepotId()"
+        ></button>
+        <input
+          type="text"
+          pInputText
+          placeholder="Depot Id"
+          [(ngModel)]="depotId"
+        />
+      </div>
+    </div>
+    <app-depot-wise-data-tables
+      fxFlex="90%"
+      [depotData]="dataItems"
+    ></app-depot-wise-data-tables>
+  </div>
+</div>
