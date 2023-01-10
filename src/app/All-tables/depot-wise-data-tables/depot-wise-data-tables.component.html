@@ -1,16 +1,11 @@
-<!-- <div class="form-group">
-  <label class="allStore">Select Store:</label>
-  <p-dropdown
-    [options]="inventoryStores"
-    [(ngModel)]="selectedInventoryStores"
-    (onChange)="onChangeInventoryStore($event)"
-    optionLabel="name"
-  ></p-dropdown>
-</div> -->
+<div class="empty-message" *ngIf="!dataItems">
+  <h2>No Depot has been selected. Please select your Depot by Depot number.</h2>
+</div>
 
 <p-table
+  *ngIf="dataItems"
   [columns]="cols"
-  [value]="inventoryData"
+  [value]="depotData"
   styleClass="p-datatable"
   [scrollable]="true"
 >

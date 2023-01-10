@@ -1,0 +1,9 @@
+
+.empty-message {
+  text-align: center;
+  margin-top: 20px;
+}
+:host::ng-deep .p-datatable-wrapper {
+  //height: 490px;
+  height: calc(100vh - 150px);
+}

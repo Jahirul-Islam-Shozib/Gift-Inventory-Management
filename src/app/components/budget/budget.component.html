@@ -1,4 +1,4 @@
-<!-- <p-toast styleClass="toast"></p-toast> -->
+<p-toast styleClass="toast"></p-toast>
 <div
   class="upload-budget-container"
   fxFlex
@@ -37,6 +37,7 @@
                 style="font-size: 3rem"
               ></i>
               <p-progressBar
+                *ngIf="fileUploaded"
                 fxFlex="80%"
                 class="list-bar"
                 [value]="value"

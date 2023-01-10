@@ -13,36 +13,43 @@
       fxFlex="100%"
       [columns]="cols"
       [value]="depotItems"
-      styleClass="p-datatable-gridlines"
+      styleClass="p-datatable"
       [scrollable]="true"
     >
-      <ng-template pTemplate="header" let-columns>
+      <ng-template pTemplate="header">
         <tr>
-          <th *ngFor="let col of columns">
-            {{ col.header }}
-          </th>
-          <th>{{ "Action" }}</th>
+          <th>Depot Name</th>
+          <th>Depot Location</th>
+          <th>Admin Name</th>
+          <th>Admin Email</th>
+          <th>Admin Contact Number</th>
+          <th>Action</th>
         </tr>
       </ng-template>
-      <ng-template pTemplate="body" let-rowData let-columns="columns">
+      <ng-template pTemplate="body" let-depotItems>
         <tr>
-          <td *ngFor="let col of columns">
-            {{ rowData[col.field] }}
+          <td>{{ depotItems.depotName }}</td>
+          <td>{{ depotItems.location }}</td>
+          <td>
+            {{ depotItems.user?.firstName + depotItems.user?.lastName }}
           </td>
+          <td>{{ depotItems?.user?.email }}</td>
+          <td>{{ depotItems?.user?.contactNumber }}</td>
+
           <td class="btn-action">
             <button
               pButton
               pRipple
               icon="pi pi-pencil"
-              class="p-button-outlined p-button-success mr-2"
-              (click)="onEditDepot(rowData)"
+              class="p-button p-button-success mr-2"
+              (click)="onEditDepot(depotItems)"
             ></button>
             <button
               pButton
               pRipple
               icon="pi pi-trash"
-              class="p-button-outlined p-button-warning"
-              (click)="onDeleteDepot(rowData.id)"
+              class="p-button p-button-danger"
+              (click)="onDeleteDepot(depotItems.id)"
             ></button>
           </td>
         </tr>
@@ -50,4 +57,3 @@
     </p-table>
   </div>
 </div>
-

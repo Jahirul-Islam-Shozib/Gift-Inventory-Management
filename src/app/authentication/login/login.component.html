@@ -23,14 +23,19 @@
     <div>
       <mat-form-field class="form-field">
         <mat-label>Password</mat-label>
-        <input matInput placeholder="Password" formControlName="password" />
+        <input
+          type="password"
+          matInput
+          placeholder="Password"
+          formControlName="password"
+        />
         <mat-error *ngIf="password?.errors?.['required']"
           >Password is required!</mat-error
         >
       </mat-form-field>
     </div>
     <div fxLayoutAlign="flex-end" class="forgot-p">
-      <a href="#">Forgot Password?</a>
+      <a routerLink="/forgot-pass">Forgot Password?</a>
     </div>
     <div>
       <button

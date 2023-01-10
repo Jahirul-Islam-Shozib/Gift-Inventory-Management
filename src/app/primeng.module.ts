@@ -18,6 +18,9 @@ import { DropdownModule } from 'primeng/dropdown';
 import { CardModule } from 'primeng/card';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { SidebarModule } from 'primeng/sidebar';
+import { ToolbarModule } from 'primeng/toolbar';
+import { TabViewModule } from 'primeng/tabview';
+import { InputMaskModule } from 'primeng/inputmask';
 
 @NgModule({
   imports: [
@@ -39,6 +42,9 @@ import { SidebarModule } from 'primeng/sidebar';
     CardModule,
     DynamicDialogModule,
     SidebarModule,
+    ToolbarModule,
+    TabViewModule,
+    InputMaskModule,
   ],
   exports: [
     ButtonModule,
@@ -59,6 +65,9 @@ import { SidebarModule } from 'primeng/sidebar';
     CardModule,
     DynamicDialogModule,
     SidebarModule,
+    ToolbarModule,
+    TabViewModule,
+    InputMaskModule,
   ],
 })
 export class PrimengModule {}

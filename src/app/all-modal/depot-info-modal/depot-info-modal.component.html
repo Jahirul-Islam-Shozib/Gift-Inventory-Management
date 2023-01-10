@@ -2,97 +2,110 @@
   [formGroup]="depotInfoForm"
   (ngSubmit)="onAddDepot()"
   class="depot-container"
+  fxFlex
+  fxLayout="row wrap"
+  fxLayoutGap="10px grid"
 >
-  <div fxFlex="100%" fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="center">
-    <div fxFlex="50%" fxLayoutAlign="flex-start">
-      <span class="p-label">
-        <label for="depotName">Depot Name</label>
-        <input
-          class="input-row"
-          type="text"
-          id="inputDepotName"
-          pInputText
-          formControlName="depotName"
-        />
-      </span>
-    </div>
-    <div fxFlex="50%" fxLayoutAlign="flex-end">
-      <span class="p-label">
-        <label for="depotCode">Depot Code</label>
-        <input
-          class="input-row"
-          type="text"
-          id="inputDepotCode"
-          pInputText
-          formControlName="depotCode"
-        />
-      </span>
-    </div>
-  </div>
+  <span fxFlex="50%" class="p-float-filled">
+    <label for="depotName">Depot Name</label>
+    <input
+      class="input-row"
+      type="text"
+      id="inputDepotName"
+      pInputText
+      formControlName="depotName"
+    />
+  </span>
 
-  <div>
-    <span class="p-label">
-      <label for="depotAddress">Depot Address</label>
-      <input
-        class="input-column"
-        type="text"
-        id="inputDepotAddress"
-        pInputText
-        formControlName="depotAddress"
-      />
-    </span>
-  </div>
-  <div fxFlex="100%" fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="center">
-    <div fxFlex="50%" fxLayoutAlign="flex-start">
-      <span class="p-label">
-        <label for="adminName">Admin Name</label>
-        <input
-          class="input-row"
-          type="text"
-          id="inputAdminName"
-          pInputText
-          formControlName="adminName"
-        />
-      </span>
-    </div>
+  <!-- <span fxFlex="50%" class="p-float-filled">
+    <label for="depotCode">Depot Code</label>
+    <input
+      class="input-row"
+      type="text"
+      id="inputDepotCode"
+      pInputText
+      formControlName="depotCode"
+    />
+  </span> -->
 
-    <div fxFlex="50%" fxLayoutAlign="flex-end">
-      <span class="p-label">
-        <label for="adminMobile">Admin Mobile</label>
-        <input
-          class="input-row"
-          type="text"
-          id="inputAdminMobile"
-          pInputText
-          formControlName="adminMobile"
-        />
-      </span>
-    </div>
-  </div>
+  <span fxFlex="50%" class="p-float-filled">
+    <label for="depotAddress">Depot Address</label>
+    <input
+      class="input-column"
+      type="text"
+      id="inputDepotAddress"
+      pInputText
+      formControlName="location"
+    />
+  </span>
 
-  <div>
-    <span class="p-label">
-      <label for="adminEmail">Admin Email</label>
-      <input
-        class="input-column"
-        type="text"
-        id="inputAdminEmail"
-        pInputText
-        formControlName="adminEmail"
-      />
-    </span>
+  <span fxFlex="50%" class="p-float-filled">
+    <label for="user_id">User Id</label>
+    <input
+      class="input-row"
+      type="text"
+      id="inputUserId"
+      pInputText
+      formControlName="user_id"
+    />
+  </span>
+  <!-- 
+  <span fxFlex="50%" class="p-float-filled">
+    <label for="adminName">Admin Name</label>
+    <input
+      class="input-row"
+      type="text"
+      id="inputAdminName"
+      pInputText
+      formControlName="adminName"
+    />
+  </span> -->
+
+  <!-- <span fxFlex="50%" class="p-float-filled">
+    <label for="adminMobile">Admin Mobile</label>
+    <input
+      class="input-row"
+      type="text"
+      id="inputAdminMobile"
+      pInputText
+      formControlName="adminMobile"
+    />
+  </span> -->
+
+  <!-- <span fxFlex="50%" class="p-float-filled">
+    <label for="adminEmail">Admin Email</label>
+    <input
+      class="input-column"
+      type="text"
+      id="inputAdminEmail"
+      pInputText
+      formControlName="adminEmail"
+    />
+  </span> -->
+  <div fxFlex="50%" class="btn-modal">
+    <button
+      pButton
+      icon="pi pi-fw pi-plus"
+      type="submit"
+      class="p-button-sm"
+      [disabled]="!depotInfoForm.valid"
+      (click)="onAddDepot()"
+    >
+      {{ editMode ? "Update Depot" : "Add Depot" }}
+    </button>
   </div>
 </form>
 
-<div class="btn-modal">
-  <button
-    icon="pi pi-fw pi-plus"
-    pButton
-    type="submit"
-    class="p-button-sm"
-    [disabled]="!depotInfoForm.valid"
-    (click)="onAddDepot()"
-  >
-    {{ editMode ? "Update" : "Add" }}
-  </button>
-</div>
+<!-- <div class="btn-modal">
+    <button
+      icon="pi pi-fw pi-plus"
+      pButton
+      type="submit"
+      class="p-button-sm"
+      [disabled]="!depotInfoForm.valid"
+      (click)="onAddDepot()"
+    >
+      {{ editMode ? "Update" : "Add" }}
+    </button>
+  </div>
+</div> -->

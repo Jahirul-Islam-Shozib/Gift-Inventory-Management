@@ -5,7 +5,7 @@ import { MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogConfig } from 'primeng/dynamicdialog';
 import { InventoryUserService } from 'src/app/Service/inventory-user.service';
 import { InventoryUserModel } from 'src/app/shared/inventory-user.model';
-import { environment } from 'src/environments/environment.prod';
+import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-inventory-user-modal',
@@ -15,16 +15,17 @@ import { environment } from 'src/environments/environment.prod';
 export class InventoryUserModalComponent implements OnInit {
   inventoryUserForm!: FormGroup;
   editMode = false;
+  api_key: any;
 
   constructor(
     private inventoryUserService: InventoryUserService,
-    private http: HttpClient,
-    private dialogService: DialogService,
     public config: DynamicDialogConfig,
     private messageService: MessageService
   ) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.api_key = window.localStorage.getItem('token');
+
     if (this.config.data) {
       this.editMode = true;
       this.initForm(this.config.data);
@@ -39,7 +40,7 @@ export class InventoryUserModalComponent implements OnInit {
 
   initForm(data?: InventoryUserModel) {
     this.inventoryUserForm = new FormGroup({
-      userId: new FormControl(data ? data.userId : null, Validators.required),
+      id: new FormControl(data ? data.id : null),
       role: new FormControl(data ? data.role : null, Validators.required),
       email: new FormControl(data ? data.email : null, Validators.required),
       firstName: new FormControl(
@@ -50,34 +51,38 @@ export class InventoryUserModalComponent implements OnInit {
         data ? data.lastName : null,
         Validators.required
       ),
-      password: new FormControl(
-        data ? data.password : null,
+      password: new FormControl(data ? 'N/A' : null, Validators.required),
+      contactNumber: new FormControl(
+        data ? data.contactNumber : null,
         Validators.required
       ),
       status: new FormControl(data ? data.status : null, Validators.required),
-      workPlace: new FormControl(
-        data ? data.workPlace : null,
-        Validators.required
-      ),
+      // workPlace: new FormControl(
+      //   data ? data.workPlace : null,
+      //   Validators.required
+      // ),
     });
   }
   onAddUser() {
+    debugger;
     if (this.editMode) {
       this.inventoryUserService.updateUserInfo(
-        this.config.data.userId,
+        this.config.data.id,
         this.inventoryUserForm.value
       );
-
-      this.inventoryUserForm.reset();
+      this.inventoryUserService.updateInventoryUserDatabyId(
+        this.config.data.id,
+        this.inventoryUserForm.value,
+        this.api_key
+      );
     } else {
       this.inventoryUserService.addNewUser(this.inventoryUserForm.value);
       console.log(this.inventoryUserForm.value);
       this.inventoryUserService.storeInventoryUserData(
-        this.inventoryUserForm.value
+        this.inventoryUserForm.value,
+        this.api_key
       );
       this.inventoryUserForm.reset();
     }
   }
-
-
 }

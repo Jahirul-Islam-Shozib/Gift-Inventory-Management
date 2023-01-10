@@ -2,124 +2,107 @@
   [formGroup]="inventoryUserForm"
   (ngSubmit)="onAddUser()"
   class="inventoryUser-container"
+  fxFlex
+  fxLayout="row wrap"
+  fxLayoutGap="10px grid"
 >
-  <div fxFlex="100%" fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="center">
-    <div fxFlex="50%" fxLayoutAlign="flex-start">
-      <span class="p-label">
-        <label for="userId">User Id</label>
-        <input
-          class="input-row"
-          type="number"
-          id="inputUserId"
-          pInputText
-          formControlName="userId"
-        />
-      </span>
-    </div>
-    <div fxFlex="50%" fxLayoutAlign="flex-end">
-      <span class="p-label">
-        <label for="role">User Role</label>
-        <input
-          class="input-row"
-          type="text"
-          id="inputUserRole"
-          pInputText
-          formControlName="role"
-        />
-      </span>
-    </div>
-  </div>
+  <span fxFlex="50%" class="p-label">
+    <label for="firstName">FirstName</label>
+    <input
+      class="input-row"
+      type="text"
+      id="inputfirstname"
+      pInputText
+      formControlName="firstName"
+    />
+  </span>
 
-  <div>
-    <span class="p-label">
-      <label for="email">User Email</label>
-      <input
-        class="input-column"
-        type="text"
-        id="inputUserEmail"
-        pInputText
-        formControlName="email"
-      />
-    </span>
-  </div>
-  <div fxFlex="100%" fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="center">
-    <div fxFlex="50%" fxLayoutAlign="flex-start">
-      <span class="p-label">
-        <label for="firstName">FirstName</label>
-        <input
-          class="input-row"
-          type="text"
-          id="inputfirstname"
-          pInputText
-          formControlName="firstName"
-        />
-      </span>
-    </div>
+  <span fxFlex="50%" class="p-label">
+    <label for="lastName">LastName</label>
+    <input
+      class="input-row"
+      type="text"
+      id="inputLastname"
+      pInputText
+      formControlName="lastName"
+    />
+  </span>
 
-    <div fxFlex="50%" fxLayoutAlign="flex-end">
-      <span class="p-label">
-        <label for="lastName">LastName</label>
-        <input
-          class="input-row"
-          type="text"
-          id="inputLastname"
-          pInputText
-          formControlName="lastName"
-        />
-      </span>
-    </div>
-  </div>
-  <div fxFlex="100%" fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="center">
-    <div fxFlex="50%" fxLayoutAlign="flex-start">
-      <span class="p-label">
-        <label for="password">Password</label>
-        <input
-          class="input-row"
-          type="text"
-          id="inputUserPassword"
-          pInputText
-          formControlName="password"
-        />
-      </span>
-    </div>
+  <span fxFlex="50%" class="p-label">
+    <label for="email">User Email</label>
+    <input
+      class="input-column"
+      type="text"
+      id="inputUserEmail"
+      pInputText
+      formControlName="email"
+    />
+  </span>
 
-    <div fxFlex="50%" fxLayoutAlign="flex-end">
-      <span class="p-label">
-        <label for="status">User Status</label>
-        <input
-          class="input-row"
-          type="text"
-          id="inputUserStatus"
-          pInputText
-          formControlName="status"
-        />
-      </span>
-    </div>
-  </div>
+  <span fxFlex="50%" class="p-label">
+    <label for="password">Password</label>
+    <input
+      class="input-row"
+      type="text"
+      id="inputUserPassword"
+      pInputText
+      formControlName="password"
+    />
+  </span>
+  <span fxFlex="50%" class="p-label">
+    <label for="contactNumber">Contact Number</label>
+    <input
+      class="input-row"
+      type="text"
+      id="inputContactNumber"
+      pInputText
+      formControlName="contactNumber"
+    />
+  </span>
 
-  <div>
-    <span class="p-label">
-      <label for="workPlace">Work Zone</label>
-      <input
-        class="input-column"
-        type="text"
-        id="inputUserWorkplace"
-        pInputText
-        formControlName="workPlace"
-      />
-    </span>
+  <span fxFlex="50%" class="p-label">
+    <label for="role">User Role</label>
+    <input
+      class="input-row"
+      type="text"
+      id="inputUserRole"
+      pInputText
+      formControlName="role"
+    />
+  </span>
+
+  <span fxFlex="50%" class="p-label">
+    <label for="status">User Status</label>
+    <input
+      class="input-row"
+      type="text"
+      id="inputUserStatus"
+      pInputText
+      formControlName="status"
+    />
+  </span>
+
+  <!-- <span fxFlex="50%" class="p-label">
+    <label for="workPlace">Work Zone</label>
+    <input
+      class="input-column"
+      type="text"
+      id="inputUserWorkplace"
+      pInputText
+      formControlName="workPlace"
+    />
+  </span> -->
+
+  <div class="btn-modal">
+    <button
+      icon="pi pi-fw pi-plus"
+      pButton
+      type="submit"
+      class="p-button-sm"
+      [disabled]="!inventoryUserForm.valid"
+      (click)="onAddUser()"
+    >
+      {{ editMode ? "Update" : "Add" }}
+    </button>
   </div>
 </form>
-
-<div class="btn-modal">
-  <button
-    icon="pi pi-fw pi-plus"
-    pButton
-    type="submit"
-    class="p-button-sm"
-    [disabled]="!inventoryUserForm.valid"
-    (click)="onAddUser()"
-  >
-    {{ editMode ? "Update" : "Add" }}
-  </button>
-</div>

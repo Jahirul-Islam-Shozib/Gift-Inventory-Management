@@ -17,14 +17,14 @@
       height: calc(100vh - 105px);
     }
   }
-  th {
-    text-align: center;
-  }
+  // th {
+  //   text-align: center;
+  // }
   ::ng-deep .btn-action {
     display: flex;
-
     button {
-      margin: 5px;
+      margin-left: 5px;
+      height: 5px;
     }
   }
 }

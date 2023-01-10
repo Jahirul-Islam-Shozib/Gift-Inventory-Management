@@ -14,6 +14,8 @@ import { InventoryUserModel } from 'src/app/shared/inventory-user.model';
 export class InventoryUserComponent implements OnInit {
   inventoryUser!: InventoryUserModel[];
   cols: any[] = [];
+  api_key: any;
+
   constructor(
     private inventoryUserService: InventoryUserService,
     public dialogService: DialogService,
@@ -21,26 +23,31 @@ export class InventoryUserComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.api_key = window.localStorage.getItem('token');
+
+    //console.log(this.api_key);
     this.inventoryUser = this.inventoryUserService.getAllInventoryUser();
     this.inventoryUserService.inventoryUserChange.subscribe((items) => {
       this.inventoryUser = items;
     });
 
+    this.onFetchUserData();
     this.cols = [
-      { field: 'userId', header: 'User Id' },
+      { field: 'id', header: 'User Id' },
       { field: 'firstName', header: 'FirstName' },
       { field: 'lastName', header: 'LastName' },
       { field: 'email', header: 'Email' },
-      { field: 'password', header: 'Password' },
+      // { field: 'password', header: 'Password' },
+      { field: 'contactNumber', header: 'Contact Number' },
       { field: 'role', header: 'User Role' },
       { field: 'status', header: 'User status' },
-      { field: 'workPlace', header: 'Work Zone' },
     ];
-    this.onFetchUserData();
   }
 
   onFetchUserData() {
-    this.inventoryUserService.fetchAllInventoryUserData().subscribe();
+    this.inventoryUserService
+      .fetchAllInventoryUserData(this.api_key)
+      .subscribe();
   }
   onEditUser(item: InventoryUserModel) {
     this.dialogService.open(InventoryUserModalComponent, {

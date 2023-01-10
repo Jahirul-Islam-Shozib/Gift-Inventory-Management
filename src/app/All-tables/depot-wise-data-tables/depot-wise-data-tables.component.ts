@@ -1,17 +1,21 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { DataStorageService } from 'src/app/Service/Data Fetch & Store/data-storage.service';
 import { DataModel } from 'src/app/shared/data.model';
 
 @Component({
-  selector: 'app-inventoryStore-table',
-  templateUrl: './inventoryStore-table.component.html',
-  styleUrls: ['./inventoryStore-table.component.scss'],
+  selector: 'app-depot-wise-data-tables',
+  templateUrl: './depot-wise-data-tables.component.html',
+  styleUrls: ['./depot-wise-data-tables.component.scss'],
 })
-export class InventoryStoreTableComponent implements OnInit {
-  @Input() inventoryData!: DataModel[];
+export class DepotWiseDataTablesComponent implements OnInit {
+  depotId!: string;
+  @Input() depotData!: DataModel[];
+  dataItems: DataModel[] = [];
+
   cols: any[] = [];
 
-  constructor(private dataStorageService: DataStorageService) {}
+  constructor() {}
 
   ngOnInit() {
     this.cols = [
@@ -21,12 +25,11 @@ export class InventoryStoreTableComponent implements OnInit {
       { field: 'productionUnit', header: 'Production Unit' },
       { field: 'packageSize', header: 'Package Size' },
       { field: 'category', header: 'Product Category' },
-      { field: 'sbu', header: 'SBU' },
+
       { field: 'fieldColleagueID', header: 'FC Id' },
       { field: 'fieldColleagues', header: 'FC Name' },
       { field: 'quantity', header: 'Quantity' },
-      { field: 'depotID', header: 'Depot Id' },
-      { field: 'depotName', header: 'Depot name' },
+
       { field: 'month', header: 'Month' },
       { field: 'year', header: 'Year' },
     ];

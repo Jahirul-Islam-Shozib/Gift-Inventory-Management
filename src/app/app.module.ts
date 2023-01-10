@@ -33,6 +33,10 @@ import { InventoryStoreTableComponent } from './All-tables/inventoryStore-table/
 import { InventoryUserComponent } from './components/inventory-user/inventory-user.component';
 import { InventoryUserModalComponent } from './all-modal/inventory-user-modal/inventory-user-modal.component';
 import { MessageService } from 'primeng/api';
+import { DepotWiseDataTablesComponent } from './All-tables/depot-wise-data-tables/depot-wise-data-tables.component';
+import { SsuChalanCreationComponent } from './components/chalan/ssu-chalan-creation/ssu-chalan-creation.component';
+import { ForgotPassComponent } from './authentication/forgot-pass/forgot-pass.component';
+import { ResetPassComponent } from './authentication/reset-pass/reset-pass.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +56,10 @@ import { MessageService } from 'primeng/api';
     ShowBudgetComponent,
     InventoryUserComponent,
     InventoryUserModalComponent,
+    DepotWiseDataTablesComponent,
+    SsuChalanCreationComponent,
+    ForgotPassComponent,
+    ResetPassComponent,
   ],
   imports: [
     BrowserModule,

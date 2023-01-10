@@ -5,25 +5,25 @@
   h2 {
     padding: 8px;
   }
-  display: flex;
-  flex-direction: column;
+
   label {
     margin: 10px;
   }
   ::ng-deep .input-row {
-    width: 16rem;
-    margin: 10px;
+    width: 90%;
+    margin: 5px;
   }
   ::ng-deep .input-column {
-    width: 97%;
-    margin: 10px;
+    width: 90%;
+    margin: 5px;
   }
-}
-.btn-modal {
-  display: flex;
-  justify-content: end;
+
   button {
-    margin: 10px;
+    font-size: medium;
+    margin-top: 24px;
+    margin-left: 10px;
     background-color: #636e72;
+    height: 45px;
+    width: 90%;
   }
 }

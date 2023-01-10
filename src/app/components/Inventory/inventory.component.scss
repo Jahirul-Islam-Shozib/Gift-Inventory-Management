@@ -10,4 +10,12 @@
     border-radius: 5px;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   }
+  .form-group {
+    margin: 5px 7px;
+    ::ng-deep .allStore {
+      font-weight: 500;
+      padding-right: 10px;
+      color: blue;
+    }
+  }
 }

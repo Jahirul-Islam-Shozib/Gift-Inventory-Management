@@ -1,0 +1,40 @@
+<div class="forgotPass1">
+  <h2 style="padding-top: 10px; padding-left: 10px">Find Your Account</h2>
+
+  <hr style="width: 100%; margin-left: 0; text-align: center" />
+
+  <p style="padding: 10px; font-size: medium">
+    Please enter your email address to reset your password for your account.
+  </p>
+
+  <span class="p-float-filled" style="padding: 10px">
+    <input
+      id="float-input"
+      type="text"
+      pInputText
+      placeholder="Email Address"
+      [(ngModel)]="email"
+    />
+  </span>
+
+  <hr style="width: 100%; margin-left: 0; text-align: center" />
+  <div class="all-btn">
+    <button
+      routerLink="/login"
+      pButton
+      type="button"
+      label="Cancel"
+      class="p-button-sm"
+      style="background-color: #636e72"
+    ></button>
+    <button
+      routerLink="/reset-pass"
+      pButton
+      type="button"
+      label="Send"
+      class="p-button-sm"
+      (click)="onSendEmail()"
+      style="margin-left: 10px; background-color: #636e72"
+    ></button>
+  </div>
+</div>

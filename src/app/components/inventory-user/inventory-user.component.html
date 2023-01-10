@@ -13,7 +13,7 @@
       fxFlex="100%"
       [columns]="cols"
       [value]="inventoryUser"
-      styleClass="p-datatable-gridlines"
+      styleClass="p-datatable"
       [scrollable]="true"
     >
       <ng-template pTemplate="header" let-columns>
@@ -34,14 +34,14 @@
               pButton
               pRipple
               icon="pi pi-pencil"
-              class="p-button-outlined p-button-success mr-2"
+              class="p-button p-button-success mr-2"
               (click)="onEditUser(rowData)"
             ></button>
             <button
               pButton
               pRipple
               icon="pi pi-trash"
-              class="p-button-outlined p-button-warning"
+              class="p-button p-button-danger"
               (click)="onDeleteUser(rowData.userId)"
             ></button>
           </td>

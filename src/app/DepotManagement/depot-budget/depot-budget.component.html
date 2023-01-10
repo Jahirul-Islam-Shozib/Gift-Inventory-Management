@@ -9,9 +9,10 @@
     <app-menubar></app-menubar>
   </div>
   <div class="specific-depot-content" fxFlex="80%" fxLayout="column">
-    <div class="col-12 md:col-4" fxFlex="10%">
+    <div style="width: 400px; margin-bottom: 5px" class="col-12 md:col-4">
       <div class="p-inputgroup">
         <button
+          style="height: 40px; margin-bottom: 5px"
           type="button"
           pButton
           pRipple
@@ -19,6 +20,7 @@
           (click)="sendDepotId()"
         ></button>
         <input
+          style="height: 40px; margin-bottom: 5px"
           type="text"
           pInputText
           placeholder="Depot Id"
@@ -26,9 +28,7 @@
         />
       </div>
     </div>
-    <app-depot-wise-data-tables
-      fxFlex="90%"
-      [depotData]="dataItems"
-    ></app-depot-wise-data-tables>
+    <app-depot-wise-data-tables fxFlex="100%" [depotData]="dataItems">
+    </app-depot-wise-data-tables>
   </div>
 </div>

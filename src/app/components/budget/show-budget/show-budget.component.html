@@ -1,3 +1,29 @@
-<div class="budget-container">
-  <app-inventoryStore-table class="budget-content"></app-inventoryStore-table>
+<!-- <div
+  class="budget-container"
+  fxFlex
+  fxLayout="row"
+  fxLayoutAlign="center"
+  fxLayoutGap="10px"
+>
+  <div fxFlex="17%">
+    <app-menubar></app-menubar>
+  </div>
+  <div fxFlex="80%">
+    <app-inventoryStore-table class="budget-content"></app-inventoryStore-table>
+  </div>
+</div> -->
+
+<div
+  class="budget-container"
+  fxFlex
+  fxLayout="row"
+  fxLayoutAlign="center"
+  fxLayoutGap="10px"
+>
+  <div fxFlex="17%">
+    <app-menubar></app-menubar>
+  </div>
+  <div class="show-budget-content" fxFlex="80%">
+    <app-inventoryStore-table fxFlex="100%"></app-inventoryStore-table>
+  </div>
 </div>

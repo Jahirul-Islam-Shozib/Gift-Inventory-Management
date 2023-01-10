@@ -1,0 +1,22 @@
+::ng-deep .p-toolbar {
+  height: 100px;
+  background-color: whitesmoke;
+  .toolbar-header {
+    font-weight: 500;
+    font-size: 30px;
+  }
+}
+
+input {
+  width: 90%;
+  margin: 5px;
+}
+p-inputmask {
+  width: 90%;
+  margin: 5px;
+}
+// .address-info {
+//   position: absolute;
+//   top: 45%;
+
+// }

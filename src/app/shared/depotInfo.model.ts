@@ -27,10 +27,8 @@ export class DepotInfoModel {
   constructor(
     public id: string,
     public depotName: string,
-    public depotCode: string,
-    public depotAddress: string,
-    public adminName: string,
-    public adminEmail: string,
-    public adminMobile: string
+    // public depotCode: string,
+    public location: string,
+    public user_id: number //public adminMobile: string // public adminName: string, // public adminEmail: string,
   ) {}
 }

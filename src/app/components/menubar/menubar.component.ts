@@ -120,7 +120,7 @@ export class MenubarComponent implements OnInit {
     this.dialogService.open(DepotInfoModalComponent, {
       header: 'Depot Information',
       width: '50%',
-      height: '80%',
+      height: '40%',
     });
   }
   showInventoryUserDialog() {

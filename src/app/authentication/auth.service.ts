@@ -68,16 +68,25 @@ export class AuthService {
   //     });
   // }
 
+  // login(authData: AuthData) {
+  //   return this.http.post<AuthResponseData>(
+  //     'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCWyDgK_OagUGfC5pdXW5CK8UgWr1Jz4P8',
+  //     {
+  //       email: authData.email,
+  //       password: authData.password,
+  //       returnSecureToken: true,
+  //     }
+  //   );
+  // }
+
   login(authData: AuthData) {
-    return this.http.post<AuthResponseData>(
-      'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCWyDgK_OagUGfC5pdXW5CK8UgWr1Jz4P8',
-      {
-        email: authData.email,
-        password: authData.password,
-        returnSecureToken: true,
-      }
-    );
+    return this.http.post('http://localhost:8080/user/login', {
+      email: authData.email,
+      password: authData.password,
+      // returnSecureToken: true,
+    });
   }
+
   logout() {
     // this.user = null;
     this.afauth.signOut();

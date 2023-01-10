@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { UserDetailsService } from 'src/app/Service/authIfo.service';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -11,7 +12,11 @@ import { AuthService } from '../auth.service';
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private userDetailsService: UserDetailsService
+  ) {}
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
@@ -39,15 +44,19 @@ export class LoginComponent implements OnInit {
         email: this.loginForm.value.email,
         password: this.loginForm.value.password,
       })
-      .subscribe(
-        (resData) => {
+      .subscribe({
+        next: (resData: any) => {
+          localStorage.setItem('token', resData?.token);
           console.log(resData);
+          this.userDetailsService
+            .getUserDataAfterLogin(resData?.token)
+            .subscribe();
           this.authService.authSuccessfully();
           this.router.navigate(['/home']);
         },
-        (error) => {
+        error: (error) => {
           console.log(error);
-        }
-      );
+        },
+      });
   }
 }

@@ -1,0 +1,25 @@
+.forgotPass1 {
+  position: absolute;
+  top: 30%;
+  left: 33%;
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: -10px -10px 15px rgba(255, 255, 255, 0.5),
+    10px 10px 15px rgba(70, 70, 70, 0.12);
+  width: 500px;
+  height: 280px;
+  input {
+    width: 95%;
+    margin-bottom: 10px;
+  }
+  .all-btn {
+    margin-top: 10px;
+    padding-left: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-right: 14px;
+    // position: absolute;
+    // left: 20.5%;
+  }
+}

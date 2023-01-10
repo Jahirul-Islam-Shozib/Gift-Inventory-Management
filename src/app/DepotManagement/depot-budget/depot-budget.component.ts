@@ -1,4 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { DialogService } from 'primeng/dynamicdialog';
+
 import { DataStorageService } from 'src/app/Service/Data Fetch & Store/data-storage.service';
 import { DataModel } from 'src/app/shared/data.model';
 
@@ -6,20 +9,31 @@ import { DataModel } from 'src/app/shared/data.model';
   selector: 'app-depot-budget',
   templateUrl: './depot-budget.component.html',
   styleUrls: ['./depot-budget.component.scss'],
+  providers: [DialogService],
 })
 export class DepotBudgetComponent implements OnInit {
   depotId!: string;
-  dataItems: DataModel[] = [];
-  constructor(private dataStorageService: DataStorageService) {}
+  api_key: any;
+  dataItems!: DataModel[];
+  constructor(
+    private dataStorageService: DataStorageService,
+    public dialogService: DialogService,
+    private http: HttpClient
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.api_key = window.localStorage.getItem('token');
+
+    //console.log(this.api_key);
+  }
+
   sendDepotId() {
     console.log(this.depotId);
     this.fetchDepotId(this.depotId);
   }
 
   fetchDepotId(code: string) {
-    this.dataStorageService.fetchDepot(code).subscribe({
+    this.dataStorageService.fetchDepot(code, this.api_key).subscribe({
       next: (response: any) => {
         console.log('response:: ', response);
         this.dataItems = response;

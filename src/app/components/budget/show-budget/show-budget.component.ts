@@ -6,7 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./show-budget.component.scss'],
 })
 export class ShowBudgetComponent implements OnInit {
+  api_key: any;
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.api_key = window.localStorage.getItem('token');
+  }
 }

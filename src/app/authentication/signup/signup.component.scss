@@ -1,10 +1,10 @@
 .signup-container {
   width: 350px;
   margin: auto;
-  background-color: whitesmoke;
+  background-color: white;
   padding: 30px;
   border-radius: 10px;
-  margin-top: 80px;
+  margin-top: 10rem;
   //box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   box-shadow: -10px -10px 15px rgba(255, 255, 255, 0.6),
     10px 10px 15px rgba(70, 70, 70, 0.12);
@@ -20,6 +20,7 @@
     width: 300px;
     border-radius: 20px;
     background-color: #636e72;
+    color: white;
   }
   .signup-footer {
     padding-top: 20px;
