@@ -1,6 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Subject, tap } from 'rxjs';
+import { InventoryUserModalComponent } from '../all-modal/inventory-user-modal/inventory-user-modal.component';
 import { InventoryUserModel } from '../shared/inventory-user.model';
 
 @Injectable({
@@ -8,7 +10,11 @@ import { InventoryUserModel } from '../shared/inventory-user.model';
 })
 export class InventoryUserService {
   inventoryUserChange = new Subject<InventoryUserModel[]>();
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private ref: DynamicDialogRef,
+    private dialogService: DialogService
+  ) {}
 
   public inventoryUser: InventoryUserModel[] = [
     new InventoryUserModel(
@@ -48,7 +54,8 @@ export class InventoryUserService {
     this.inventoryUser[index] = updateData;
     this.inventoryUserChange.next(this.inventoryUser.slice());
   }
-  deleteUser(id: number) {
+  deleteUser(id: number, api_key: any) {
+    const finalUserData = this.getAllInventoryUser();
     const index = this.inventoryUser.findIndex(
       (checkItem: InventoryUserModel) => {
         return checkItem.id === id;
@@ -56,6 +63,27 @@ export class InventoryUserService {
     );
     this.inventoryUser.splice(index, 1);
     this.inventoryUserChange.next(this.inventoryUser.slice());
+
+    this.http
+      .put(
+        `http://localhost:8080/user/disable/${id}`,
+        { finalUserData },
+        {
+          headers: new HttpHeaders({
+            Authorization: `Bearer+${api_key}`,
+          }),
+        }
+      )
+      .subscribe({
+        next: (response) => {
+          //   console.log();
+        },
+        error: (err) => {
+          //this.ref.close();
+          //this.dialogService.destroy();
+          console.log(err);
+        },
+      });
   }
 
   storeInventoryUserData(inputUser: InventoryUserModel, api_key: any) {
@@ -95,12 +123,15 @@ export class InventoryUserService {
           Authorization: `Bearer+${api_key}`,
         }),
       })
-      .subscribe((response) => {
-        console.log(response);
+      .subscribe({
+        next: (response) => {
+          console.log(response);
+        },
+        error: (err) => {
+          //this.ref.close();
+          //this.dialogService.destroy();
+          console.log(err);
+        },
       });
-  }
-
-  deleteInventoryUserDatabyId() {
-    
   }
 }

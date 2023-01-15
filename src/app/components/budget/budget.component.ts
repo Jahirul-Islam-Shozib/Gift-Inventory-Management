@@ -1,7 +1,7 @@
+import { Time } from '@angular/common';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MessageService, PrimeNGConfig } from 'primeng/api';
-import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-budget',
@@ -16,11 +16,13 @@ export class BudgetComponent implements OnInit {
   excelData: any;
   uploadedFiles: any;
   fileUploaded: boolean = false;
+  todayTime!: Date;
   constructor(
     private messageService: MessageService,
     private http: HttpClient
   ) {}
   ngOnInit() {
+    this.todayTime = new Date();
     this.api_key = window.localStorage.getItem('token');
 
     //console.log(this.api_key);
@@ -43,31 +45,22 @@ export class BudgetComponent implements OnInit {
           Authorization: `Bearer+${this.api_key}`,
         }),
       })
-      .subscribe(
-        (data) => {
-          //success
+      .subscribe({
+        next: (data) => {
+          if (this.uploadedFiles != null) {
+            this.progressBar();
+          } else {
+            this.showError();
+          }
           console.log(data);
         },
-        (error) => {
+        error: (error) => {
           //error
           console.log(error);
-        }
-      );
-
-    if (this.uploadedFiles != null) {
-      this.progressBar();
-    } else {
-      this.showError();
-    }
+        },
+      });
   }
 
-  // showSuccess() {
-  //   this.messageService.add({
-  //     severity: 'success',
-  //     summary: 'Success',
-  //     detail: 'File Uploaded Successfully!',
-  //   });
-  // }
   showError() {
     this.messageService.add({
       severity: 'error',
@@ -80,7 +73,7 @@ export class BudgetComponent implements OnInit {
     let interval = setInterval(() => {
       this.value = this.value + Math.floor(Math.random() * 10) + 1;
       if (this.value >= 100) {
-        this.value = 300;
+        this.value = 100;
         this.messageService.add({
           severity: 'info',
           summary: 'Success',
@@ -88,6 +81,6 @@ export class BudgetComponent implements OnInit {
         });
         clearInterval(interval);
       }
-    }, 100);
+    }, 300);
   }
 }

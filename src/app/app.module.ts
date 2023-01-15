@@ -32,11 +32,12 @@ import { InventoryComponent } from './components/Inventory/inventory.component';
 import { InventoryStoreTableComponent } from './All-tables/inventoryStore-table/inventoryStore-table.component';
 import { InventoryUserComponent } from './components/inventory-user/inventory-user.component';
 import { InventoryUserModalComponent } from './all-modal/inventory-user-modal/inventory-user-modal.component';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { DepotWiseDataTablesComponent } from './All-tables/depot-wise-data-tables/depot-wise-data-tables.component';
 import { SsuChalanCreationComponent } from './components/chalan/ssu-chalan-creation/ssu-chalan-creation.component';
 import { ForgotPassComponent } from './authentication/forgot-pass/forgot-pass.component';
 import { ResetPassComponent } from './authentication/reset-pass/reset-pass.component';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 
 @NgModule({
   declarations: [
@@ -79,7 +80,13 @@ import { ResetPassComponent } from './authentication/reset-pass/reset-pass.compo
     provideAuth(() => getAuth()),
     // provideFirestore(() => getFirestore()),
   ],
-  providers: [AuthService, MessageService],
+  providers: [
+    AuthService,
+    MessageService,
+    ConfirmationService,
+    DynamicDialogRef,
+    DialogService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -9,22 +9,27 @@
   flex-direction: column;
   label {
     margin: 10px;
+    font-size: 14px;
+    font-weight: 500;
   }
   ::ng-deep .input-row {
     width: 90%;
+    height: 40px;
     margin: 5px;
+    font-size: 12px;
   }
   ::ng-deep .input-column {
     width: 90%;
+    height: 40px;
     margin: 5px;
+    font-size: 12px;
   }
 }
-.btn-modal {
-  display: flex;
-  justify-content: end;
-  button {
-    margin: 10px;
-    background-color: #636e72;
-  }
+button {
+  height: 40px;
+  width: 90%;
+  margin-top: 25px;
+  background-color: #636e72;
+  margin-left: 5px;
+  font-size: 14px;
 }
-

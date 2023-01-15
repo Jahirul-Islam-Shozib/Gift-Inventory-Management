@@ -1,3 +1,4 @@
+import { style } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { MenuItem, PrimeNGConfig } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
@@ -13,7 +14,7 @@ import { DataStorageService } from 'src/app/Service/Data Fetch & Store/data-stor
 })
 export class MenubarComponent implements OnInit {
   items: MenuItem[] = [];
-
+  displayDepot: boolean = false;
   constructor(
     public dialogService: DialogService,
     public dataStorageService: DataStorageService
@@ -48,7 +49,7 @@ export class MenubarComponent implements OnInit {
           {
             label: 'Add New Depo',
             icon: 'pi pi-fw pi-plus',
-            command: () => this.showDialog(),
+            command: () => this.showDepotInfoDialog(),
           },
         ],
       },
@@ -91,43 +92,24 @@ export class MenubarComponent implements OnInit {
             icon: 'pi pi-fw pi-users',
             routerLink: ['/inventory-user'],
           },
-          {
-            label: 'Search',
-            icon: 'pi pi-fw pi-users',
-            items: [
-              {
-                label: 'Filter',
-                icon: 'pi pi-fw pi-filter',
-                items: [
-                  {
-                    label: 'Print',
-                    icon: 'pi pi-fw pi-print',
-                  },
-                ],
-              },
-              {
-                icon: 'pi pi-fw pi-bars',
-                label: 'List',
-              },
-            ],
-          },
         ],
       },
     ];
   }
 
-  showDialog() {
+  showDepotInfoDialog() {
+    this.displayDepot = true;
     this.dialogService.open(DepotInfoModalComponent, {
       header: 'Depot Information',
       width: '50%',
-      height: '40%',
+      height: '45%',
     });
   }
   showInventoryUserDialog() {
     this.dialogService.open(InventoryUserModalComponent, {
       header: 'Inventory User Information',
       width: '50%',
-      height: '80%',
+      height: '6S5%',
     });
   }
 }

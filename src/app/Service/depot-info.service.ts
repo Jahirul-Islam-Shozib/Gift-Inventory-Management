@@ -30,7 +30,7 @@ export class DepotInfoService {
     this.depotsInfoChange.next(this.depotsInfo.slice());
   }
 
-  updateDepot(id: string, updateData: DepotInfoModel) {
+  updateDepot(id: number, updateData: DepotInfoModel) {
     const index = this.depotsInfo.findIndex((checkItem: DepotInfoModel) => {
       return checkItem.id === id;
     });
@@ -38,12 +38,32 @@ export class DepotInfoService {
     this.depotsInfo[index] = updateData;
     this.depotsInfoChange.next(this.depotsInfo.slice());
   }
-  deleteDepot(id: string) {
+  deleteDepot(id: number, api_key: any) {
     const index = this.depotsInfo.findIndex((checkItem: DepotInfoModel) => {
       return checkItem.id === id;
     });
     this.depotsInfo.splice(index, 1);
     this.depotsInfoChange.next(this.depotsInfo.slice());
+    this.http
+      .delete(
+        `http://localhost:8080/depot/delete/${id}`,
+
+        {
+          headers: new HttpHeaders({
+            Authorization: `Bearer+${api_key}`,
+          }),
+        }
+      )
+      .subscribe({
+        next: (response) => {
+          console.log(response);
+        },
+        error: (err) => {
+          //this.ref.close();
+          //this.dialogService.destroy();
+          console.log(err);
+        },
+      });
   }
 
   storeIndividualDepotData(inputUser: DepotInfoModel, api_key: any) {
@@ -86,6 +106,4 @@ export class DepotInfoService {
         console.log(response);
       });
   }
-
-  deleteInventoryUserDatabyId() {}
 }

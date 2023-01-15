@@ -30,7 +30,7 @@
         </div>
         <div class="upload-list" fxFlex="50%">
           <uL>
-            <li class="list-item" fxFlex fxLayout="row">
+            <li *ngIf="fileUploaded" class="list-item" fxFlex fxLayout="row">
               <i
                 fxFlex="20%"
                 class="pi pi-fw pi-file-excel excel-icon"
@@ -44,6 +44,11 @@
               ></p-progressBar>
             </li>
           </uL>
+          <div class="uploaded-File-Details" *ngIf="fileUploaded">
+            <p>File Name:{{ uploadedFiles.name }}</p>
+            <p>File Size:{{ uploadedFiles.size }}</p>
+            <p>Uploaded Time:{{ todayTime }}</p>
+          </div>
         </div>
       </div>
     </div>

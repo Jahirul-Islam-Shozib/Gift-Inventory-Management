@@ -5,7 +5,7 @@ import { Subject, tap, BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class UserDetailsService {
+export class AuthInfoService {
   constructor(private http: HttpClient) {}
   //userDetailsCalled = new Subject<any[]>();
   userDetails: any;

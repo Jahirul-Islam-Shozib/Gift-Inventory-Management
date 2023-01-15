@@ -28,4 +28,12 @@ export class DataStorageService {
       }),
     });
   }
+
+  fetchAllDbData(api_key: any) {
+    return this.http.get<DataModel[]>('http://localhost:8080/budget/all', {
+      headers: new HttpHeaders({
+        Authorization: `Bearer+${api_key}`,
+      }),
+    });
+  }
 }

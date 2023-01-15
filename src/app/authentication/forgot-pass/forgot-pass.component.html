@@ -7,13 +7,15 @@
     Please enter your email address to reset your password for your account.
   </p>
 
-  <span class="p-float-filled" style="padding: 10px">
+  <span class="p-float-outlined" style="padding: 5px">
     <input
       id="float-input"
-      type="text"
+      type="email"
       pInputText
       placeholder="Email Address"
       [(ngModel)]="email"
+      #name="ngModel"
+      required
     />
   </span>
 
@@ -28,7 +30,7 @@
       style="background-color: #636e72"
     ></button>
     <button
-      routerLink="/reset-pass"
+      [disabled]="name.invalid"
       pButton
       type="button"
       label="Send"
@@ -37,4 +39,25 @@
       style="margin-left: 10px; background-color: #636e72"
     ></button>
   </div>
+</div>
+
+<div *ngIf="display == true" class="check-otp-component">
+  <h2 style="padding-top: 10px; padding-left: 10px">OTP Verification</h2>
+  <span class="p-float-filled" style="padding: 10px">
+    <input
+      id="float-input"
+      type="number"
+      pInputText
+      placeholder="Enter OTP"
+      [(ngModel)]="otp"
+    />
+  </span>
+
+  <button
+    pButton
+    type="button"
+    label="Verify OTP"
+    class="p-button-sm"
+    (click)="onSendOTP()"
+  ></button>
 </div>

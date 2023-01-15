@@ -42,7 +42,7 @@
               pRipple
               icon="pi pi-trash"
               class="p-button p-button-danger"
-              (click)="onDeleteUser(rowData.userId)"
+              (click)="onDeleteUser(rowData.id)"
             ></button>
           </td>
         </tr>
@@ -50,3 +50,7 @@
     </p-table>
   </div>
 </div>
+<p-confirmDialog
+  header="Confirmation"
+  icon="pi pi-exclamation-triangle"
+></p-confirmDialog>

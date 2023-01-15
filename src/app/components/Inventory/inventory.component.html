@@ -9,19 +9,26 @@
     <app-menubar></app-menubar>
   </div>
   <div class="du-content" fxFlex="80%" fxLayout="column">
-    <div style="margin-bottom: 5px" fxFlex fxLayout="row" fxLayoutGap="20px">
+    <div
+      style="margin-bottom: 5px; margin-bottom: 12px"
+      fxFlex
+      fxLayout="row"
+      fxLayoutGap="20px"
+    >
       <div fxFlex="50%" class="form-group">
         <label class="allStore">Select Store:</label>
+
         <p-dropdown
           [options]="inventoryStores"
+          placeholder="Select a SSU"
           [(ngModel)]="selectedInventoryStores"
-          (onChange)="onChangeInventoryStore($event)"
           optionLabel="name"
+          (onChange)="onChangeInventoryStore($event)"
         ></p-dropdown>
       </div>
       <div fxFlex="50%" fxLayoutAlign="flex-end">
         <button
-          style="width: 200px; height: 50px"
+          style="width: 140px; height: 40px; font-size: 14px"
           class="chalan-button"
           pButton
           type="button"

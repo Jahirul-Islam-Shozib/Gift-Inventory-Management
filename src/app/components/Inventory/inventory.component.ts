@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DialogService } from 'primeng/dynamicdialog';
-import { UserDetailsService } from 'src/app/Service/authIfo.service';
+import { AuthInfoService } from 'src/app/Service/authIfo.service';
 import { DataStorageService } from 'src/app/Service/Data Fetch & Store/data-storage.service';
 import { DataModel } from 'src/app/shared/data.model';
 import { SsuChalanCreationComponent } from '../chalan/ssu-chalan-creation/ssu-chalan-creation.component';
@@ -21,14 +21,14 @@ export class InventoryComponent implements OnInit {
 
   inventoryStores: InventoryStore[];
 
-  selectedInventoryStores: InventoryStore;
+  selectedInventoryStores!: InventoryStore;
 
   authInfoData: any;
 
   constructor(
     private dataStorageService: DataStorageService,
     public dialogService: DialogService,
-    private userDetailsService: UserDetailsService
+    private authInfoService: AuthInfoService
   ) {
     this.inventoryStores = [
       { name: 'Dso', code: 'DSO' },
@@ -40,8 +40,8 @@ export class InventoryComponent implements OnInit {
 
   ngOnInit() {
     this.api_key = window.localStorage.getItem('token');
-    this.authInfoData = this.userDetailsService.getUserDetailsData();
-    this.userDetailsService.userDetailsCalled.subscribe((data) => {
+    this.authInfoData = this.authInfoService.getUserDetailsData();
+    this.authInfoService.userDetailsCalled.subscribe((data) => {
       this.authInfoData = data;
     });
 

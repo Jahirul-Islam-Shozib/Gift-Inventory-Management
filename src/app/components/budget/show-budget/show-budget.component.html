@@ -1,18 +1,3 @@
-<!-- <div
-  class="budget-container"
-  fxFlex
-  fxLayout="row"
-  fxLayoutAlign="center"
-  fxLayoutGap="10px"
->
-  <div fxFlex="17%">
-    <app-menubar></app-menubar>
-  </div>
-  <div fxFlex="80%">
-    <app-inventoryStore-table class="budget-content"></app-inventoryStore-table>
-  </div>
-</div> -->
-
 <div
   class="budget-container"
   fxFlex
@@ -24,6 +9,18 @@
     <app-menubar></app-menubar>
   </div>
   <div class="show-budget-content" fxFlex="80%">
-    <app-inventoryStore-table fxFlex="100%"></app-inventoryStore-table>
+    <div style="width: 400px; margin-bottom: 10px" class="form-group">
+      <label class="allStore">Select Month:</label>
+      <p-dropdown
+        [options]="budgetMonths"
+        placeholder="Select a SSU"
+        [(ngModel)]="selectedBudgetOfSpecificMonth"
+        optionLabel="name"
+        (onChange)="onChangeBudgetMonth($event)"
+      ></p-dropdown>
+    </div>
+    <div>
+      <app-inventoryStore-table fxFlex="100%"></app-inventoryStore-table>
+    </div>
   </div>
 </div>

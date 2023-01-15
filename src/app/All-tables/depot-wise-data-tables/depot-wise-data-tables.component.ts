@@ -25,11 +25,9 @@ export class DepotWiseDataTablesComponent implements OnInit {
       { field: 'productionUnit', header: 'Production Unit' },
       { field: 'packageSize', header: 'Package Size' },
       { field: 'category', header: 'Product Category' },
-
       { field: 'fieldColleagueID', header: 'FC Id' },
       { field: 'fieldColleagues', header: 'FC Name' },
       { field: 'quantity', header: 'Quantity' },
-
       { field: 'month', header: 'Month' },
       { field: 'year', header: 'Year' },
     ];

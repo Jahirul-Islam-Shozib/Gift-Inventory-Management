@@ -1,5 +1,6 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { DepotInfoModalComponent } from 'src/app/all-modal/depot-info-modal/depot-info-modal.component';
 import { DepotInfoService } from 'src/app/Service/depot-info.service';
@@ -19,29 +20,15 @@ export class AllDepotsInfoComponent implements OnInit {
   constructor(
     private depotInfoService: DepotInfoService,
     public dialogService: DialogService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private confirmationService: ConfirmationService,
+    private http: HttpClient
   ) {}
 
   ngOnInit() {
     this.api_key = window.localStorage.getItem('token');
 
-    // this.depotItems = this.depotInfoService.getDepotInfo();
-    // this.depotInfoService.depotsInfoChange.subscribe((items) => {
-    //   this.depotItems = items;
-    //   console.log(items);
-    // });
-
     this.onFetchDepotInfoData();
-
-    // this.cols = [
-    //   { field: 'depotName', header: 'Depot Name' },
-    //   //{ field: 'depotCode', header: 'Depot Code' },
-    //   { field: 'location', header: 'Depot Location' },
-
-    //   { field: 'email', header: 'Admin Email' },
-    //   { field: 'firstName', header: 'Admin Name' },
-    //   { field: 'contactNumber', header: 'Admin Mobile' },
-    // ];
   }
 
   onFetchDepotInfoData() {
@@ -49,7 +36,6 @@ export class AllDepotsInfoComponent implements OnInit {
       next: (response: any) => {
         console.log('response:: ', response);
         this.depotItems = response;
-        // this.getUserDataOnDepot(this.depotItems);
       },
       error: (err: any) => {
         console.log(err);
@@ -58,25 +44,22 @@ export class AllDepotsInfoComponent implements OnInit {
     });
   }
 
-  // onFetchDepotInfoData() {
-  //   this.depotInfoService.fetchAllDepotsInfoData(this.api_key).subscribe();
-  // }
-
-  // getUserDataOnDepot(userData: any) {
-  //   this.firstName = userData[0].user.firstName;
-  //   console.log(userData[0].user.email);
-  // }
-
   onEditDepot(item: DepotInfoModel) {
     this.dialogService.open(DepotInfoModalComponent, {
       data: item,
       header: 'Depot Information',
       width: '50%',
-      height: '80%',
+      height: '45%',
     });
+    this.onFetchDepotInfoData();
   }
 
-  onDeleteDepot(id: string) {
-    this.depotInfoService.deleteDepot(id);
+  onDeleteDepot(id: number) {
+    this.confirmationService.confirm({
+      message: 'Are you sure that you want to Delete this User Information?',
+      accept: () => {
+        this.depotInfoService.deleteDepot(id, this.api_key);
+      },
+    });
   }
 }

@@ -6,37 +6,22 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { HttpClient } from '@angular/common/http';
 import { AuthResponseData } from './auth-response.model';
+import { AuthInfoService } from '../Service/authIfo.service';
 
 @Injectable()
 export class AuthService {
   authChange = new Subject<boolean>();
-  // private user!: User;
   private isAuthenticated = false;
+  loginUserData: any;
+  private isSsuLogin = false;
+  private isDepotLogin = false;
 
   constructor(
     private router: Router,
     private afauth: AngularFireAuth,
-    private http: HttpClient
+    private http: HttpClient,
+    private authInfoService: AuthInfoService
   ) {}
-
-  //registerUser(authData: AuthData) {
-  // this.user = {
-  //   email: authData.email,
-  //   userId: Math.round(Math.random() * 10000).toString(),
-  // };
-  // this.router.navigate(['/login']);
-  // this.authChange.next(true);
-  ////////////////////////
-  //   this.afauth
-  //     .createUserWithEmailAndPassword(authData.email, authData.password)
-  //     .then((result) => {
-  //       console.log(result);
-  //       this.router.navigate(['/login']);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // }
 
   signUp(authData: AuthData) {
     return this.http.post<AuthResponseData>(
@@ -49,41 +34,11 @@ export class AuthService {
     );
   }
 
-  //login(authData: AuthData) {
-  // this.user = {
-  //   email: authData.email,
-  //   userId: Math.round(Math.random() * 10000).toString(),
-  // };
-  // this.authSuccessfully();
-  // this.authChange.next(true);
-  ////////////////////
-  //   this.afauth
-  //     .signInWithEmailAndPassword(authData.email, authData.password)
-  //     .then((result) => {
-  //       console.log(result);
-  //       this.authSuccessfully();
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // }
-
-  // login(authData: AuthData) {
-  //   return this.http.post<AuthResponseData>(
-  //     'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCWyDgK_OagUGfC5pdXW5CK8UgWr1Jz4P8',
-  //     {
-  //       email: authData.email,
-  //       password: authData.password,
-  //       returnSecureToken: true,
-  //     }
-  //   );
-  // }
-
   login(authData: AuthData) {
     return this.http.post('http://localhost:8080/user/login', {
       email: authData.email,
       password: authData.password,
-      // returnSecureToken: true,
+      //returnSecureToken: true,
     });
   }
 
@@ -95,18 +50,23 @@ export class AuthService {
     this.router.navigate(['/login']);
   }
 
-  // getUser() {
-  //   return { ...this.user };
-  // }
-
   isAuth() {
-    // return this.user != null;
     return this.isAuthenticated;
+  }
+  isSsuValid() {
+    return this.isSsuLogin;
+  }
+
+  isDepotValid() {
+    return this.isDepotLogin;
   }
 
   authSuccessfully() {
     this.isAuthenticated = true;
     this.authChange.next(true);
-    //this.router.navigate(['/home']);
+  }
+
+  ssuLoginSuccessfully() {
+    this.isSsuLogin = true;
   }
 }

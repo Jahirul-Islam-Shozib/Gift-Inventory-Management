@@ -21,6 +21,8 @@ import { SidebarModule } from 'primeng/sidebar';
 import { ToolbarModule } from 'primeng/toolbar';
 import { TabViewModule } from 'primeng/tabview';
 import { InputMaskModule } from 'primeng/inputmask';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmationService } from 'primeng/api';
 
 @NgModule({
   imports: [
@@ -45,6 +47,8 @@ import { InputMaskModule } from 'primeng/inputmask';
     ToolbarModule,
     TabViewModule,
     InputMaskModule,
+
+    ConfirmDialogModule,
   ],
   exports: [
     ButtonModule,
@@ -68,6 +72,8 @@ import { InputMaskModule } from 'primeng/inputmask';
     ToolbarModule,
     TabViewModule,
     InputMaskModule,
+
+    ConfirmDialogModule,
   ],
 })
 export class PrimengModule {}

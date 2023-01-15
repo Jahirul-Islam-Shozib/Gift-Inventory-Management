@@ -15,16 +15,22 @@
     ::ng-deep .p-datatable-wrapper {
       //height: 490px;
       height: calc(100vh - 105px);
+
+      td {
+        font-size: 12px;
+      }
+      th {
+        font-size: 14px;
+      }
     }
   }
-  // th {
-  //   text-align: center;
-  // }
+
   ::ng-deep .btn-action {
     display: flex;
     button {
       margin-left: 5px;
-      height: 5px;
+      height: 4px;
+      width: 30px;
     }
   }
 }

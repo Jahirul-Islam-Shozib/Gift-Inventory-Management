@@ -5,7 +5,6 @@ import { MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogConfig } from 'primeng/dynamicdialog';
 import { InventoryUserService } from 'src/app/Service/inventory-user.service';
 import { InventoryUserModel } from 'src/app/shared/inventory-user.model';
-import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-inventory-user-modal',
@@ -30,8 +29,6 @@ export class InventoryUserModalComponent implements OnInit {
       this.editMode = true;
       this.initForm(this.config.data);
     } else {
-      //   let data = new DepotInfoModel();
-      //   this.initForm(data);
       this.initForm();
     }
 
@@ -42,7 +39,10 @@ export class InventoryUserModalComponent implements OnInit {
     this.inventoryUserForm = new FormGroup({
       id: new FormControl(data ? data.id : null),
       role: new FormControl(data ? data.role : null, Validators.required),
-      email: new FormControl(data ? data.email : null, Validators.required),
+      email: new FormControl(data ? data.email : null, [
+        Validators.email,
+        Validators.required,
+      ]),
       firstName: new FormControl(
         data ? data.firstName : null,
         Validators.required
@@ -57,14 +57,9 @@ export class InventoryUserModalComponent implements OnInit {
         Validators.required
       ),
       status: new FormControl(data ? data.status : null, Validators.required),
-      // workPlace: new FormControl(
-      //   data ? data.workPlace : null,
-      //   Validators.required
-      // ),
     });
   }
   onAddUser() {
-    debugger;
     if (this.editMode) {
       this.inventoryUserService.updateUserInfo(
         this.config.data.id,

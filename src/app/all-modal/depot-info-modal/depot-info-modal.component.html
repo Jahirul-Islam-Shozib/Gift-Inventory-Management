@@ -1,3 +1,5 @@
+<p-toast styleClass="toast"></p-toast>
+
 <form
   [formGroup]="depotInfoForm"
   (ngSubmit)="onAddDepot()"
@@ -90,6 +92,7 @@
       class="p-button-sm"
       [disabled]="!depotInfoForm.valid"
       (click)="onAddDepot()"
+      (click)="displayDepot = false"
     >
       {{ editMode ? "Update Depot" : "Add Depot" }}
     </button>

@@ -31,10 +31,10 @@
           <td>{{ depotItems.depotName }}</td>
           <td>{{ depotItems.location }}</td>
           <td>
-            {{ depotItems.user?.firstName + depotItems.user?.lastName }}
+            {{ depotItems.adminName }}
           </td>
-          <td>{{ depotItems?.user?.email }}</td>
-          <td>{{ depotItems?.user?.contactNumber }}</td>
+          <td>{{ depotItems.email }}</td>
+          <td>{{ depotItems.contactNumber }}</td>
 
           <td class="btn-action">
             <button
@@ -57,3 +57,7 @@
     </p-table>
   </div>
 </div>
+<p-confirmDialog
+  header="Confirmation"
+  icon="pi pi-exclamation-triangle"
+></p-confirmDialog>

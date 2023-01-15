@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UserDetailsService } from 'src/app/Service/authIfo.service';
+import { AuthInfoService } from 'src/app/Service/authIfo.service';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private userDetailsService: UserDetailsService
+    private authInfoService: AuthInfoService
   ) {}
 
   ngOnInit(): void {
@@ -33,12 +33,6 @@ export class LoginComponent implements OnInit {
     return this.loginForm.get('password');
   }
   onSubmit() {
-    // console.log(this.loginForm.value);
-    // this.authService.login({
-    //   email: this.loginForm.value.email,
-    //   password: this.loginForm.value.password,
-    // });
-
     this.authService
       .login({
         email: this.loginForm.value.email,
@@ -48,11 +42,17 @@ export class LoginComponent implements OnInit {
         next: (resData: any) => {
           localStorage.setItem('token', resData?.token);
           console.log(resData);
-          this.userDetailsService
+          this.authInfoService
             .getUserDataAfterLogin(resData?.token)
-            .subscribe();
-          this.authService.authSuccessfully();
-          this.router.navigate(['/home']);
+            .subscribe((response: any) => {
+              if (response.role == 'admin') {
+                this.authService.authSuccessfully();
+                this.router.navigate(['/home']);
+              } else if (response.role == 'SSU') {
+                this.authService.authSuccessfully();
+                this.router.navigate(['/inventories']);
+              }
+            });
         },
         error: (error) => {
           console.log(error);

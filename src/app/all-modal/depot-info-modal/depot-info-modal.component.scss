@@ -8,22 +8,28 @@
 
   label {
     margin: 10px;
+    font-size: 14px;
+    font-weight: 500;
   }
   ::ng-deep .input-row {
     width: 90%;
     margin: 5px;
+    height: 40px;
+    font-size: 12px;
   }
   ::ng-deep .input-column {
     width: 90%;
     margin: 5px;
+    height: 40px;
+    font-size: 12px;
   }
 
   button {
-    font-size: medium;
-    margin-top: 24px;
-    margin-left: 10px;
+    font-size: 14px;
+    margin-top: 25px;
+    margin-left: 5px;
     background-color: #636e72;
-    height: 45px;
+    height: 40px;
     width: 90%;
   }
 }

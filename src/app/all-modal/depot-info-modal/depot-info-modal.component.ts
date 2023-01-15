@@ -5,7 +5,6 @@ import { MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogConfig } from 'primeng/dynamicdialog';
 import { DepotInfoService } from 'src/app/Service/depot-info.service';
 import { DepotInfoModel } from 'src/app/shared/depotInfo.model';
-import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-depot-info-modal',
@@ -17,6 +16,7 @@ export class DepotInfoModalComponent implements OnInit {
   depotInfoForm!: FormGroup;
   editMode = false;
   api_key: any;
+  displayDepot: boolean = true;
 
   constructor(
     private depotInfoService: DepotInfoService,
@@ -27,6 +27,7 @@ export class DepotInfoModalComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.displayDepot = true;
     this.api_key = window.localStorage.getItem('token');
     if (this.config.data) {
       this.editMode = true;
@@ -43,39 +44,17 @@ export class DepotInfoModalComponent implements OnInit {
   initForm(data?: DepotInfoModel) {
     this.depotInfoForm = new FormGroup({
       id: new FormControl(data ? data.id : null),
-      depotName: new FormControl(
-        data ? data.depotName : null,
-        Validators.required
-      ),
-      // depotCode: new FormControl(
-      //   data ? data.depotCode : null,
-      //   Validators.required
-      // ),
-      location: new FormControl(
-        data ? data.location : null,
-        Validators.required
-      ),
-      user_id: new FormControl(data ? data.user_id : null),
-      // depotAddress: new FormControl(
-      //   data ? data.depotAddress : null,
-      //   Validators.required
-      // ),
-      // adminName: new FormControl(
-      //   data ? data.adminName : null,
-      //   Validators.required
-      // ),
-      // adminEmail: new FormControl(
-      //   data ? data.adminEmail : null,
-      //   Validators.required
-      // ),
-      // adminMobile: new FormControl(
-      //   data ? data.adminMobile : null,
-      //   Validators.required
-      // ),
+      depotName: new FormControl(data ? data.depotName : null, [
+        Validators.required,
+      ]),
+
+      location: new FormControl(data ? data.location : null, [
+        Validators.required,
+      ]),
+      user_id: new FormControl(data ? data.user_id : null, Validators.required),
     });
   }
   onAddDepot() {
-    console.log(this.depotInfoForm.value);
     if (this.editMode) {
       this.depotInfoService.updateDepot(
         this.config.data.id,
@@ -85,15 +64,28 @@ export class DepotInfoModalComponent implements OnInit {
         this.depotInfoForm.value,
         this.api_key
       );
+
       this.depotInfoForm.reset();
+
+      this.messageService.add({
+        severity: 'info',
+        summary: 'Success',
+        detail: 'File has been Uploaded successfully!',
+      });
     } else {
       this.depotInfoService.addNewDepot(this.depotInfoForm.value);
       this.depotInfoService.storeIndividualDepotData(
         this.depotInfoForm.value,
         this.api_key
       );
+
       this.depotInfoForm.reset();
+
+      this.messageService.add({
+        severity: 'info',
+        summary: 'Success',
+        detail: 'New Depot has been added successfully successfully!',
+      });
     }
-    // this.router.navigate(['/depot-list']);
   }
 }

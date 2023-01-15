@@ -13,6 +13,7 @@ import { InventoryUserComponent } from './components/inventory-user/inventory-us
 import { SsuChalanCreationComponent } from './components/chalan/ssu-chalan-creation/ssu-chalan-creation.component';
 import { ForgotPassComponent } from './authentication/forgot-pass/forgot-pass.component';
 import { ResetPassComponent } from './authentication/reset-pass/reset-pass.component';
+import { SsuLoginAuthGuard } from './Service/ssuLogin-auth-guard';
 
 const routes: Routes = [
   //{ path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -40,7 +41,7 @@ const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
-    // canActivate: [AuthGard],
+    //canActivate: [AuthGard],
   },
   {
     path: 'inventories',
@@ -50,12 +51,12 @@ const routes: Routes = [
   {
     path: 'depot-list',
     component: AllDepotsInfoComponent,
-    // canActivate: [AuthGard],
+    //canActivate: [AuthGard],
   },
   {
     path: 'budget',
     component: BudgetComponent,
-    //canActivate: [AuthGard],
+    canActivate: [AuthGard],
   },
   {
     path: 'budget-show',
@@ -70,12 +71,12 @@ const routes: Routes = [
   {
     path: 'inventory-user',
     component: InventoryUserComponent,
-    // canActivate: [AuthGard],
+    //canActivate: [AuthGard],
   },
   {
     path: 'ssu-chalan',
     component: SsuChalanCreationComponent,
-    // canActivate: [AuthGard],
+    //canActivate: [AuthGard],
   },
 
   { path: '**', component: LoginComponent },

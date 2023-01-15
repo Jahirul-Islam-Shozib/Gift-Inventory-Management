@@ -1,3 +1,4 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import {
   FormControl,
@@ -5,6 +6,8 @@ import {
   RequiredValidator,
   Validators,
 } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ForgetResetPassService } from 'src/app/Service/forget-reset-pass.service';
 
 @Component({
   selector: 'app-reset-pass',
@@ -13,9 +16,17 @@ import {
 })
 export class ResetPassComponent implements OnInit {
   resetPassForm!: FormGroup;
-  constructor() {}
+  email!: string;
+  api_key: any;
+  constructor(
+    private forgetResetPassService: ForgetResetPassService,
+    private http: HttpClient,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
+    this.api_key = window.localStorage.getItem('token');
+    this.email = this.forgetResetPassService.getVerifiedEmail();
     this.initForm();
   }
 
@@ -28,5 +39,25 @@ export class ResetPassComponent implements OnInit {
   onResetPass() {
     //console.log(this.newPass, this.confirmPass);
     console.log(this.resetPassForm.value);
+
+    this.http
+      .post(
+        'http://localhost:8080/user/resetPassword',
+        {
+          email: this.email,
+          password: this.resetPassForm.value.confirmPassword,
+        },
+        {
+          headers: new HttpHeaders({
+            Authorization: `Bearer+${this.api_key}`,
+          }),
+        }
+      )
+      .subscribe((response) => {
+        console.log(response);
+        if (response) {
+          this.router.navigate(['/login']);
+        }
+      });
   }
 }
