@@ -4,10 +4,10 @@ import { UploadBudgetComponent } from './components/upload-budget/upload-budget.
 import { ShowFullBudgetByFilterComponent } from './components/show-full-budget-by-filter/show-full-budget-by-filter.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { SharedModule } from '../../shared/shared.module';
 import { MessageService } from 'primeng/api';
 import { BudgetRoutingModule } from './budget-routing.module';
 import { FullBudgetTableComponent } from './components/full-budget-table/full-budget-table.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 console.warn('Budget module loaded');
 @NgModule({

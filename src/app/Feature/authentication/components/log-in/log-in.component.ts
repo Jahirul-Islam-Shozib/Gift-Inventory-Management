@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/authentication/auth.service';
-import { AuthInfoService } from 'src/app/Service/authIfo.service';
+import { AuthService } from 'src/app/Service/auth-service/auth.service';
+import { AuthInfoService } from 'src/app/Service/authInfo.service';
 
 @Component({
   selector: 'app-log-in',
@@ -47,7 +47,7 @@ export class LogInComponent implements OnInit {
             .subscribe((response: any) => {
               if (response.role == 'admin') {
                 this.authService.authSuccessfully();
-                this.router.navigate(['/home']);
+                this.router.navigate(['/inventory-dashboard/dashboard-view']);
               } else if (response.role == 'SSU') {
                 this.authService.authSuccessfully();
                 this.router.navigate(['/inventories']);

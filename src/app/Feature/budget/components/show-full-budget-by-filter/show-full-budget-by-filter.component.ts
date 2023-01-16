@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { DataStorageService } from 'src/app/Service/Data Fetch & Store/data-storage.service';
-import { DataModel } from 'src/app/shared/data.model';
+import { DataModel } from 'src/app/shared/models/data.model';
 interface BudgetOfSpecificMonth {
   name: string;
   code: string;
@@ -47,7 +47,7 @@ export class ShowFullBudgetByFilterComponent implements OnInit {
   }
 
   showFullBudget() {
-    this.dataStorageService?.fetchAllDbData(this.api_key).subscribe({
+    this.dataStorageService.fetchAllDbData(this.api_key).subscribe({
       next: (response) => {
         this.allDbData = response;
       },

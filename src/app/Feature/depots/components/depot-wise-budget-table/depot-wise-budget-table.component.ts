@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { DataModel } from 'src/app/shared/data.model';
+import { DataModel } from 'src/app/shared/models/data.model';
 
 @Component({
   selector: 'app-depot-wise-budget-table',

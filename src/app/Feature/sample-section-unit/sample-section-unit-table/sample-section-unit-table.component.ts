@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { DataStorageService } from 'src/app/Service/Data Fetch & Store/data-storage.service';
-import { DataModel } from 'src/app/shared/data.model';
+import { DataModel } from 'src/app/shared/models/data.model';
 
 @Component({
   selector: 'app-sample-section-unit-table',

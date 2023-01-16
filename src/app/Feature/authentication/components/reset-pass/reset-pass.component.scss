@@ -1,0 +1,35 @@
+.reset-pass-container {
+  position: absolute;
+  top: 30%;
+  left: 35%;
+  border-radius: 10px;
+
+  box-shadow: -10px -10px 15px rgba(255, 255, 255, 0.5),
+    10px 10px 15px rgba(70, 70, 70, 0.12);
+  background-color: white;
+  width: 400px;
+  height: 300px;
+  .pass-input-field {
+    margin-right: 20px;
+    margin-left: 30px;
+    margin-bottom: 20px;
+    label {
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 5px;
+    }
+    input {
+      margin-top: 5px;
+      width: 97%;
+      height: 40px;
+    }
+  }
+  button {
+    width: 86%;
+    height: 40px;
+    margin-left: 1.8rem;
+    background-color: #636e72;
+    font-size: medium;
+    font-size: 14px;
+  }
+}

@@ -7,11 +7,11 @@ import {
   UrlTree,
 } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AuthService } from './auth-service/auth.service';
+import { AuthService } from '../Service/auth-service/auth.service';
 
 @Injectable()
-export class SsuLoginAuthGuard implements CanActivate {
-  constructor(private router: Router, private authService: AuthService) {}
+export class AuthGard implements CanActivate {
+  constructor(private authService: AuthService, private router: Router) {}
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
@@ -20,7 +20,8 @@ export class SsuLoginAuthGuard implements CanActivate {
     | UrlTree
     | Observable<boolean | UrlTree>
     | Promise<boolean | UrlTree> {
-    if (this.authService.isSsuValid()) {
+    if (this.authService.isAuth()) {
+      debugger;
       return true;
     } else {
       this.router.navigate(['/login']);

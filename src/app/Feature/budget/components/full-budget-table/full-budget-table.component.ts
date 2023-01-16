@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { DataStorageService } from 'src/app/Service/Data Fetch & Store/data-storage.service';
-import { DataModel } from 'src/app/shared/data.model';
+import { DataModel } from 'src/app/shared/models/data.model';
 
 @Component({
   selector: 'app-full-budget-table',
@@ -8,14 +8,14 @@ import { DataModel } from 'src/app/shared/data.model';
   styleUrls: ['./full-budget-table.component.scss'],
 })
 export class FullBudgetTableComponent implements OnInit {
-  @Input() inventoryData!: DataModel[];
+  @Input() budgetData!: DataModel[];
   cols: any[] = [];
 
   constructor(private dataStorageService: DataStorageService) {}
 
   ngOnInit() {
     this.cols = [
-      { field: 'budgetId', header: 'Budget Id' },
+      { field: 'budgetID', header: 'Budget Id' },
       { field: 'sapCode', header: 'SAP Code' },
       { field: 'productName', header: 'Product name' },
       { field: 'productionUnit', header: 'Production Unit' },
@@ -23,7 +23,7 @@ export class FullBudgetTableComponent implements OnInit {
       { field: 'category', header: 'Product Category' },
       { field: 'sbu', header: 'SBU' },
       { field: 'fieldColleagueID', header: 'FC Id' },
-      { field: 'fieldColleagues', header: 'FC Name' },
+      { field: 'fieldColleagueName', header: 'FC Name' },
       { field: 'quantity', header: 'Quantity' },
       { field: 'depotID', header: 'Depot Id' },
       { field: 'depotName', header: 'Depot name' },

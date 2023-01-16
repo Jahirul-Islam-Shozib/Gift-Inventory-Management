@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { DialogService } from 'primeng/dynamicdialog';
 import { DataStorageService } from 'src/app/Service/Data Fetch & Store/data-storage.service';
-import { DataModel } from 'src/app/shared/data.model';
+import { DataModel } from 'src/app/shared/models/data.model';
 
 @Component({
   selector: 'app-depot-wise-budget',

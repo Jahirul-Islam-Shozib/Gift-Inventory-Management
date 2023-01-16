@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
-import { ShippingInformation } from 'src/app/shared/shippingInformation.model';
+import { ShippingInformation } from 'src/app/shared/models/shippingInformation.model';
 
 @Component({
   selector: 'app-sample-section-unit-chalan',

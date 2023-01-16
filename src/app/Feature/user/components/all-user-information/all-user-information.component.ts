@@ -2,9 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
-import { InventoryUserModalComponent } from 'src/app/all-modal/inventory-user-modal/inventory-user-modal.component';
 import { InventoryUserService } from 'src/app/Service/inventory-user.service';
-import { InventoryUserModel } from 'src/app/shared/inventory-user.model';
+import { InventoryUserModel } from 'src/app/shared/models/inventory-user.model';
+import { UserInformationDialogComponent } from '../user-information-dialog/user-information-dialog.component';
 interface InventoryStore {
   name: string;
   code: string;
@@ -55,7 +55,7 @@ export class AllUserInformationComponent implements OnInit {
       .subscribe();
   }
   onEditUser(item: InventoryUserModel) {
-    this.dialogService.open(InventoryUserModalComponent, {
+    this.dialogService.open(UserInformationDialogComponent, {
       data: item,
       header: 'Inventory User Information',
       width: '50%',

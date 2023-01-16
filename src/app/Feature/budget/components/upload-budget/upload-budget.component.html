@@ -44,6 +44,9 @@
               ></p-progressBar>
             </li>
           </uL>
+          <div style="padding: 10px" *ngIf="!fileUploaded">
+            <h1 style="font-size: 16px">No File In DataBase</h1>
+          </div>
           <div class="uploaded-File-Details" *ngIf="fileUploaded">
             <p>File Name:{{ uploadedFiles.name }}</p>
             <p>File Size:{{ uploadedFiles.size }}</p>

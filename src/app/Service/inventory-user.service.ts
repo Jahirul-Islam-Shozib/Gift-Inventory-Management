@@ -2,8 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Subject, tap } from 'rxjs';
-import { InventoryUserModalComponent } from '../all-modal/inventory-user-modal/inventory-user-modal.component';
-import { InventoryUserModel } from '../shared/inventory-user.model';
+import { InventoryUserModel } from '../shared/models/inventory-user.model';
 
 @Injectable({
   providedIn: 'root',

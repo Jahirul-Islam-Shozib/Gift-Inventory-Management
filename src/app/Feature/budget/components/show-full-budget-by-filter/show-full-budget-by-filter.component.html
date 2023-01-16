@@ -20,7 +20,10 @@
       ></p-dropdown>
     </div>
     <div>
-      <app-full-budget-table fxFlex="100%"></app-full-budget-table>
+      <app-full-budget-table
+        [budgetData]="allDbData"
+        fxFlex="100%"
+      ></app-full-budget-table>
     </div>
   </div>
 </div>

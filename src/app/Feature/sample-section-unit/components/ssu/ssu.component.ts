@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { DialogService } from 'primeng/dynamicdialog';
-import { SsuChalanCreationComponent } from 'src/app/components/chalan/ssu-chalan-creation/ssu-chalan-creation.component';
-import { AuthInfoService } from 'src/app/Service/authIfo.service';
+import { AuthInfoService } from 'src/app/Service/authInfo.service';
 import { DataStorageService } from 'src/app/Service/Data Fetch & Store/data-storage.service';
-import { DataModel } from 'src/app/shared/data.model';
+import { DataModel } from 'src/app/shared/models/data.model';
+import { SampleSectionUnitChalanComponent } from '../../sample-section-unit-chalan/sample-section-unit-chalan.component';
 interface InventoryStore {
   name: string;
   code: string;
@@ -68,7 +68,7 @@ export class SsuComponent implements OnInit {
     });
   }
   openChalanDialog() {
-    this.dialogService.open(SsuChalanCreationComponent, {
+    this.dialogService.open(SampleSectionUnitChalanComponent, {
       data: this.authInfoData,
       header: 'Create Invoice',
       width: '70%',

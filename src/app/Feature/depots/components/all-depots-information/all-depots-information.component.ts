@@ -2,9 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
-import { DepotInfoModalComponent } from 'src/app/all-modal/depot-info-modal/depot-info-modal.component';
 import { DepotInfoService } from 'src/app/Service/depot-info.service';
-import { DepotInfoModel } from 'src/app/shared/depotInfo.model';
+import { DepotInfoModel } from 'src/app/shared/models/depotInfo.model';
+import { DepotInformationDialogComponent } from '../depot-information-dialog/depot-information-dialog.component';
 
 @Component({
   selector: 'app-all-depots-information',
@@ -45,7 +45,7 @@ export class AllDepotsInformationComponent implements OnInit {
   }
 
   onEditDepot(item: DepotInfoModel) {
-    this.dialogService.open(DepotInfoModalComponent, {
+    this.dialogService.open(DepotInformationDialogComponent, {
       data: item,
       header: 'Depot Information',
       width: '50%',

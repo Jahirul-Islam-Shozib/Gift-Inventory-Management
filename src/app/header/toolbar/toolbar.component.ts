@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { AuthService } from 'src/app/authentication/auth.service';
+import { AuthService } from 'src/app/Service/auth-service/auth.service';
 
 @Component({
   selector: 'app-toolbar',

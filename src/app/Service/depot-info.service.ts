@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { idToken } from '@angular/fire/auth';
 import { Subject, tap } from 'rxjs';
-import { DepotInfoModel } from '../shared/depotInfo.model';
+import { DepotInfoModel } from '../shared/models/depotInfo.model';
 
 @Injectable({
   providedIn: 'root',

@@ -6,6 +6,10 @@ import { ResetPassComponent } from './components/reset-pass/reset-pass.component
 
 const routes: Routes = [
   {
+    path: '',
+    component: LogInComponent,
+  },
+  {
     path: 'login',
     component: LogInComponent,
   },
