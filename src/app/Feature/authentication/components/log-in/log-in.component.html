@@ -1,14 +1,14 @@
-<div class="signup-container">
-  <h1>Register</h1>
+<div class="login-container">
+  <h1>Login</h1>
   <form
-    [formGroup]="signupForm"
+    [formGroup]="loginForm"
     (ngSubmit)="onSubmit()"
     fxLayout="column"
     fxLayoutAlign="center center"
     fxLayoutGap="5px"
   >
-    <div>
-      <mat-form-field class="form-field">
+    <!-- <div>
+      <mat-form-field class="form-field" appearance="fill">
         <mat-label>User Email</mat-label>
         <input matInput placeholder="Email" formControlName="email" />
         <mat-error *ngIf="email?.errors?.['required']"
@@ -18,33 +18,38 @@
           >Please enter a valid email!</mat-error
         >
       </mat-form-field>
-    </div>
+    </div> -->
 
-    <div>
-      <mat-form-field class="form-field">
+    <!-- <div>
+      <mat-form-field class="form-field" appearance="fill">
         <mat-label>Password</mat-label>
-        <input matInput placeholder="Password" formControlName="password" />
+        <input
+          type="password"
+          matInput
+          placeholder="Password"
+          formControlName="password"
+        />
         <mat-error *ngIf="password?.errors?.['required']"
           >Password is required!</mat-error
         >
       </mat-form-field>
+    </div> -->
+    <div fxLayoutAlign="flex-end" class="forgot-p">
+      <a routerLink="/forgot-pass">Forgot Password?</a>
     </div>
     <div>
       <button
-        [disabled]="!signupForm.valid"
+        [disabled]="!loginForm.valid"
         type="submit"
-        class="sub-btn"
+        class="log-btn"
         mat-raised-button
       >
-        Create Account
+        Log in
       </button>
     </div>
-    <!-- <div class="sign-up">
-      <a href="#">Forget Password?</a>
-    </div> -->
   </form>
-  <div class="signup-footer">
-    <p>Already have an account?</p>
-    <a routerLink="/login">Log in</a>
+  <div class="login-footer">
+    <p>Don't have an account?</p>
+    <a routerLink="/signup">Sign up</a>
   </div>
 </div>

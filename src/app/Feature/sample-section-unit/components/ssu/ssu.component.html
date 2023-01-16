@@ -1,0 +1,46 @@
+<div
+  class="du-container"
+  fxFlex
+  fxLayout="row"
+  fxLayoutAlign="center"
+  fxLayoutGap="10px"
+>
+  <div fxFlex="17%">
+    <app-menubar></app-menubar>
+  </div>
+  <div class="du-content" fxFlex="80%" fxLayout="column">
+    <div
+      style="margin-bottom: 5px; margin-bottom: 12px"
+      fxFlex
+      fxLayout="row"
+      fxLayoutGap="20px"
+    >
+      <div fxFlex="50%" class="form-group">
+        <label class="allStore">Select Store:</label>
+
+        <p-dropdown
+          [options]="inventoryStores"
+          placeholder="Select a SSU"
+          [(ngModel)]="selectedInventoryStores"
+          optionLabel="name"
+          (onChange)="onChangeInventoryStore($event)"
+        ></p-dropdown>
+      </div>
+      <div fxFlex="50%" fxLayoutAlign="flex-end">
+        <button
+          style="width: 140px; height: 40px; font-size: 14px"
+          class="chalan-button"
+          pButton
+          type="button"
+          label="Create Chalan"
+          (click)="openChalanDialog()"
+        ></button>
+      </div>
+    </div>
+
+    <app-sample-section-unit-table
+      fxFlex="100%"
+      [inventoryData]="dataItems"
+    ></app-sample-section-unit-table>
+  </div>
+</div>

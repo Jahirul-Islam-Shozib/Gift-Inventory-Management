@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGard } from './authentication/auth-gard';
 import { LoginComponent } from './authentication/login/login.component';
-import { SignupComponent } from './authentication/signup/signup.component';
 import { AllDepotsInfoComponent } from './components/all-depots-info/all-depots-info.component';
 import { BudgetComponent } from './components/budget/budget.component';
 import { ShowBudgetComponent } from './components/budget/show-budget/show-budget.component';
@@ -16,70 +15,111 @@ import { ResetPassComponent } from './authentication/reset-pass/reset-pass.compo
 import { SsuLoginAuthGuard } from './Service/ssuLogin-auth-guard';
 
 const routes: Routes = [
-  //{ path: '', redirectTo: '/login', pathMatch: 'full' },
   {
-    path: ' ',
-    pathMatch: 'full',
-    component: LoginComponent,
+    path: 'auth',
+    loadChildren: () =>
+      import('./Feature/authentication/authentication.module').then(
+        (mod) => mod.AuthenticationModule
+      ),
   },
   {
-    path: 'login',
-    component: LoginComponent,
+    path: 'inventory-dashboard',
+    loadChildren: () =>
+      import('./Feature/dashboard/dashboard.module').then(
+        (mod) => mod.DashboardModule
+      ),
   },
   {
-    path: 'signup',
-    component: SignupComponent,
+    path: 'inventory',
+    loadChildren: () =>
+      import('./Feature/sample-section-unit/sample-section-unit.module').then(
+        (mod) => mod.SampleSectionUnitModule
+      ),
   },
   {
-    path: 'forgot-pass',
-    component: ForgotPassComponent,
+    path: 'inventory-budget',
+    loadChildren: () =>
+      import('./Feature/budget/budget.module').then((mod) => mod.BudgetModule),
   },
   {
-    path: 'reset-pass',
-    component: ResetPassComponent,
-  },
-  {
-    path: 'home',
-    component: HomeComponent,
-    //canActivate: [AuthGard],
-  },
-  {
-    path: 'inventories',
-    component: InventoryComponent,
-    //canActivate: [AuthGard],
-  },
-  {
-    path: 'depot-list',
-    component: AllDepotsInfoComponent,
-    //canActivate: [AuthGard],
-  },
-  {
-    path: 'budget',
-    component: BudgetComponent,
-    canActivate: [AuthGard],
-  },
-  {
-    path: 'budget-show',
-    component: ShowBudgetComponent,
-    // canActivate: [AuthGard],
-  },
-  {
-    path: 'depot-budget',
-    component: DepotBudgetComponent,
-    // canActivate: [AuthGard],
+    path: 'inventory-depots',
+    loadChildren: () =>
+      import('./Feature/depots/depots.module').then((mod) => mod.DepotsModule),
   },
   {
     path: 'inventory-user',
-    component: InventoryUserComponent,
-    //canActivate: [AuthGard],
+    loadChildren: () =>
+      import('./Feature/user/user.module').then((mod) => mod.UserModule),
   },
   {
-    path: 'ssu-chalan',
-    component: SsuChalanCreationComponent,
-    //canActivate: [AuthGard],
+    path: '',
+    loadChildren: () =>
+      import('./Feature/authentication/authentication.module').then(
+        (mod) => mod.AuthenticationModule
+      ),
   },
 
-  { path: '**', component: LoginComponent },
+  // { path: '', redirectTo: '/login', pathMatch: 'full' },
+  // {
+  //   path: ' ',
+  //   pathMatch: 'full',
+  //   component: LoginComponent,
+  // },
+  // {
+  //   path: 'login',
+  //   component: LoginComponent,
+  // },
+
+  // {
+  //   path: 'forgot-pass',
+  //   component: ForgotPassComponent,
+  // },
+  // {
+  //   path: 'reset-pass',
+  //   component: ResetPassComponent,
+  // },
+  // {
+  //   path: 'home',
+  //   component: HomeComponent,
+  //   //canActivate: [AuthGard],
+  // },
+  // {
+  //   path: 'inventories',
+  //   component: InventoryComponent,
+  //   //canActivate: [AuthGard],
+  // },
+  // {
+  //   path: 'depot-list',
+  //   component: AllDepotsInfoComponent,
+  //   //canActivate: [AuthGard],
+  // },
+  // {
+  //   path: 'budget',
+  //   component: BudgetComponent,
+  //   canActivate: [AuthGard],
+  // },
+  // {
+  //   path: 'budget-show',
+  //   component: ShowBudgetComponent,
+  //   // canActivate: [AuthGard],
+  // },
+  // {
+  //   path: 'depot-budget',
+  //   component: DepotBudgetComponent,
+  //   // canActivate: [AuthGard],
+  // },
+  // {
+  //   path: 'inventory-user',
+  //   component: InventoryUserComponent,
+  //   //canActivate: [AuthGard],
+  // },
+  // {
+  //   path: 'ssu-chalan',
+  //   component: SsuChalanCreationComponent,
+  //   //canActivate: [AuthGard],
+  // },
+
+  // { path: '**', component: LoginComponent },
 ];
 
 @NgModule({

@@ -1,0 +1,21 @@
+.specific-depot-container {
+  width: 100%;
+  height: 100%;
+
+  .specific-depot-content {
+    margin: 10px;
+    width: 100%;
+    padding: 10px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+
+    button {
+      font-size: 14px;
+    }
+    input {
+      font-size: 14px;
+      font-weight: 500;
+    }
+  }
+}

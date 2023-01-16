@@ -1,0 +1,26 @@
+<div
+  class="budget-container"
+  fxFlex
+  fxLayout="row"
+  fxLayoutAlign="center"
+  fxLayoutGap="10px"
+>
+  <div fxFlex="17%">
+    <app-menubar></app-menubar>
+  </div>
+  <div class="show-budget-content" fxFlex="80%">
+    <div style="width: 400px; margin-bottom: 10px" class="form-group">
+      <label class="allStore">Select Month:</label>
+      <p-dropdown
+        [options]="budgetMonths"
+        placeholder="Select a SSU"
+        [(ngModel)]="selectedBudgetOfSpecificMonth"
+        optionLabel="name"
+        (onChange)="onChangeBudgetMonth($event)"
+      ></p-dropdown>
+    </div>
+    <div>
+      <app-full-budget-table fxFlex="100%"></app-full-budget-table>
+    </div>
+  </div>
+</div>

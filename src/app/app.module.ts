@@ -12,14 +12,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './components/home/home.component';
 import { ToolbarComponent } from './header/toolbar/toolbar.component';
 import { AuthService } from './authentication/auth.service';
-//import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth, getAuth } from '@angular/fire/auth';
-//import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
-import { SignupComponent } from './authentication/signup/signup.component';
-import { MenubarComponent } from './components/menubar/menubar.component';
 
 import { DsoCardComponent } from './all-cards/dso-card/dso-card.component';
 import { AllDepotsInfoComponent } from './components/all-depots-info/all-depots-info.component';
@@ -45,9 +41,8 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
     LoginComponent,
     HomeComponent,
     ToolbarComponent,
-    SignupComponent,
     InventoryComponent,
-    MenubarComponent,
+
     InventoryStoreTableComponent,
     DsoCardComponent,
     AllDepotsInfoComponent,

@@ -1,0 +1,26 @@
+<div class="empty-message" *ngIf="!dataItems">
+  <h2>No Depot has been selected. Please select your Depot by Depot number.</h2>
+</div>
+
+<p-table
+  *ngIf="dataItems"
+  [columns]="cols"
+  [value]="depotData"
+  styleClass="p-datatable"
+  [scrollable]="true"
+>
+  <ng-template pTemplate="header" let-columns>
+    <tr>
+      <th *ngFor="let col of columns">
+        {{ col.header }}
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-rowData let-columns="columns">
+    <tr>
+      <td *ngFor="let col of columns">
+        {{ rowData[col.field] }}
+      </td>
+    </tr>
+  </ng-template>
+</p-table>

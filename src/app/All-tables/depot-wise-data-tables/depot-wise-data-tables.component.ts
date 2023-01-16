@@ -1,6 +1,4 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
-import { DataStorageService } from 'src/app/Service/Data Fetch & Store/data-storage.service';
 import { DataModel } from 'src/app/shared/data.model';
 
 @Component({

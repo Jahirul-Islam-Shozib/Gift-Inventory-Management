@@ -40,7 +40,6 @@ export class InventoryUserComponent implements OnInit {
       { field: 'firstName', header: 'FirstName' },
       { field: 'lastName', header: 'LastName' },
       { field: 'email', header: 'Email' },
-
       { field: 'contactNumber', header: 'Contact Number' },
       { field: 'role', header: 'User Role' },
       { field: 'status', header: 'User status' },

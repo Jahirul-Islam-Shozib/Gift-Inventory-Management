@@ -1,4 +1,3 @@
-import { style } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { MenuItem, PrimeNGConfig } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
@@ -24,27 +23,30 @@ export class MenubarComponent implements OnInit {
       {
         label: 'Dashboard',
         icon: 'pi pi-fw pi-home',
-        routerLink: ['/home'],
+        // routerLink: ['/home'],
+        routerLink: ['/inventory-dashboard/dashboard-view'],
       },
       {
         label: 'All Inventories',
         icon: 'pi pi-fw pi-microsoft',
-        routerLink: ['/inventories'],
+        // routerLink: ['/inventories'],
+        routerLink: ['/inventory/ssu'],
       },
       {
         label: 'Depots Inventory',
         icon: 'pi pi-fw pi-slack',
         // routerLink: ['/depot-list'],
+
         items: [
           {
             label: 'All Depots Information',
             icon: 'pi pi-fw pi-file-excel',
-            routerLink: ['/depot-list'],
+            routerLink: ['/inventory-depots/depot-info'],
           },
           {
             label: 'Depots Wise Budget',
             icon: 'pi pi-fw pi-file-excel',
-            routerLink: ['/depot-budget'],
+            routerLink: ['/inventory-depots/depot-wise-budget'],
           },
           {
             label: 'Add New Depo',
@@ -56,16 +58,17 @@ export class MenubarComponent implements OnInit {
       {
         label: 'Budget',
         icon: 'pi pi-fw pi-file',
+
         items: [
           {
             label: 'Upload Budget',
             icon: 'pi pi-fw pi-external-link',
-            routerLink: ['/budget'],
+            routerLink: ['/inventory-budget/upload-budget'],
           },
           {
             label: 'Show Budget',
             icon: 'pi pi-fw pi-file-excel',
-            routerLink: ['/budget-show'],
+            routerLink: ['/inventory-budget/show-full-budget'],
           },
           {
             separator: true,
@@ -80,7 +83,7 @@ export class MenubarComponent implements OnInit {
       {
         label: 'Users',
         icon: 'pi pi-fw pi-user',
-        // routerLink: ['/inventory-user'],
+
         items: [
           {
             label: 'Create New User',
@@ -90,7 +93,7 @@ export class MenubarComponent implements OnInit {
           {
             label: 'All User',
             icon: 'pi pi-fw pi-users',
-            routerLink: ['/inventory-user'],
+            routerLink: ['/inventory-user/user-info'],
           },
         ],
       },
