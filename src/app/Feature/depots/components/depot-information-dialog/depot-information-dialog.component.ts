@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
-import { DialogService, DynamicDialogConfig } from 'primeng/dynamicdialog';
-import { DepotInfoService } from 'src/app/Service/depot-info.service';
+import { DynamicDialogConfig } from 'primeng/dynamicdialog';
+import { DepotInfoService } from 'src/app/shared/services/depot-service/depot-info.service';
 import { DepotInfoModel } from 'src/app/shared/models/depotInfo.model';
 
 @Component({
@@ -20,10 +19,8 @@ export class DepotInformationDialogComponent implements OnInit {
 
   constructor(
     private depotInfoService: DepotInfoService,
-    private dialogService: DialogService,
     public config: DynamicDialogConfig,
-    private messageService: MessageService,
-    private router: Router
+    private messageService: MessageService
   ) {}
 
   ngOnInit(): void {
@@ -33,11 +30,8 @@ export class DepotInformationDialogComponent implements OnInit {
       this.editMode = true;
       this.initForm(this.config.data);
     } else {
-      //   let data = new DepotInfoModel();
-      //   this.initForm(data);
       this.initForm();
     }
-
     //console.log(this.config.data);
   }
 
@@ -64,9 +58,7 @@ export class DepotInformationDialogComponent implements OnInit {
         this.depotInfoForm.value,
         this.api_key
       );
-
       this.depotInfoForm.reset();
-
       this.messageService.add({
         severity: 'info',
         summary: 'Success',
@@ -78,9 +70,7 @@ export class DepotInformationDialogComponent implements OnInit {
         this.depotInfoForm.value,
         this.api_key
       );
-
       this.depotInfoForm.reset();
-
       this.messageService.add({
         severity: 'info',
         summary: 'Success',

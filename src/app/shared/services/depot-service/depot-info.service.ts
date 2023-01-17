@@ -2,7 +2,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { idToken } from '@angular/fire/auth';
 import { Subject, tap } from 'rxjs';
-import { DepotInfoModel } from '../shared/models/depotInfo.model';
+import { environment } from 'src/environments/environment';
+import { DepotInfoModel } from '../../models/depotInfo.model';
 
 @Injectable({
   providedIn: 'root',
@@ -11,10 +12,7 @@ export class DepotInfoService {
   depotsInfoChange = new Subject<DepotInfoModel[]>();
   constructor(private http: HttpClient) {}
 
-  public depotsInfo: DepotInfoModel[] = [
-    //new DepotInfoModel('11111111111', 'DepotSyl01', 'starkul road', 1001),
-    //new DepotInfoModel('11111111111', 'DepotSyl01', 'starkul road', 1001),
-  ];
+  public depotsInfo: DepotInfoModel[] = [];
 
   setAllDepotsInfo(data: DepotInfoModel[]) {
     this.depotsInfo = data;
@@ -39,36 +37,32 @@ export class DepotInfoService {
     this.depotsInfoChange.next(this.depotsInfo.slice());
   }
   deleteDepot(id: number, api_key: any) {
+    const depotDeleteURL: string = `${environment.API_END_POINT}/depot/delete/${id}`;
     const index = this.depotsInfo.findIndex((checkItem: DepotInfoModel) => {
       return checkItem.id === id;
     });
     this.depotsInfo.splice(index, 1);
     this.depotsInfoChange.next(this.depotsInfo.slice());
     this.http
-      .delete(
-        `http://localhost:8080/depot/delete/${id}`,
-
-        {
-          headers: new HttpHeaders({
-            Authorization: `Bearer+${api_key}`,
-          }),
-        }
-      )
+      .delete(depotDeleteURL, {
+        headers: new HttpHeaders({
+          Authorization: `Bearer+${api_key}`,
+        }),
+      })
       .subscribe({
         next: (response) => {
           console.log(response);
         },
         error: (err) => {
-          //this.ref.close();
-          //this.dialogService.destroy();
           console.log(err);
         },
       });
   }
 
   storeIndividualDepotData(inputUser: DepotInfoModel, api_key: any) {
+    const depotCreateURL: string = `${environment.API_END_POINT}/depot/add`;
     this.http
-      .post('http://localhost:8080/depot/add', inputUser, {
+      .post(depotCreateURL, inputUser, {
         headers: new HttpHeaders({
           Authorization: `Bearer+${api_key}`,
         }),
@@ -79,8 +73,9 @@ export class DepotInfoService {
   }
 
   fetchAllDepotsInfoData(api_key: any) {
+    const depotsInfoURL: string = `${environment.API_END_POINT}/depot/viewAll`;
     return this.http
-      .get<DepotInfoModel[]>('http://localhost:8080/depot/viewAll', {
+      .get<DepotInfoModel[]>(depotsInfoURL, {
         headers: new HttpHeaders({
           Authorization: `Bearer+${api_key}`,
         }),
@@ -96,8 +91,9 @@ export class DepotInfoService {
     updatedUserData: DepotInfoModel[],
     api_key: any
   ) {
+    const depotInfoUpdateURL: string = `${environment.API_END_POINT}/depot/edit`;
     this.http
-      .put(`http://localhost:8080/depot/edit`, updatedUserData, {
+      .put(depotInfoUpdateURL, updatedUserData, {
         headers: new HttpHeaders({
           Authorization: `Bearer+${api_key}`,
         }),

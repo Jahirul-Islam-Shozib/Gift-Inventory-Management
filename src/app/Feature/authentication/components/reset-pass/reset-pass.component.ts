@@ -2,7 +2,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ForgetResetPassService } from 'src/app/Service/forget-reset-pass.service';
+import { ForgetResetPassService } from 'src/app/shared/services/password-service/forget-reset-pass.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-reset-pass',
@@ -32,12 +33,12 @@ export class ResetPassComponent implements OnInit {
     });
   }
   onResetPass() {
-    //console.log(this.newPass, this.confirmPass);
-    console.log(this.resetPassForm.value);
+    // console.log(this.resetPassForm.value);
+    const resetPassURL: string = `${environment.API_END_POINT}/user/resetPassword`;
 
     this.http
       .post(
-        'http://localhost:8080/user/resetPassword',
+        resetPassURL,
         {
           email: this.email,
           password: this.resetPassForm.value.confirmPassword,

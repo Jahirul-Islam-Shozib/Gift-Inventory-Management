@@ -1,8 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
-import { InventoryUserService } from 'src/app/Service/inventory-user.service';
+import { InventoryUserService } from 'src/app/shared/services/user-service/inventory-user.service';
 import { InventoryUserModel } from 'src/app/shared/models/inventory-user.model';
 import { UserInformationDialogComponent } from '../user-information-dialog/user-information-dialog.component';
 interface InventoryStore {
@@ -23,21 +22,18 @@ export class AllUserInformationComponent implements OnInit {
   constructor(
     private inventoryUserService: InventoryUserService,
     public dialogService: DialogService,
-    private messageService: MessageService,
-    private confirmationService: ConfirmationService,
-    private http: HttpClient
+    private confirmationService: ConfirmationService
   ) {}
 
   ngOnInit(): void {
     this.api_key = window.localStorage.getItem('token');
-
-    console.log(this.api_key);
+    //console.log(this.api_key);
     this.inventoryUser = this.inventoryUserService.getAllInventoryUser();
     this.inventoryUserService.inventoryUserChange.subscribe((items) => {
       this.inventoryUser = items;
     });
-
     this.onFetchUserData();
+
     this.cols = [
       { field: 'id', header: 'User Id' },
       { field: 'firstName', header: 'FirstName' },

@@ -11,18 +11,18 @@ import { environment } from 'src/environments/environment';
 export class DataStorageService {
   constructor(private http: HttpClient) {}
 
-  fetchData(code: string, api_key: any) {
-    const URL: string = `${environment.API_END_POINT}/budget/for/ssu/${code}`;
-    return this.http.get<DataModel[]>(URL, {
+  fetchSsuData(code: string, api_key: any) {
+    const ssuFilterURL: string = `${environment.API_END_POINT}/budget/for/ssu/${code}`;
+    return this.http.get<DataModel[]>(ssuFilterURL, {
       headers: new HttpHeaders({
         Authorization: `Bearer+${api_key}`,
       }),
     });
   }
 
-  fetchDepot(code: string, api_key: any) {
-    const URL: string = `${environment.API_END_POINT}/budget/for/depot/${code}`;
-    return this.http.get<DataModel[]>(URL, {
+  fetchFilterBudgetDepot(code: string, api_key: any) {
+    const depotFilterURL: string = `${environment.API_END_POINT}/budget/for/depot/${code}`;
+    return this.http.get<DataModel[]>(depotFilterURL, {
       headers: new HttpHeaders({
         Authorization: `Bearer+${api_key}`,
       }),
@@ -30,7 +30,8 @@ export class DataStorageService {
   }
 
   fetchAllDbData(api_key: any) {
-    return this.http.get<DataModel[]>('http://localhost:8080/budget/all', {
+    const dbDataURL: string = `${environment.API_END_POINT}/budget/all`;
+    return this.http.get<DataModel[]>(dbDataURL, {
       headers: new HttpHeaders({
         Authorization: `Bearer+${api_key}`,
       }),

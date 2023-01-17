@@ -7,7 +7,7 @@ import {
   UrlTree,
 } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AuthService } from './auth-service/auth.service';
+import { AuthService } from '../shared/services/auth-service/auth.service';
 
 @Injectable()
 export class SsuLoginAuthGuard implements CanActivate {

@@ -8,11 +8,19 @@
     width: 100%;
     //height: auto;
   }
-  ::ng-deep .p-ripple {
-    z-index: 10;
-  }
-  ::ng-deep .p-tieredmenu .p-menuitem-link .p-menuitem-text {
+  ::ng-deep .p-menuitem-link {
     margin-bottom: 10px;
+  }
+  ::ng-deep .p-menuitem-link-active {
+    //margin-bottom: 10px;
+    background-color: whitesmoke;
+  }
+  ::ng-deep .p-active-ripple {
+    //margin-bottom: 10px;
+    background-color: whitesmoke;
+  }
+  ////
+  ::ng-deep .p-tieredmenu .p-menuitem-link .p-menuitem-text {
     font-size: 14px;
     font-weight: 500;
   }

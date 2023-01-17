@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/Service/auth-service/auth.service';
-import { AuthInfoService } from 'src/app/Service/authInfo.service';
+import { AuthService } from 'src/app/shared/services/auth-service/auth.service';
+import { AuthInfoService } from 'src/app/shared/services/auth-service/authInfo.service';
 
 @Component({
   selector: 'app-log-in',
@@ -25,13 +25,6 @@ export class LogInComponent implements OnInit {
     });
   }
 
-  get email() {
-    return this.loginForm.get('email');
-  }
-
-  get password() {
-    return this.loginForm.get('password');
-  }
   onSubmit() {
     this.authService
       .login({
@@ -41,7 +34,7 @@ export class LogInComponent implements OnInit {
       .subscribe({
         next: (resData: any) => {
           localStorage.setItem('token', resData?.token);
-          console.log(resData);
+          //console.log(resData);
           this.authInfoService
             .getUserDataAfterLogin(resData?.token)
             .subscribe((response: any) => {
@@ -50,7 +43,7 @@ export class LogInComponent implements OnInit {
                 this.router.navigate(['/inventory-dashboard/dashboard-view']);
               } else if (response.role == 'SSU') {
                 this.authService.authSuccessfully();
-                this.router.navigate(['/inventories']);
+                this.router.navigate(['/inventory/ssu']);
               }
             });
         },

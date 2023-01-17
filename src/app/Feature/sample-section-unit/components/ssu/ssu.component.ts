@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DialogService } from 'primeng/dynamicdialog';
-import { AuthInfoService } from 'src/app/Service/authInfo.service';
-import { DataStorageService } from 'src/app/Service/Data Fetch & Store/data-storage.service';
+import { AuthInfoService } from 'src/app/shared/services/auth-service/authInfo.service';
+import { DataStorageService } from 'src/app/shared/services/Data Fetch & Store/data-storage.service';
 import { DataModel } from 'src/app/shared/models/data.model';
 import { SampleSectionUnitChalanComponent } from '../../sample-section-unit-chalan/sample-section-unit-chalan.component';
 interface InventoryStore {
@@ -44,9 +44,7 @@ export class SsuComponent implements OnInit {
     this.authInfoService.userDetailsCalled.subscribe((data) => {
       this.authInfoData = data;
     });
-
-    console.log(this.authInfoData);
-
+    //console.log(this.authInfoData);
     this.getInventriesByStoreName(this.selectedInventoryStores.code);
   }
 
@@ -56,9 +54,9 @@ export class SsuComponent implements OnInit {
   }
 
   private getInventriesByStoreName(storeCode: string) {
-    this.dataStorageService.fetchData(storeCode, this.api_key).subscribe({
+    this.dataStorageService.fetchSsuData(storeCode, this.api_key).subscribe({
       next: (response: any) => {
-        console.log('response:: ', response);
+        //  console.log('response:: ', response);
         this.dataItems = response;
       },
       error: (err: any) => {
@@ -70,7 +68,7 @@ export class SsuComponent implements OnInit {
   openChalanDialog() {
     this.dialogService.open(SampleSectionUnitChalanComponent, {
       data: this.authInfoData,
-      header: 'Create Invoice',
+      header: 'Invoice',
       width: '70%',
       height: '100%',
     });

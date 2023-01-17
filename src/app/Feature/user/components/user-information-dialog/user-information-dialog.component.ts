@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MessageService } from 'primeng/api';
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
-import { InventoryUserService } from 'src/app/Service/inventory-user.service';
+import { InventoryUserService } from 'src/app/shared/services/user-service/inventory-user.service';
 import { InventoryUserModel } from 'src/app/shared/models/inventory-user.model';
 
 @Component({
@@ -17,8 +16,7 @@ export class UserInformationDialogComponent implements OnInit {
 
   constructor(
     private inventoryUserService: InventoryUserService,
-    public config: DynamicDialogConfig,
-    private messageService: MessageService
+    public config: DynamicDialogConfig
   ) {}
 
   ngOnInit() {
@@ -30,7 +28,6 @@ export class UserInformationDialogComponent implements OnInit {
     } else {
       this.initForm();
     }
-
     //console.log(this.config.data);
   }
 

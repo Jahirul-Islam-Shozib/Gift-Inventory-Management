@@ -4,6 +4,10 @@ import { AllUserInformationComponent } from './components/all-user-information/a
 
 const routes: Routes = [
   {
+    path: '',
+    component: AllUserInformationComponent,
+  },
+  {
     path: 'user-info',
     component: AllUserInformationComponent,
   },

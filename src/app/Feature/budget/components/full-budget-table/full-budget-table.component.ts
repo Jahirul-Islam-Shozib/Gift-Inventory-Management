@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { DataStorageService } from 'src/app/Service/Data Fetch & Store/data-storage.service';
+import { DataStorageService } from 'src/app/shared/services/Data Fetch & Store/data-storage.service';
 import { DataModel } from 'src/app/shared/models/data.model';
 
 @Component({
@@ -11,7 +11,7 @@ export class FullBudgetTableComponent implements OnInit {
   @Input() budgetData!: DataModel[];
   cols: any[] = [];
 
-  constructor(private dataStorageService: DataStorageService) {}
+  constructor() {}
 
   ngOnInit() {
     this.cols = [

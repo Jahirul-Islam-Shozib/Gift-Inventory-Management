@@ -5,6 +5,10 @@ import { UploadBudgetComponent } from './components/upload-budget/upload-budget.
 
 const routes: Routes = [
   {
+    path: '',
+    component: UploadBudgetComponent,
+  },
+  {
     path: 'upload-budget',
     component: UploadBudgetComponent,
   },

@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-upload-budget',
@@ -11,7 +12,7 @@ import { MessageService } from 'primeng/api';
 export class UploadBudgetComponent implements OnInit {
   api_key: any;
   value: number = 0;
-  uploadFileUrl = 'http://localhost:8080/budget/addBudgetFromExcel';
+  uploadFileUrl = `${environment.API_END_POINT}/budget/addBudgetFromExcel`;
   excelData: any;
   uploadedFiles: any;
   fileUploaded: boolean = false;
@@ -23,14 +24,13 @@ export class UploadBudgetComponent implements OnInit {
   ngOnInit() {
     this.todayTime = new Date();
     this.api_key = window.localStorage.getItem('token');
-
     //console.log(this.api_key);
   }
 
   selectFile(event: any) {
     this.uploadedFiles = event.target.files[0];
 
-    console.log(this.uploadedFiles);
+    //console.log(this.uploadedFiles);
   }
 
   uploadFile() {
@@ -51,10 +51,9 @@ export class UploadBudgetComponent implements OnInit {
           } else {
             this.showError();
           }
-          console.log(data);
+          //console.log(data);
         },
         error: (error) => {
-          //error
           console.log(error);
         },
       });

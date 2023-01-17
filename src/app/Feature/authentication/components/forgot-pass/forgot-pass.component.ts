@@ -1,7 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ForgetResetPassService } from 'src/app/Service/forget-reset-pass.service';
+import { ForgetResetPassService } from 'src/app/shared/services/password-service/forget-reset-pass.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-forgot-pass',
@@ -31,9 +32,10 @@ export class ForgotPassComponent implements OnInit {
   }
 
   onPostEmail() {
+    const forgetPassURL: string = `${environment.API_END_POINT}/user/forgetPassword`;
     this.http
       .post(
-        'http://localhost:8080/user/forgetPassword',
+        forgetPassURL,
         {
           email: this.email,
         },
@@ -49,10 +51,11 @@ export class ForgotPassComponent implements OnInit {
   }
 
   onSendOTP() {
-    console.log(this.otp);
+    const sendOtpURL: string = `${environment.API_END_POINT}/user/checkOtpStatus`;
+    // console.log(this.otp);
     this.http
       .post(
-        'http://localhost:8080/user/checkOtpStatus',
+        sendOtpURL,
         {
           email: this.email,
           otp: this.otp,

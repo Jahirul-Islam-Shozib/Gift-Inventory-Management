@@ -1,11 +1,9 @@
 import { Subject } from 'rxjs';
-import { AuthData } from '../../shared/models/auth-data.model';
+import { AuthData } from '../../models/auth-data.model';
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { HttpClient } from '@angular/common/http';
-import { AuthResponseData } from '../../shared/models/auth-response.model';
-import { AuthInfoService } from '../authInfo.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class AuthService {
@@ -15,38 +13,21 @@ export class AuthService {
   private isSsuLogin = false;
   private isDepotLogin = false;
 
-  constructor(
-    private router: Router,
-    private afauth: AngularFireAuth,
-    private http: HttpClient,
-    private authInfoService: AuthInfoService
-  ) {}
-
-  signUp(authData: AuthData) {
-    return this.http.post<AuthResponseData>(
-      'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCWyDgK_OagUGfC5pdXW5CK8UgWr1Jz4P8',
-      {
-        email: authData.email,
-        password: authData.password,
-        returnSecureToken: true,
-      }
-    );
-  }
+  constructor(private router: Router, private http: HttpClient) {}
 
   login(authData: AuthData) {
-    return this.http.post('http://localhost:8080/user/login', {
+    const loginURL: string = `${environment.API_END_POINT}/user/login`;
+    return this.http.post(loginURL, {
       email: authData.email,
       password: authData.password,
-      //returnSecureToken: true,
     });
   }
 
   logout() {
-    // this.user = null;
-    this.afauth.signOut();
     this.isAuthenticated = false;
     this.authChange.next(false);
     this.router.navigate(['/login']);
+    localStorage.clear();
   }
 
   isAuth() {

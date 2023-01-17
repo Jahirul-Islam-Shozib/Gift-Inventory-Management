@@ -1,8 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
-import { DepotInfoService } from 'src/app/Service/depot-info.service';
+import { DepotInfoService } from 'src/app/shared/services/depot-service/depot-info.service';
 import { DepotInfoModel } from 'src/app/shared/models/depotInfo.model';
 import { DepotInformationDialogComponent } from '../depot-information-dialog/depot-information-dialog.component';
 
@@ -20,9 +19,7 @@ export class AllDepotsInformationComponent implements OnInit {
   constructor(
     private depotInfoService: DepotInfoService,
     public dialogService: DialogService,
-    private messageService: MessageService,
-    private confirmationService: ConfirmationService,
-    private http: HttpClient
+    private confirmationService: ConfirmationService
   ) {}
 
   ngOnInit() {
@@ -34,7 +31,7 @@ export class AllDepotsInformationComponent implements OnInit {
   onFetchDepotInfoData() {
     this.depotInfoService.fetchAllDepotsInfoData(this.api_key).subscribe({
       next: (response: any) => {
-        console.log('response:: ', response);
+        // console.log('response:: ', response);
         this.depotItems = response;
       },
       error: (err: any) => {

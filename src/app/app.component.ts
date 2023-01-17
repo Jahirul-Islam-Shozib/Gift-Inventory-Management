@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { AuthService } from './Service/auth-service/auth.service';
-import { AuthInfoService } from './Service/authInfo.service';
+import { AuthService } from './shared/services/auth-service/auth.service';
+import { AuthInfoService } from './shared/services/auth-service/authInfo.service';
 
 @Component({
   selector: 'app-root',
@@ -16,18 +16,18 @@ export class AppComponent {
   ) {}
   ngOnInit() {
     this.api_key = window.localStorage.getItem('token');
-    this.reloadPage();
+    if (this.api_key) {
+      this.reloadPage();
+    }
   }
   reloadPage() {
-    // setTimeout(() => {
-    //   window.location.reload();
-    // }, 100);
     this.authInfoService
       .getUserDataAfterLogin(this.api_key)
       .subscribe((response: any) => {
         console.log(response);
-        this.authService.authChange.next(true);
+        if (response) {
+          this.authService.authChange.next(true);
+        }
       });
-    //window.location.reload();
   }
 }

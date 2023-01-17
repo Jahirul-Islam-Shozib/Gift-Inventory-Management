@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { DataStorageService } from 'src/app/Service/Data Fetch & Store/data-storage.service';
 import { DataModel } from 'src/app/shared/models/data.model';
 
 @Component({
@@ -11,7 +10,7 @@ export class SampleSectionUnitTableComponent implements OnInit {
   @Input() inventoryData!: DataModel[];
   cols: any[] = [];
 
-  constructor(private dataStorageService: DataStorageService) {}
+  constructor() {}
 
   ngOnInit() {
     this.cols = [

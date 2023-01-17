@@ -2,18 +2,15 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Subject, tap } from 'rxjs';
-import { InventoryUserModel } from '../shared/models/inventory-user.model';
+import { environment } from 'src/environments/environment';
+import { InventoryUserModel } from '../../models/inventory-user.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class InventoryUserService {
   inventoryUserChange = new Subject<InventoryUserModel[]>();
-  constructor(
-    private http: HttpClient,
-    private ref: DynamicDialogRef,
-    private dialogService: DialogService
-  ) {}
+  constructor(private http: HttpClient) {}
 
   public inventoryUser: InventoryUserModel[] = [
     new InventoryUserModel(
@@ -54,6 +51,7 @@ export class InventoryUserService {
     this.inventoryUserChange.next(this.inventoryUser.slice());
   }
   deleteUser(id: number, api_key: any) {
+    const userDeleteURL: string = `${environment.API_END_POINT}/user/disable/${id}`;
     const finalUserData = this.getAllInventoryUser();
     const index = this.inventoryUser.findIndex(
       (checkItem: InventoryUserModel) => {
@@ -65,7 +63,7 @@ export class InventoryUserService {
 
     this.http
       .put(
-        `http://localhost:8080/user/disable/${id}`,
+        userDeleteURL,
         { finalUserData },
         {
           headers: new HttpHeaders({
@@ -75,19 +73,18 @@ export class InventoryUserService {
       )
       .subscribe({
         next: (response) => {
-          //   console.log();
+          //   console.log(response);
         },
         error: (err) => {
-          //this.ref.close();
-          //this.dialogService.destroy();
-          console.log(err);
+          //console.log(err);
         },
       });
   }
 
   storeInventoryUserData(inputUser: InventoryUserModel, api_key: any) {
+    const userCreateURL: string = `${environment.API_END_POINT}/user/create`;
     this.http
-      .post('http://localhost:8080/user/create', inputUser, {
+      .post(userCreateURL, inputUser, {
         headers: new HttpHeaders({
           Authorization: `Bearer+${api_key}`,
         }),
@@ -98,8 +95,9 @@ export class InventoryUserService {
   }
 
   fetchAllInventoryUserData(api_key: any) {
+    const usersInfoURL: string = `${environment.API_END_POINT}/user/all`;
     return this.http
-      .get<InventoryUserModel[]>('http://localhost:8080/user/all', {
+      .get<InventoryUserModel[]>(usersInfoURL, {
         headers: new HttpHeaders({
           Authorization: `Bearer+${api_key}`,
         }),
@@ -116,8 +114,9 @@ export class InventoryUserService {
     updatedUserData: InventoryUserModel[],
     api_key: any
   ) {
+    const updateUserURL: string = `${environment.API_END_POINT}/user/update/${updateId}`;
     this.http
-      .put(`http://localhost:8080/user/update/${updateId}`, updatedUserData, {
+      .put(updateUserURL, updatedUserData, {
         headers: new HttpHeaders({
           Authorization: `Bearer+${api_key}`,
         }),
@@ -127,8 +126,6 @@ export class InventoryUserService {
           console.log(response);
         },
         error: (err) => {
-          //this.ref.close();
-          //this.dialogService.destroy();
           console.log(err);
         },
       });

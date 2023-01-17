@@ -3,8 +3,7 @@ import { MenuItem, PrimeNGConfig } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { DepotInformationDialogComponent } from 'src/app/Feature/depots/components/depot-information-dialog/depot-information-dialog.component';
 import { UserInformationDialogComponent } from 'src/app/Feature/user/components/user-information-dialog/user-information-dialog.component';
-
-import { DataStorageService } from 'src/app/Service/Data Fetch & Store/data-storage.service';
+import { DataStorageService } from 'src/app/shared/services/Data Fetch & Store/data-storage.service';
 
 @Component({
   selector: 'app-menubar',
@@ -24,20 +23,17 @@ export class MenubarComponent implements OnInit {
       {
         label: 'Dashboard',
         icon: 'pi pi-fw pi-home',
-        // routerLink: ['/home'],
         routerLink: ['/inventory-dashboard/dashboard-view'],
       },
       {
         label: 'All Inventories',
         icon: 'pi pi-fw pi-microsoft',
-        // routerLink: ['/inventories'],
         routerLink: ['/inventory/ssu'],
       },
       {
         label: 'Depots Inventory',
         icon: 'pi pi-fw pi-slack',
-        // routerLink: ['/depot-list'],
-
+        routerLink: ['/inventory-depots'],
         items: [
           {
             label: 'All Depots Information',
@@ -48,6 +44,7 @@ export class MenubarComponent implements OnInit {
             label: 'Depots Wise Budget',
             icon: 'pi pi-fw pi-file-excel',
             routerLink: ['/inventory-depots/depot-wise-budget'],
+            //routerLinkActiveOptions: { exact: true },
           },
           {
             label: 'Add New Depo',
@@ -59,6 +56,7 @@ export class MenubarComponent implements OnInit {
       {
         label: 'Budget',
         icon: 'pi pi-fw pi-file',
+        routerLink: ['/inventory-budget'],
 
         items: [
           {
@@ -84,7 +82,7 @@ export class MenubarComponent implements OnInit {
       {
         label: 'Users',
         icon: 'pi pi-fw pi-user',
-
+        routerLink: ['/inventory-user'],
         items: [
           {
             label: 'Create New User',
