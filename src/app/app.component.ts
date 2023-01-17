@@ -24,7 +24,7 @@ export class AppComponent {
     this.authInfoService
       .getUserDataAfterLogin(this.api_key)
       .subscribe((response: any) => {
-        console.log(response);
+        //console.log(response);
         if (response) {
           this.authService.authChange.next(true);
         }
