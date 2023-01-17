@@ -70,7 +70,7 @@ export class ForgotPassComponent implements OnInit {
         console.log(response);
 
         if (response == true) {
-          this.router.navigate(['/reset-pass']);
+          this.router.navigate(['/auth/reset-pass']);
         }
       });
   }
