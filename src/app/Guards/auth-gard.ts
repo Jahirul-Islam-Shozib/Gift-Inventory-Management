@@ -23,7 +23,7 @@ export class AuthGard implements CanActivate {
     if (this.authService.isAuth()) {
       return true;
     } else {
-      this.router.navigate(['/login']);
+      this.router.navigate(['/auth/login']);
     }
     throw new Error('Method not implemented.');
   }

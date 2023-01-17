@@ -6,7 +6,8 @@ import { UploadBudgetComponent } from './components/upload-budget/upload-budget.
 const routes: Routes = [
   {
     path: '',
-    component: UploadBudgetComponent,
+    pathMatch: 'full',
+    redirectTo: 'upload-budget',
   },
   {
     path: 'upload-budget',

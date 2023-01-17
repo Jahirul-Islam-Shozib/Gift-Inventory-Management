@@ -9,15 +9,17 @@ import { AuthService } from 'src/app/shared/services/auth-service/auth.service';
   styleUrls: ['./toolbar.component.scss'],
 })
 export class ToolbarComponent implements OnInit, OnDestroy {
-  isAuth: boolean = false;
+  isAuth = false;
 
   authSubscription!: Subscription;
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
-    this.authService.authChange.subscribe((authStatus) => {
-      this.isAuth = authStatus;
-    });
+    this.authSubscription = this.authService.authChange.subscribe(
+      (authStatus) => {
+        this.isAuth = authStatus;
+      }
+    );
   }
 
   ngOnDestroy(): void {

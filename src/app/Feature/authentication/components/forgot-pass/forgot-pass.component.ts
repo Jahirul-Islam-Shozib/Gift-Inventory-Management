@@ -21,11 +21,13 @@ export class ForgotPassComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    console.log('abc');
+
     this.api_key = window.localStorage.getItem('token');
   }
 
   onSendEmail() {
-    //console.log(this.email);
+    console.log(this.email);
     this.forgetResetPassService.setVerifiedUserEmail(this.email);
     this.display = true;
     this.onPostEmail();

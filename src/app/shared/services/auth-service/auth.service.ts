@@ -26,12 +26,14 @@ export class AuthService {
   logout() {
     this.isAuthenticated = false;
     this.authChange.next(false);
-    this.router.navigate(['/login']);
+    this.router.navigate(['/auth/login']);
     localStorage.clear();
   }
 
   isAuth() {
-    return this.isAuthenticated;
+    console.log(!!localStorage.getItem('token'));
+
+    return !!localStorage.getItem('token');
   }
   isSsuValid() {
     return this.isSsuLogin;

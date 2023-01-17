@@ -16,9 +16,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { NotFoundComponent } from './Feature/not-found/not-found.component';
 
 @NgModule({
-  declarations: [AppComponent, ToolbarComponent],
+  declarations: [AppComponent, ToolbarComponent, NotFoundComponent],
   imports: [
     BrowserModule,
     FlexLayoutModule,

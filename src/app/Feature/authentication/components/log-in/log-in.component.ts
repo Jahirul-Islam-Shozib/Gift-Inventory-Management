@@ -40,7 +40,7 @@ export class LogInComponent implements OnInit {
             .subscribe((response: any) => {
               if (response.role == 'admin') {
                 this.authService.authSuccessfully();
-                this.router.navigate(['/inventory-dashboard/dashboard-view']);
+                this.router.navigate(['inventory-dashboard']);
               } else if (response.role == 'SSU') {
                 this.authService.authSuccessfully();
                 this.router.navigate(['/inventory/ssu']);

@@ -23,7 +23,7 @@ export class MenubarComponent implements OnInit {
       {
         label: 'Dashboard',
         icon: 'pi pi-fw pi-home',
-        routerLink: ['/inventory-dashboard/dashboard-view'],
+        routerLink: ['/inventory-dashboard'],
       },
       {
         label: 'All Inventories',

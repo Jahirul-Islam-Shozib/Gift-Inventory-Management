@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { NotFoundComponent } from './Feature/not-found/not-found.component';
 import { AuthGard } from './Guards/auth-gard';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', pathMatch: 'full', redirectTo: '/inventory-dashboard' },
   {
     path: 'auth',
     loadChildren: () =>
@@ -18,7 +19,7 @@ const routes: Routes = [
       import('./Feature/dashboard/dashboard.module').then(
         (mod) => mod.DashboardModule
       ),
-    // canActivate: [AuthGard],
+    canActivate: [AuthGard],
   },
   {
     path: 'inventory',
@@ -26,33 +27,31 @@ const routes: Routes = [
       import('./Feature/sample-section-unit/sample-section-unit.module').then(
         (mod) => mod.SampleSectionUnitModule
       ),
-    // canActivate: [AuthGard],
+    canActivate: [AuthGard],
   },
   {
     path: 'inventory-budget',
     loadChildren: () =>
       import('./Feature/budget/budget.module').then((mod) => mod.BudgetModule),
-    // canActivate: [AuthGard],
+    canActivate: [AuthGard],
   },
   {
     path: 'inventory-depots',
     loadChildren: () =>
       import('./Feature/depots/depots.module').then((mod) => mod.DepotsModule),
-    // canActivate: [AuthGard],
+    canActivate: [AuthGard],
   },
   {
     path: 'inventory-user',
     loadChildren: () =>
       import('./Feature/user/user.module').then((mod) => mod.UserModule),
-    // canActivate: [AuthGard],
+    canActivate: [AuthGard],
   },
 
   {
     path: '**',
-    loadChildren: () =>
-      import('./Feature/authentication/authentication.module').then(
-        (mod) => mod.AuthenticationModule
-      ),
+    pathMatch: 'full',
+    component: NotFoundComponent,
   },
 ];
 

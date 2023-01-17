@@ -7,7 +7,8 @@ import { DepotWiseBudgetComponent } from './components/depot-wise-budget/depot-w
 const routes: Routes = [
   {
     path: '',
-    component: AllDepotsInformationComponent,
+    pathMatch: 'full',
+    redirectTo: 'depot-info',
   },
   {
     path: 'depot-info',

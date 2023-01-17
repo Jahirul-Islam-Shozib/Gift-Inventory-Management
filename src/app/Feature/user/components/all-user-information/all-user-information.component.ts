@@ -60,11 +60,11 @@ export class AllUserInformationComponent implements OnInit {
     this.onFetchUserData();
   }
 
-  onDeleteUser(id: number) {
+  onBanUser(id: number) {
     this.confirmationService.confirm({
       message: 'Are you sure that you want to Delete this User Information?',
       accept: () => {
-        this.inventoryUserService.deleteUser(id, this.api_key);
+        this.inventoryUserService.banUser(id, this.api_key);
       },
     });
   }

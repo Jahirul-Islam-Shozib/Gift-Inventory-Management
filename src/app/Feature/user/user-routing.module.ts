@@ -5,7 +5,8 @@ import { AllUserInformationComponent } from './components/all-user-information/a
 const routes: Routes = [
   {
     path: '',
-    component: AllUserInformationComponent,
+    pathMatch: 'full',
+    redirectTo: 'user-info',
   },
   {
     path: 'user-info',

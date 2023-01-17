@@ -50,17 +50,16 @@ export class InventoryUserService {
     this.inventoryUser[index] = updateData;
     this.inventoryUserChange.next(this.inventoryUser.slice());
   }
-  deleteUser(id: number, api_key: any) {
+  banUser(id: number, api_key: any) {
     const userDeleteURL: string = `${environment.API_END_POINT}/user/disable/${id}`;
     const finalUserData = this.getAllInventoryUser();
-    const index = this.inventoryUser.findIndex(
-      (checkItem: InventoryUserModel) => {
-        return checkItem.id === id;
-      }
-    );
-    this.inventoryUser.splice(index, 1);
-    this.inventoryUserChange.next(this.inventoryUser.slice());
-
+    // const index = this.inventoryUser.findIndex(
+    //   (checkItem: InventoryUserModel) => {
+    //     return checkItem.id === id;
+    //   }
+    // );
+    // this.inventoryUser.splice(index, 1);
+    // this.inventoryUserChange.next(this.inventoryUser.slice());
     this.http
       .put(
         userDeleteURL,
