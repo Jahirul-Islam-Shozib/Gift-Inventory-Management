@@ -24,13 +24,10 @@ export class UploadBudgetComponent implements OnInit {
   ngOnInit() {
     this.todayTime = new Date();
     this.api_key = window.localStorage.getItem('token');
-    //console.log(this.api_key);
   }
 
   selectFile(event: any) {
     this.uploadedFiles = event.target.files[0];
-
-    //console.log(this.uploadedFiles);
   }
 
   uploadFile() {
@@ -51,7 +48,6 @@ export class UploadBudgetComponent implements OnInit {
           } else {
             this.showError();
           }
-          //console.log(data);
         },
         error: (error) => {
           console.log(error);

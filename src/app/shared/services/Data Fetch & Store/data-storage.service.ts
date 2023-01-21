@@ -12,7 +12,7 @@ export class DataStorageService {
   constructor(private http: HttpClient) {}
 
   fetchSsuData(code: string, api_key: any) {
-    const ssuFilterURL: string = `${environment.API_END_POINT}/budget/for/ssu/${code}`;
+    const ssuFilterURL: string = `${environment.API_END_POINT}/budget/ssu/${code}`;
     return this.http.get<DataModel[]>(ssuFilterURL, {
       headers: new HttpHeaders({
         Authorization: `Bearer+${api_key}`,
@@ -30,7 +30,7 @@ export class DataStorageService {
   }
 
   fetchAllDbData(api_key: any) {
-    const dbDataURL: string = `${environment.API_END_POINT}/budget/all`;
+    const dbDataURL: string = `${environment.API_END_POINT}/budget/get/all`;
     return this.http.get<DataModel[]>(dbDataURL, {
       headers: new HttpHeaders({
         Authorization: `Bearer+${api_key}`,

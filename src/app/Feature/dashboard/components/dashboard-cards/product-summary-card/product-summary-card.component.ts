@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { PrimeNGConfig } from 'primeng/api';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-product-summary-card',
@@ -18,15 +19,15 @@ export class ProductSummaryCardComponent implements OnInit {
     this.getProductSummary();
   }
   getProductSummary() {
+    const caregorySumUrl: string = `${environment.API_END_POINT}/dashboard/categoryWiseSummary`;
     return this.http
-      .get<any>('http://localhost:8080/admin/dashboard/categoryWiseSummary', {
+      .get<any>(caregorySumUrl, {
         headers: new HttpHeaders({
           Authorization: `Bearer+${this.api_key}`,
         }),
       })
       .subscribe({
         next: (response: any) => {
-          console.log('response:: ', response);
           this.productSummary = response;
         },
         error: (err: any) => {

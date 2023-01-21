@@ -1,7 +1,8 @@
+import { AnimationQueryMetadata } from '@angular/animations';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { Subject, tap } from 'rxjs';
+import { Observable, Subject, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { InventoryUserModel } from '../../models/inventory-user.model';
 
@@ -53,13 +54,6 @@ export class InventoryUserService {
   banUser(id: number, api_key: any) {
     const userDeleteURL: string = `${environment.API_END_POINT}/user/disable/${id}`;
     const finalUserData = this.getAllInventoryUser();
-    // const index = this.inventoryUser.findIndex(
-    //   (checkItem: InventoryUserModel) => {
-    //     return checkItem.id === id;
-    //   }
-    // );
-    // this.inventoryUser.splice(index, 1);
-    // this.inventoryUserChange.next(this.inventoryUser.slice());
     this.http
       .put(
         userDeleteURL,
@@ -80,17 +74,16 @@ export class InventoryUserService {
       });
   }
 
-  storeInventoryUserData(inputUser: InventoryUserModel, api_key: any) {
+  storeInventoryUserData(
+    inputUser: InventoryUserModel,
+    api_key: any
+  ): Observable<any> {
     const userCreateURL: string = `${environment.API_END_POINT}/user/create`;
-    this.http
-      .post(userCreateURL, inputUser, {
-        headers: new HttpHeaders({
-          Authorization: `Bearer+${api_key}`,
-        }),
-      })
-      .subscribe((response) => {
-        console.log(response);
-      });
+    return this.http.post(userCreateURL, inputUser, {
+      headers: new HttpHeaders({
+        Authorization: `Bearer+${api_key}`,
+      }),
+    });
   }
 
   fetchAllInventoryUserData(api_key: any) {
@@ -112,21 +105,12 @@ export class InventoryUserService {
     updateId: number,
     updatedUserData: InventoryUserModel[],
     api_key: any
-  ) {
+  ): Observable<any> {
     const updateUserURL: string = `${environment.API_END_POINT}/user/update/${updateId}`;
-    this.http
-      .put(updateUserURL, updatedUserData, {
-        headers: new HttpHeaders({
-          Authorization: `Bearer+${api_key}`,
-        }),
-      })
-      .subscribe({
-        next: (response) => {
-          console.log(response);
-        },
-        error: (err) => {
-          console.log(err);
-        },
-      });
+    return this.http.put(updateUserURL, updatedUserData, {
+      headers: new HttpHeaders({
+        Authorization: `Bearer+${api_key}`,
+      }),
+    });
   }
 }

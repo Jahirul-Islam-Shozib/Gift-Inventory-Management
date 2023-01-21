@@ -20,6 +20,9 @@
       font-size: 14px;
       font-weight: 500;
     }
+    label {
+      color: black;
+    }
   }
   .form-group {
     margin-left: 5px;
@@ -27,7 +30,6 @@
       font-size: 14px;
       font-weight: 500;
       padding-right: 10px;
-      color: blue;
     }
   }
 }

@@ -11,13 +11,21 @@
       <span class="p-float-outlined" style="padding: 5px">
         <label for="input-email">Email Address</label>
         <input
-          type="text"
+          type="email"
           id="input-email"
           pInputText
           formControlName="email"
           placeholder="Enter Email"
         />
       </span>
+      <span
+        class="input-error"
+        *ngIf="
+          loginForm.controls['email'].dirty &&
+          loginForm.hasError('required', 'email')
+        "
+        >*Email Id is required</span
+      >
     </div>
 
     <div class="form-field">
@@ -25,59 +33,28 @@
         <label for="input-password">Password</label>
         <input
           type="password"
+          required
+          minlength="6"
           id="input-password"
           pInputText
           placeholder="Enter Password"
           formControlName="password"
         />
+        <span
+          class="input-error"
+          *ngIf="
+            loginForm.controls['password'].dirty &&
+            loginForm.hasError('required', 'password')
+          "
+          >*Password is required</span
+        >
+      </span>
+      <span
+        class="input-error"
+        *ngIf="loginForm.controls['password'].errors?.['minlength']"
+        >*Password must be at least 6 characters long.
       </span>
     </div>
-    <!-- <span class="p-float-outlined" style="padding: 5px">
-      <input
-        id="float-input"
-        type="email"
-        pInputText
-        placeholder="Email Address"
-        formControlName="email"
-      />
-    </span>
-    <span class="p-float-outlined" style="padding: 5px">
-      <input
-        id="float-input"
-        type="password"
-        pInputText
-        placeholder="Password"
-        formControlName="password"
-      />
-    </span> -->
-
-    <!-- <div>
-      <mat-form-field class="form-field" appearance="fill">
-        <mat-label>User Email</mat-label>
-        <input matInput placeholder="Email" formControlName="email" />
-        <mat-error *ngIf="email?.errors?.['required']"
-          >Email is required!</mat-error
-        >
-        <mat-error *ngIf="email?.errors?.['email']"
-          >Please enter a valid email!</mat-error
-        >
-      </mat-form-field>
-    </div> -->
-
-    <!-- <div>
-      <mat-form-field class="form-field" appearance="fill">
-        <mat-label>Password</mat-label>
-        <input
-          type="password"
-          matInput
-          placeholder="Password"
-          formControlName="password"
-        />
-        <mat-error *ngIf="password?.errors?.['required']"
-          >Password is required!</mat-error
-        >
-      </mat-form-field>
-    </div> -->
     <div class="forgot-p">
       <a routerLink="/auth/forgot-pass">Forgot Password?</a>
     </div>
@@ -93,4 +70,5 @@
       ></button>
     </div>
   </form>
+  <p-toast position="top-right"></p-toast>
 </div>

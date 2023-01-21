@@ -28,9 +28,22 @@ export class ResetPassComponent implements OnInit {
 
   initForm() {
     this.resetPassForm = new FormGroup({
-      newPassword: new FormControl(null, Validators.required),
-      confirmPassword: new FormControl(null, Validators.required),
+      newPassword: new FormControl(null, [
+        Validators.required,
+        Validators.minLength(6),
+      ]),
+      confirmPassword: new FormControl(null, [Validators.required]),
     });
+  }
+
+  onChangePass() {
+    var new_Password = this.resetPassForm.value.newPassword;
+    var confirm_Password = this.resetPassForm.value.confirmPassword;
+
+    if (new_Password != confirm_Password) {
+      return true;
+    }
+    return false;
   }
   onResetPass() {
     // console.log(this.resetPassForm.value);
@@ -52,7 +65,7 @@ export class ResetPassComponent implements OnInit {
       .subscribe((response) => {
         console.log(response);
         if (response) {
-          this.router.navigate(['/login']);
+          this.router.navigate(['/auth/login']);
         }
       });
   }

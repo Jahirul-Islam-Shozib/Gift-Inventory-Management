@@ -1,18 +1,16 @@
 <mat-toolbar>
-  <span class="p-name">Inventory</span>
+  <i
+    class="pi pi-gift"
+    style="font-size: 1.5rem; padding: 5px; color: whitesmoke"
+  ></i>
+  <span class="p-name"> GIFT INVENTORY</span>
   <span class="example-spacer"></span>
 
   <div fxFlex fxLayout="row">
     <ul fxFlex fxLayoutAlign="flex-end" fxLayoutGap="10px">
       <li *ngIf="isAuth">
-        <a routerLink="/inventory-dashboard/dashboard-view">Home</a>
-      </li>
-      <li *ngIf="isAuth">
-        <a routerLink="/inventory-dashboard/dashboard-view">About</a>
-      </li>
-
-      <li *ngIf="isAuth">
-        <a (click)="onLogout()" cursor="pointer">logout</a>
+        <i class="pi pi-user" style="font-size: 1rem; padding: 5px"></i>
+        <a (click)="onLogout()" cursor="pointer">Log Out</a>
       </li>
     </ul>
   </div>

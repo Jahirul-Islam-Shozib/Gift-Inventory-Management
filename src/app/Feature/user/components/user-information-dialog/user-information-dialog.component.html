@@ -1,88 +1,99 @@
-<form
-  [formGroup]="inventoryUserForm"
-  (ngSubmit)="onAddUser()"
-  class="inventoryUser-container"
-  fxFlex
-  fxLayout="row wrap"
-  fxLayoutGap="10px grid"
->
-  <span fxFlex="50%" class="p-label">
-    <label for="firstName">FirstName</label>
-    <input
-      class="input-row"
-      type="text"
-      id="inputfirstname"
-      pInputText
-      formControlName="firstName"
-    />
-  </span>
+<div fxLayout="column">
+  <div>
+    <form
+      [formGroup]="inventoryUserForm"
+      (ngSubmit)="onAddUser()"
+      class="inventoryUser-container"
+      fxFlex
+      fxLayout="row wrap"
+      fxLayoutGap="10px grid"
+    >
+      <span fxFlex="50%" class="p-label">
+        <label for="firstName">FirstName</label>
+        <input
+          class="input-row"
+          type="text"
+          id="inputfirstname"
+          pInputText
+          formControlName="firstName"
+        />
+      </span>
 
-  <span fxFlex="50%" class="p-label">
-    <label for="lastName">LastName</label>
-    <input
-      class="input-row"
-      type="text"
-      id="inputLastname"
-      pInputText
-      formControlName="lastName"
-    />
-  </span>
+      <span fxFlex="50%" class="p-label">
+        <label for="lastName">LastName</label>
+        <input
+          class="input-row"
+          type="text"
+          id="inputLastname"
+          pInputText
+          formControlName="lastName"
+        />
+      </span>
 
-  <span fxFlex="50%" class="p-label">
-    <label for="email">User Email</label>
-    <input
-      class="input-column"
-      type="text"
-      id="inputUserEmail"
-      pInputText
-      formControlName="email"
-    />
-  </span>
+      <span fxFlex="50%" class="p-label">
+        <label for="email">User Email</label>
+        <input
+          class="input-column"
+          type="text"
+          id="inputUserEmail"
+          pInputText
+          formControlName="email"
+        />
 
-  <span fxFlex="50%" class="p-label">
-    <label for="password">Password</label>
-    <input
-      class="input-row"
-      type="text"
-      id="inputUserPassword"
-      pInputText
-      formControlName="password"
-    />
-  </span>
-  <span fxFlex="50%" class="p-label">
-    <label for="contactNumber">Contact Number</label>
-    <input
-      class="input-row"
-      type="text"
-      id="inputContactNumber"
-      pInputText
-      formControlName="contactNumber"
-    />
-  </span>
+        <span
+          class="input-error"
+          *ngIf="
+            inventoryUserForm.controls['email']?.touched &&
+            inventoryUserForm.hasError('required', 'email')
+          "
+          >*Email Id is required</span
+        ><br />
+        <span
+          class="input-error"
+          *ngIf="
+            inventoryUserForm.controls['email']?.invalid &&
+            inventoryUserForm.controls['email']?.dirty
+          "
+          >*Please Enter correct Email Id.</span
+        >
+      </span>
 
-  <span fxFlex="50%" class="p-label">
-    <label for="role">User Role</label>
-    <input
-      class="input-row"
-      type="text"
-      id="inputUserRole"
-      pInputText
-      formControlName="role"
-    />
-  </span>
+      <span fxFlex="50%" class="p-label">
+        <label for="password">Password</label>
+        <input
+          class="input-row"
+          type="text"
+          id="inputUserPassword"
+          pInputText
+          formControlName="password"
+        />
+      </span>
+      <span fxFlex="50%" class="p-label">
+        <label for="contactNumber">Contact Number</label>
+        <input
+          class="input-row"
+          type="text"
+          id="inputContactNumber"
+          pInputText
+          formControlName="contactNumber"
+        />
+      </span>
 
-  <span fxFlex="50%" class="p-label">
-    <label for="status">User Status</label>
-    <input
-      class="input-row"
-      type="text"
-      id="inputUserStatus"
-      pInputText
-      formControlName="status"
-    />
-  </span>
+      <span fxFlex="50%" class="p-label">
+        <label for="role">Select Role</label>
+        <p-dropdown
+          class="input-dropdown"
+          formControlName="role"
+          [options]="userRoles"
+          placeholder="Select Role"
+          optionLabel="name"
+          optionValue="code"
+        ></p-dropdown>
+      </span>
+    </form>
+  </div>
 
-  <div fxFlex="50%" class="btn-modal">
+  <div fxLayoutAlign="flex-end" fxLayoutGap="20px" class="btn-modal">
     <button
       icon="pi pi-fw pi-plus"
       pButton
@@ -94,4 +105,4 @@
       {{ editMode ? "Update" : "Add" }}
     </button>
   </div>
-</form>
+</div>

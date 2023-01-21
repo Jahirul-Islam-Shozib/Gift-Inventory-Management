@@ -1,26 +1,84 @@
-<div class="empty-message" *ngIf="!dataItems">
-  <h2>No Depot has been selected. Please select your Depot by Depot number.</h2>
-</div>
-
 <p-table
-  *ngIf="dataItems"
-  [columns]="cols"
+  [tableStyle]="{ 'min-width': '60rem' }"
+  fxFlex="100%"
+  #dt
   [value]="depotData"
   styleClass="p-datatable"
   [scrollable]="true"
 >
-  <ng-template pTemplate="header" let-columns>
+  <ng-template pTemplate="header">
     <tr>
-      <th *ngFor="let col of columns">
-        {{ col.header }}
+      <th style="min-width: 10rem">Budget Id</th>
+      <th style="min-width: 10rem">SAP Code</th>
+      <th style="min-width: 10rem">Product Name</th>
+      <th style="min-width: 10rem">Production Unit</th>
+      <th style="min-width: 10rem">Package Size</th>
+      <th style="min-width: 10rem">Product Category</th>
+      <th style="min-width: 10rem">SBU</th>
+      <th style="min-width: 10rem">FC Id</th>
+      <th style="min-width: 10rem">FC Name</th>
+      <th pSortableColumn="quantity" style="min-width: 10rem">
+        Quantity <p-sortIcon field="code"></p-sortIcon>
       </th>
+      <th style="color: #343a40" style="min-width: 15rem">
+        Depot Id
+        <p-sortIcon field="depotId"></p-sortIcon>
+        <p-columnFilter
+          field="depotId"
+          matchMode="in"
+          display="menu"
+          [showMatchModes]="false"
+          [showOperator]="false"
+          [showAddButton]="false"
+        >
+          <ng-template pTemplate="header">
+            <div class="px-3 pt-3 pb-0">
+              <span style="padding: 5px; font-weight: 500">Select Depot</span>
+            </div>
+          </ng-template>
+          <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+            <p-multiSelect
+              [ngModel]="value"
+              [options]="depotsId"
+              placeholder="Any"
+              (onChange)="filter($event.value)"
+              optionLabel="name"
+              optionValue="code"
+            >
+              <ng-template let-option pTemplate="item">
+                <div class="p-multiselect-representative-option">
+                  <span class="ml-1">{{ option.name }}</span>
+                </div>
+              </ng-template>
+            </p-multiSelect>
+          </ng-template>
+        </p-columnFilter>
+      </th>
+      <th style="min-width: 10rem">Depot Name</th>
+      <th style="min-width: 10rem">Month</th>
+      <th style="min-width: 10rem">Year</th>
+      <th style="min-width: 10rem">Warehouse</th>
     </tr>
   </ng-template>
-  <ng-template pTemplate="body" let-rowData let-columns="columns">
+  <ng-template pTemplate="body" let-depotData>
     <tr>
-      <td *ngFor="let col of columns">
-        {{ rowData[col.field] }}
+      <td>{{ depotData.budgetId }}</td>
+      <td>{{ depotData.sapCode }}</td>
+      <td>{{ depotData.productName }}</td>
+      <td>{{ depotData.productionUnit }}</td>
+      <td>{{ depotData.packageSize }}</td>
+      <td>{{ depotData.category }}</td>
+      <td>{{ depotData.sbu }}</td>
+      <td>{{ depotData.fieldColleagueId }}</td>
+      <td>{{ depotData.fieldColleagueName }}</td>
+      <td>{{ depotData.quantity }}</td>
+      <td>
+        <span>{{ depotData.depotId }}</span>
       </td>
-    </tr>
-  </ng-template>
+      <td>{{ depotData.depotName }}</td>
+      <td>{{ depotData.month }}</td>
+      <td>{{ depotData.year }}</td>
+      <td>{{ depotData.ssuId }}</td>
+    </tr></ng-template
+  >
 </p-table>

@@ -3,12 +3,11 @@
   top: 30%;
   left: 35%;
   border-radius: 10px;
-
   box-shadow: -10px -10px 15px rgba(255, 255, 255, 0.5),
     10px 10px 15px rgba(70, 70, 70, 0.12);
   background-color: white;
   width: 400px;
-  height: 300px;
+  height: 350px;
   .pass-input-field {
     margin-right: 20px;
     margin-left: 30px;
@@ -22,6 +21,9 @@
       margin-top: 5px;
       width: 97%;
       height: 40px;
+    }
+    .input-error {
+      color: red;
     }
   }
   button {

@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MessageService, PrimeNGConfig } from 'primeng/api';
 import { ForgetResetPassService } from 'src/app/shared/services/password-service/forget-reset-pass.service';
 import { environment } from 'src/environments/environment';
 
@@ -8,6 +9,7 @@ import { environment } from 'src/environments/environment';
   selector: 'app-forgot-pass',
   templateUrl: './forgot-pass.component.html',
   styleUrls: ['./forgot-pass.component.scss'],
+  providers: [MessageService],
 })
 export class ForgotPassComponent implements OnInit {
   display: boolean = false;
@@ -17,20 +19,19 @@ export class ForgotPassComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private forgetResetPassService: ForgetResetPassService
+    private forgetResetPassService: ForgetResetPassService,
+    private messageService: MessageService
   ) {}
 
   ngOnInit(): void {
-    console.log('abc');
-
     this.api_key = window.localStorage.getItem('token');
   }
 
   onSendEmail() {
-    console.log(this.email);
     this.forgetResetPassService.setVerifiedUserEmail(this.email);
     this.display = true;
     this.onPostEmail();
+    this.email = '';
   }
 
   onPostEmail() {
@@ -47,14 +48,24 @@ export class ForgotPassComponent implements OnInit {
           }),
         }
       )
-      .subscribe((response) => {
-        console.log(response);
+      .subscribe({
+        next: (response) => {
+          if (response) {
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Success',
+              detail: 'An OTP Has Been Sent To Your Email Address.',
+            });
+          }
+        },
+        error: (err) => {
+          console.log(err);
+        },
       });
   }
 
   onSendOTP() {
     const sendOtpURL: string = `${environment.API_END_POINT}/user/checkOtpStatus`;
-    // console.log(this.otp);
     this.http
       .post(
         sendOtpURL,

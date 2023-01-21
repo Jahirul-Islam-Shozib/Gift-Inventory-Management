@@ -1,6 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { PrimeNGConfig } from 'primeng/api';
+import { Table } from 'primeng/table';
 import { DataModel } from 'src/app/shared/models/data.model';
-
+interface depotId {
+  name?: string;
+  code?: string;
+}
 @Component({
   selector: 'app-depot-wise-budget-table',
   templateUrl: './depot-wise-budget-table.component.html',
@@ -9,25 +14,30 @@ import { DataModel } from 'src/app/shared/models/data.model';
 export class DepotWiseBudgetTableComponent implements OnInit {
   depotId!: string;
   @Input() depotData!: DataModel[];
-  dataItems: DataModel[] = [];
 
   cols: any[] = [];
-
-  constructor() {}
+  depotsId!: depotId[];
+  @ViewChild('dt') table!: Table;
+  constructor(private primengConfig: PrimeNGConfig) {}
 
   ngOnInit() {
-    this.cols = [
-      { field: 'budgetId', header: 'Budget Id' },
-      { field: 'sapCode', header: 'SAP Code' },
-      { field: 'productName', header: 'Product name' },
-      { field: 'productionUnit', header: 'Production Unit' },
-      { field: 'packageSize', header: 'Package Size' },
-      { field: 'category', header: 'Product Category' },
-      { field: 'fieldColleagueID', header: 'FC Id' },
-      { field: 'fieldColleagues', header: 'FC Name' },
-      { field: 'quantity', header: 'Quantity' },
-      { field: 'month', header: 'Month' },
-      { field: 'year', header: 'Year' },
+    this.depotsId = [
+      { name: 'depot01', code: 'depot01' },
+      { name: 'depot02', code: 'depot02' },
+      { name: 'depot03', code: 'depot03' },
+      { name: 'depot04', code: 'depot04' },
+      { name: 'depot05', code: 'depot05' },
+      { name: 'depot06', code: 'depot06' },
+      { name: 'depot07', code: 'depot07' },
+      { name: 'depot08', code: 'depot08' },
+      { name: 'depot09', code: 'depot09' },
+      { name: 'depot10', code: 'depot10' },
+      { name: 'depot11', code: 'depot11' },
+      { name: 'depot12', code: 'depot12' },
     ];
   }
+
+  // filtercheck($event: any) {
+  //   console.log($event);
+  // }
 }

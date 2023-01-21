@@ -18,17 +18,27 @@
     margin: 5px;
     font-size: 12px;
   }
+  ::ng-deep .p-dropdown {
+    width: 90%;
+    height: 40px;
+    margin: 5px;
+    font-size: 12px;
+  }
+
   ::ng-deep .input-column {
     width: 90%;
     height: 40px;
     margin: 5px;
     font-size: 12px;
   }
+  .input-error {
+    color: red;
+  }
 }
 button {
   height: 40px;
-  width: 90%;
-  margin-top: 25px;
+
+  margin: 25px;
   background-color: #636e72;
   margin-left: 5px;
   font-size: 14px;

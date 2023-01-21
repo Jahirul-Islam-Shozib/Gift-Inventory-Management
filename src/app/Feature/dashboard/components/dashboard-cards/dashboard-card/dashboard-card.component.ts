@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { PrimeNGConfig } from 'primeng/api';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-dashboard-card',
@@ -19,15 +20,15 @@ export class DashboardCardComponent implements OnInit {
   }
 
   getUserStatus() {
+    const userStatusUrl: string = `${environment.API_END_POINT}/dashboard/user`;
     return this.http
-      .get<any>('http://localhost:8080/admin/dashboard/active_deactivate', {
+      .get<any>(userStatusUrl, {
         headers: new HttpHeaders({
           Authorization: `Bearer+${this.api_key}`,
         }),
       })
       .subscribe({
         next: (response: any) => {
-          console.log('response:: ', response);
           this.userStatus = response;
         },
         error: (err: any) => {

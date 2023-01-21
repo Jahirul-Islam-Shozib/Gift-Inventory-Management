@@ -8,7 +8,7 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'depot-info',
+    redirectTo: 'depot-wise-budget',
   },
   {
     path: 'depot-info',

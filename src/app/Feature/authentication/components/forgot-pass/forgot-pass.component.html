@@ -12,11 +12,16 @@
       id="float-input"
       type="email"
       pInputText
-      placeholder="Email Address"
+      placeholder="Enter Email"
       [(ngModel)]="email"
       #name="ngModel"
+      name="email"
       required
     />
+
+    <span class="input-error" *ngIf="name.touched && !name.dirty"
+      >*Email Id is required</span
+    >
   </span>
 
   <hr style="width: 100%; margin-left: 0; text-align: center" />
@@ -60,4 +65,5 @@
     class="p-button-sm"
     (click)="onSendOTP()"
   ></button>
+  <p-toast position="top-right"></p-toast>
 </div>

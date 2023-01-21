@@ -30,7 +30,7 @@ export class AuthInfoService {
       .pipe(
         tap((data) => {
           this.setUserDetailsData(data);
-          console.log(data);
+          // console.log(data);
         })
       );
   }

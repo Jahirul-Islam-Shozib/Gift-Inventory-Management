@@ -10,8 +10,6 @@ export class AuthService {
   authChange = new Subject<boolean>();
   private isAuthenticated = false;
   loginUserData: any;
-  private isSsuLogin = false;
-  private isDepotLogin = false;
 
   constructor(private router: Router, private http: HttpClient) {}
 
@@ -31,24 +29,12 @@ export class AuthService {
   }
 
   isAuth() {
-    console.log(!!localStorage.getItem('token'));
-
+    // console.log(!!localStorage.getItem('token'));
     return !!localStorage.getItem('token');
-  }
-  isSsuValid() {
-    return this.isSsuLogin;
-  }
-
-  isDepotValid() {
-    return this.isDepotLogin;
   }
 
   authSuccessfully() {
     this.isAuthenticated = true;
     this.authChange.next(true);
-  }
-
-  ssuLoginSuccessfully() {
-    this.isSsuLogin = true;
   }
 }

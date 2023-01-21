@@ -20,25 +20,17 @@ export class DepotWiseBudgetComponent implements OnInit {
 
   ngOnInit(): void {
     this.api_key = window.localStorage.getItem('token');
+    this.fetchDepotId();
   }
-
-  sendDepotId() {
-    //console.log(this.depotId);
-    this.fetchDepotId(this.depotId);
-  }
-
-  fetchDepotId(code: string) {
-    this.dataStorageService
-      .fetchFilterBudgetDepot(code, this.api_key)
-      .subscribe({
-        next: (response: any) => {
-          console.log('response:: ', response);
-          this.dataItems = response;
-        },
-        error: (err: any) => {
-          console.log(err);
-          this.dataItems = [];
-        },
-      });
+  fetchDepotId() {
+    this.dataStorageService.fetchAllDbData(this.api_key).subscribe({
+      next: (response) => {
+        this.dataItems = response;
+      },
+      error: (err) => {
+        console.log(err);
+        this.dataItems = [];
+      },
+    });
   }
 }

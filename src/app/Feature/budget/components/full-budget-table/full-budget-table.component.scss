@@ -7,7 +7,6 @@
   }
 }
 :host::ng-deep .p-datatable-wrapper {
-  //height: 490px;
   height: calc(100vh - 150px);
   ::ng-deep .row-header {
     height: 2rem;

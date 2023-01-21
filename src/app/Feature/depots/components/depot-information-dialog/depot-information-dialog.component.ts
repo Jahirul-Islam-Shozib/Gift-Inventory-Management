@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
-import { DynamicDialogConfig } from 'primeng/dynamicdialog';
+import { DialogService, DynamicDialogConfig } from 'primeng/dynamicdialog';
 import { DepotInfoService } from 'src/app/shared/services/depot-service/depot-info.service';
 import { DepotInfoModel } from 'src/app/shared/models/depotInfo.model';
 
@@ -20,7 +20,8 @@ export class DepotInformationDialogComponent implements OnInit {
   constructor(
     private depotInfoService: DepotInfoService,
     public config: DynamicDialogConfig,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private dialogService: DialogService
   ) {}
 
   ngOnInit(): void {
@@ -45,7 +46,7 @@ export class DepotInformationDialogComponent implements OnInit {
       location: new FormControl(data ? data.location : null, [
         Validators.required,
       ]),
-      user_id: new FormControl(data ? data.user_id : null, Validators.required),
+      userId: new FormControl(data ? data.userId : '', [Validators.required]),
     });
   }
   onAddDepot() {
@@ -59,11 +60,7 @@ export class DepotInformationDialogComponent implements OnInit {
         this.api_key
       );
       this.depotInfoForm.reset();
-      this.messageService.add({
-        severity: 'info',
-        summary: 'Success',
-        detail: 'File has been Uploaded successfully!',
-      });
+      this.closeDialog();
     } else {
       this.depotInfoService.addNewDepot(this.depotInfoForm.value);
       this.depotInfoService.storeIndividualDepotData(
@@ -71,11 +68,12 @@ export class DepotInformationDialogComponent implements OnInit {
         this.api_key
       );
       this.depotInfoForm.reset();
-      this.messageService.add({
-        severity: 'info',
-        summary: 'Success',
-        detail: 'New Depot has been added successfully successfully!',
-      });
+      this.closeDialog();
     }
+  }
+  closeDialog() {
+    this.dialogService.dialogComponentRefMap.forEach((dialog) => {
+      dialog.destroy();
+    });
   }
 }

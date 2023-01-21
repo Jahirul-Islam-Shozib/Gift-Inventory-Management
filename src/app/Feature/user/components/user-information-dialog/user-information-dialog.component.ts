@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { DynamicDialogConfig } from 'primeng/dynamicdialog';
+import { DialogService, DynamicDialogConfig } from 'primeng/dynamicdialog';
 import { InventoryUserService } from 'src/app/shared/services/user-service/inventory-user.service';
 import { InventoryUserModel } from 'src/app/shared/models/inventory-user.model';
+interface UserRoles {
+  name: string;
+  code: string;
+}
 
 @Component({
   selector: 'app-user-information-dialog',
@@ -13,11 +17,21 @@ export class UserInformationDialogComponent implements OnInit {
   inventoryUserForm!: FormGroup;
   editMode = false;
   api_key: any;
-
+  userRoles: UserRoles[];
+  selectedRoles!: UserRoles;
+  role!: string;
   constructor(
     private inventoryUserService: InventoryUserService,
+    private dialogService: DialogService,
     public config: DynamicDialogConfig
-  ) {}
+  ) {
+    this.userRoles = [
+      { name: 'Admin', code: 'admin' },
+      { name: 'Depot', code: 'depot' },
+      { name: 'Ssu', code: 'ssu' },
+    ];
+    this.selectedRoles = { name: 'Admin', code: 'admin' };
+  }
 
   ngOnInit() {
     this.api_key = window.localStorage.getItem('token');
@@ -28,7 +42,6 @@ export class UserInformationDialogComponent implements OnInit {
     } else {
       this.initForm();
     }
-    //console.log(this.config.data);
   }
 
   initForm(data?: InventoryUserModel) {
@@ -52,28 +65,51 @@ export class UserInformationDialogComponent implements OnInit {
         data ? data.contactNumber : null,
         Validators.required
       ),
-      status: new FormControl(data ? data.status : null, Validators.required),
     });
   }
   onAddUser() {
+    console.log(this.inventoryUserForm.value);
     if (this.editMode) {
       this.inventoryUserService.updateUserInfo(
         this.config.data.id,
         this.inventoryUserForm.value
       );
-      this.inventoryUserService.updateInventoryUserDatabyId(
-        this.config.data.id,
-        this.inventoryUserForm.value,
-        this.api_key
-      );
+      this.inventoryUserService
+        .updateInventoryUserDatabyId(
+          this.config.data.id,
+          this.inventoryUserForm.value,
+          this.api_key
+        )
+        .subscribe({
+          next: (response) => {
+            this.closeDialog();
+          },
+          error: (err) => {
+            console.log(err);
+            this.closeDialog();
+          },
+        });
     } else {
       this.inventoryUserService.addNewUser(this.inventoryUserForm.value);
       console.log(this.inventoryUserForm.value);
-      this.inventoryUserService.storeInventoryUserData(
-        this.inventoryUserForm.value,
-        this.api_key
-      );
+      this.closeDialog();
+      this.inventoryUserService
+        .storeInventoryUserData(this.inventoryUserForm.value, this.api_key)
+        .subscribe({
+          next: (response) => {
+            this.closeDialog();
+          },
+          error: (err) => {
+            console.log(err);
+            this.closeDialog();
+          },
+        });
       this.inventoryUserForm.reset();
     }
+  }
+  closeDialog() {
+    this.dialogService.dialogComponentRefMap.forEach((dialog) => {
+      dialog.destroy();
+    });
   }
 }

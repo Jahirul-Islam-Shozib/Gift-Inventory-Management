@@ -1,5 +1,3 @@
-<p-toast styleClass="toast"></p-toast>
-
 <form
   [formGroup]="depotInfoForm"
   (ngSubmit)="onAddDepot()"
@@ -18,18 +16,6 @@
       formControlName="depotName"
     />
   </span>
-
-  <!-- <span fxFlex="50%" class="p-float-filled">
-    <label for="depotCode">Depot Code</label>
-    <input
-      class="input-row"
-      type="text"
-      id="inputDepotCode"
-      pInputText
-      formControlName="depotCode"
-    />
-  </span> -->
-
   <span fxFlex="50%" class="p-float-filled">
     <label for="depotAddress">Depot Address</label>
     <input
@@ -42,48 +28,30 @@
   </span>
 
   <span fxFlex="50%" class="p-float-filled">
-    <label for="user_id">User Id</label>
+    <label for="userId">User Id</label>
     <input
       class="input-row"
       type="text"
       id="inputUserId"
       pInputText
-      formControlName="user_id"
+      formControlName="userId"
     />
+    <span
+      class="input-error"
+      *ngIf="
+        depotInfoForm.controls['userId'].touched &&
+        depotInfoForm.hasError('required', 'userId')
+      "
+      >*User Id is required</span
+    >
+    <!-- <span class="input-error" *ngIf="depotInfoForm.get('user_id')?.touched"
+      >*Please Enter correct user id.</span
+    > -->
+    <!-- <span class="input-error" *ngIf="!depotInfoForm.controls['user_id'].valid"
+      >*Please Enter correct user id.</span
+    > -->
   </span>
-  <!-- 
-  <span fxFlex="50%" class="p-float-filled">
-    <label for="adminName">Admin Name</label>
-    <input
-      class="input-row"
-      type="text"
-      id="inputAdminName"
-      pInputText
-      formControlName="adminName"
-    />
-  </span> -->
 
-  <!-- <span fxFlex="50%" class="p-float-filled">
-    <label for="adminMobile">Admin Mobile</label>
-    <input
-      class="input-row"
-      type="text"
-      id="inputAdminMobile"
-      pInputText
-      formControlName="adminMobile"
-    />
-  </span> -->
-
-  <!-- <span fxFlex="50%" class="p-float-filled">
-    <label for="adminEmail">Admin Email</label>
-    <input
-      class="input-column"
-      type="text"
-      id="inputAdminEmail"
-      pInputText
-      formControlName="adminEmail"
-    />
-  </span> -->
   <div fxFlex="50%" class="btn-modal">
     <button
       pButton
@@ -98,17 +66,3 @@
     </button>
   </div>
 </form>
-
-<!-- <div class="btn-modal">
-    <button
-      icon="pi pi-fw pi-plus"
-      pButton
-      type="submit"
-      class="p-button-sm"
-      [disabled]="!depotInfoForm.valid"
-      (click)="onAddDepot()"
-    >
-      {{ editMode ? "Update" : "Add" }}
-    </button>
-  </div>
-</div> -->

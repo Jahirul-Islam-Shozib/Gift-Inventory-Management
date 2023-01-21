@@ -15,20 +15,21 @@ export class FullBudgetTableComponent implements OnInit {
 
   ngOnInit() {
     this.cols = [
-      { field: 'budgetID', header: 'Budget Id' },
+      { field: 'budgetId', header: 'Budget Id' },
       { field: 'sapCode', header: 'SAP Code' },
       { field: 'productName', header: 'Product name' },
       { field: 'productionUnit', header: 'Production Unit' },
       { field: 'packageSize', header: 'Package Size' },
       { field: 'category', header: 'Product Category' },
       { field: 'sbu', header: 'SBU' },
-      { field: 'fieldColleagueID', header: 'FC Id' },
+      { field: 'fieldColleagueId', header: 'FC Id' },
       { field: 'fieldColleagueName', header: 'FC Name' },
       { field: 'quantity', header: 'Quantity' },
-      { field: 'depotID', header: 'Depot Id' },
+      { field: 'depotId', header: 'Depot Id' },
       { field: 'depotName', header: 'Depot name' },
       { field: 'month', header: 'Month' },
       { field: 'year', header: 'Year' },
+      { field: 'ssuId', header: 'Warehouse' },
     ];
   }
 }

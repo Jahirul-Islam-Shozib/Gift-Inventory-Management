@@ -12,6 +12,11 @@
           pInputText
           formControlName="newPassword"
         />
+        <span
+          class="input-error"
+          *ngIf="resetPassForm.controls['newPassword'].errors?.['minlength']"
+          >*Password must be at least 6 characters long.
+        </span>
       </span>
     </div>
 
@@ -23,7 +28,25 @@
           type="password"
           pInputText
           formControlName="confirmPassword"
+          (onChange)="onChangePass()"
         />
+        <span
+          class="input-error"
+          *ngIf="
+            resetPassForm.controls['confirmPassword']?.touched &&
+            resetPassForm.hasError('required', 'confirmPassword')
+          "
+          >*Confirm Password is required</span
+        >
+        <span
+          class="input-error"
+          *ngIf="
+            onChangePass() &&
+            (resetPassForm.controls['confirmPassword']?.touched ||
+              resetPassForm.controls['confirmPassword']?.dirty)
+          "
+          >*Confirm Password Didn't Match!</span
+        >
       </span>
     </div>
   </form>

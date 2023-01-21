@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { InventoryUserService } from 'src/app/shared/services/user-service/inventory-user.service';
 import { InventoryUserModel } from 'src/app/shared/models/inventory-user.model';
 import { UserInformationDialogComponent } from '../user-information-dialog/user-information-dialog.component';
+import { Subscription } from 'rxjs';
 interface InventoryStore {
   name: string;
   code: string;
@@ -14,8 +15,9 @@ interface InventoryStore {
   styleUrls: ['./all-user-information.component.scss'],
   providers: [DialogService, MessageService],
 })
-export class AllUserInformationComponent implements OnInit {
+export class AllUserInformationComponent implements OnInit, OnDestroy {
   inventoryUser!: InventoryUserModel[];
+  subscription!: Subscription;
   cols: any[] = [];
   api_key: any;
 
@@ -27,11 +29,12 @@ export class AllUserInformationComponent implements OnInit {
 
   ngOnInit(): void {
     this.api_key = window.localStorage.getItem('token');
-    //console.log(this.api_key);
     this.inventoryUser = this.inventoryUserService.getAllInventoryUser();
-    this.inventoryUserService.inventoryUserChange.subscribe((items) => {
-      this.inventoryUser = items;
-    });
+    this.subscription = this.inventoryUserService.inventoryUserChange.subscribe(
+      (items) => {
+        this.inventoryUser = items;
+      }
+    );
     this.onFetchUserData();
 
     this.cols = [
@@ -62,10 +65,13 @@ export class AllUserInformationComponent implements OnInit {
 
   onBanUser(id: number) {
     this.confirmationService.confirm({
-      message: 'Are you sure that you want to Delete this User Information?',
+      message: 'Are you sure that you want to Deactivated this User?',
       accept: () => {
         this.inventoryUserService.banUser(id, this.api_key);
       },
     });
+  }
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }

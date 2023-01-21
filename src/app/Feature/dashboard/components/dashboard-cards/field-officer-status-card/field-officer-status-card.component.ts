@@ -20,14 +20,13 @@ export class FieldOfficerStatusCardComponent implements OnInit {
 
   getFieldOfficerStatus() {
     return this.http
-      .get<any>('http://localhost:8080/admin/dashboard/totalFieldColleague', {
+      .get<any>('http://localhost:8080/dashboard/totalFieldColleague', {
         headers: new HttpHeaders({
           Authorization: `Bearer+${this.api_key}`,
         }),
       })
       .subscribe({
         next: (response: any) => {
-          console.log('response:: ', response);
           this.fieldOfficerStatus = response;
         },
         error: (err: any) => {

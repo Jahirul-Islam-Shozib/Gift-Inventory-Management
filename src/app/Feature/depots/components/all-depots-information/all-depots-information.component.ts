@@ -31,7 +31,6 @@ export class AllDepotsInformationComponent implements OnInit {
   onFetchDepotInfoData() {
     this.depotInfoService.fetchAllDepotsInfoData(this.api_key).subscribe({
       next: (response: any) => {
-        // console.log('response:: ', response);
         this.depotItems = response;
       },
       error: (err: any) => {

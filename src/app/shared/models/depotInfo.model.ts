@@ -3,6 +3,6 @@ export class DepotInfoModel {
     public id: number,
     public depotName: string,
     public location: string,
-    public user_id: number
+    public userId: number
   ) {}
 }

@@ -1,9 +1,12 @@
 ::ng-deep .p-toolbar {
+  p {
+    font-size: 14px;
+  }
   height: 100px;
   background-color: whitesmoke;
   .toolbar-header {
     font-weight: 500;
-    font-size: 30px;
+    font-size: 20px;
   }
 }
 
@@ -15,8 +18,26 @@ p-inputmask {
   width: 90%;
   margin: 5px;
 }
-// .address-info {
-//   position: absolute;
-//   top: 45%;
-
-// }
+.address-info {
+  p {
+    font-size: 14px;
+    font-weight: 500;
+  }
+}
+::ng-deep p-table {
+  th {
+    font-size: 14px;
+  }
+}
+.container {
+  h2 {
+    font-size: 16px;
+  }
+  label {
+    font-size: 14px;
+    font-weight: 500;
+  }
+  #float-input {
+    font-size: 12px;
+  }
+}
