@@ -8,7 +8,7 @@
 
   <div fxFlex fxLayout="row">
     <ul fxFlex fxLayoutAlign="flex-end" fxLayoutGap="10px">
-      <li *ngIf="isAuth">
+      <li *ngIf="isAuth && isLogout">
         <i class="pi pi-user" style="font-size: 1rem; padding: 5px"></i>
         <a (click)="onLogout()" cursor="pointer">Log Out</a>
       </li>

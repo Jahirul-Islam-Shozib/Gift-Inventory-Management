@@ -10,11 +10,16 @@ import { AuthService } from 'src/app/shared/services/auth-service/auth.service';
 })
 export class ToolbarComponent implements OnInit, OnDestroy {
   isAuth = false;
-
+  api_key: any;
+  isLogout = false;
   authSubscription!: Subscription;
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
+    this.api_key = window.localStorage.getItem('token');
+    if (this.api_key) {
+      this.isLogout = true;
+    }
     this.authSubscription = this.authService.authChange.subscribe(
       (authStatus) => {
         this.isAuth = authStatus;
