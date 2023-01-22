@@ -1,0 +1,89 @@
+.upload-budget-container {
+  width: 100%;
+
+  .upload-space {
+    margin: 10px;
+    width: 100%;
+    padding: 10px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+
+    .upload-details {
+      position: absolute;
+      top: 25%;
+      left: 33%;
+      box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+      color: #495057;
+      height: 50%;
+      width: 50%;
+
+      margin: 20px;
+      //border: 1px solid black;
+      border-radius: 10px;
+      .drag-drop {
+        border: 1px dashed black;
+        margin: 10px;
+        border-radius: 10px;
+        text-align: center;
+        .para {
+          font-weight: 600;
+          margin: 10px;
+        }
+        ::ng-deep .icon-style {
+          margin-top: 10px;
+        }
+        input {
+          margin-left: 70px;
+          margin-top: 5px;
+        }
+
+        ::ng-deep .file-upload {
+          width: 100px;
+        }
+
+        .footer {
+          font-weight: 200;
+          margin-top: 10px;
+        }
+
+        button {
+          background-color: #636e72;
+          height: 30px;
+          margin-top: 15px;
+          font-size: small;
+        }
+      }
+      .upload-list {
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        margin: 10px;
+        border-radius: 10px;
+        list-style: none;
+
+        ul {
+          margin: 10px;
+          padding-left: 10px;
+        }
+        li {
+          margin-left: 0%;
+          display: flex;
+          margin-top: 30px;
+          margin-right: 20px;
+
+          ::ng-deep .list-bar {
+            width: 100%;
+            padding-top: 20px;
+            padding-left: 10px;
+          }
+        }
+        .uploaded-File-Details {
+          margin: 30px;
+          p {
+            color: #636e72;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+}

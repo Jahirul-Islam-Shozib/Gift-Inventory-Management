@@ -4,7 +4,6 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { HttpClientModule } from '@angular/common/http';
 import { MegaMenuModule } from 'primeng/megamenu';
 import { TieredMenuModule } from 'primeng/tieredmenu';
-//Table
 import { TableModule } from 'primeng/table';
 import { CalendarModule } from 'primeng/calendar';
 import { SliderModule } from 'primeng/slider';
@@ -47,7 +46,6 @@ import { ConfirmationService } from 'primeng/api';
     ToolbarModule,
     TabViewModule,
     InputMaskModule,
-
     ConfirmDialogModule,
   ],
   exports: [
@@ -72,7 +70,6 @@ import { ConfirmationService } from 'primeng/api';
     ToolbarModule,
     TabViewModule,
     InputMaskModule,
-
     ConfirmDialogModule,
   ],
 })

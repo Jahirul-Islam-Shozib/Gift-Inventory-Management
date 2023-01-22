@@ -1,0 +1,45 @@
+.inventoryUser-container {
+  ::ng-deep .p-dialog-header-icon {
+    padding: 0px;
+  }
+  h2 {
+    padding: 8px;
+  }
+  display: flex;
+  flex-direction: column;
+  label {
+    margin: 10px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  ::ng-deep .input-row {
+    width: 90%;
+    height: 40px;
+    margin: 5px;
+    font-size: 12px;
+  }
+  ::ng-deep .p-dropdown {
+    width: 90%;
+    height: 40px;
+    margin: 5px;
+    font-size: 12px;
+  }
+
+  ::ng-deep .input-column {
+    width: 90%;
+    height: 40px;
+    margin: 5px;
+    font-size: 12px;
+  }
+  .input-error {
+    color: red;
+  }
+}
+button {
+  height: 40px;
+
+  margin: 25px;
+  background-color: #636e72;
+  margin-left: 5px;
+  font-size: 14px;
+}

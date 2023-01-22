@@ -1,0 +1,68 @@
+<form
+  [formGroup]="depotInfoForm"
+  (ngSubmit)="onAddDepot()"
+  class="depot-container"
+  fxFlex
+  fxLayout="row wrap"
+  fxLayoutGap="10px grid"
+>
+  <span fxFlex="50%" class="p-float-filled">
+    <label for="depotName">Depot Name</label>
+    <input
+      class="input-row"
+      type="text"
+      id="inputDepotName"
+      pInputText
+      formControlName="depotName"
+    />
+  </span>
+  <span fxFlex="50%" class="p-float-filled">
+    <label for="depotAddress">Depot Address</label>
+    <input
+      class="input-column"
+      type="text"
+      id="inputDepotAddress"
+      pInputText
+      formControlName="location"
+    />
+  </span>
+
+  <span fxFlex="50%" class="p-float-filled">
+    <label for="userId">User Id</label>
+    <input
+      class="input-row"
+      type="text"
+      id="inputUserId"
+      pInputText
+      formControlName="userId"
+    />
+    <span
+      class="input-error"
+      *ngIf="
+        depotInfoForm.controls['userId'].touched &&
+        depotInfoForm.hasError('required', 'userId')
+      "
+      >*User Id is required</span
+    >
+    <!-- <span class="input-error" *ngIf="depotInfoForm.get('user_id')?.touched"
+      >*Please Enter correct user id.</span
+    > -->
+    <!-- <span class="input-error" *ngIf="!depotInfoForm.controls['user_id'].valid"
+      >*Please Enter correct user id.</span
+    > -->
+  </span>
+
+  <div fxFlex="50%" class="btn-modal">
+    <button
+      pButton
+      icon="pi pi-fw pi-plus"
+      type="submit"
+      class="p-button-sm"
+      [disabled]="!depotInfoForm.valid"
+      (click)="onAddDepot()"
+      (click)="displayDepot = false"
+    >
+      {{ editMode ? "Update Depot" : "Add Depot" }}
+    </button>
+  </div>
+</form>

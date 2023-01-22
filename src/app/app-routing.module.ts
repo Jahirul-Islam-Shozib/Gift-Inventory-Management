@@ -1,90 +1,93 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGard } from './authentication/auth-gard';
-import { LoginComponent } from './authentication/login/login.component';
-import { SignupComponent } from './authentication/signup/signup.component';
-import { AllDepotsInfoComponent } from './components/all-depots-info/all-depots-info.component';
-import { BudgetComponent } from './components/budget/budget.component';
-import { ShowBudgetComponent } from './components/budget/show-budget/show-budget.component';
-import { InventoryComponent } from './components/Inventory/inventory.component';
-import { HomeComponent } from './components/home/home.component';
-import { DepotBudgetComponent } from './DepotManagement/depot-budget/depot-budget.component';
-import { InventoryUserComponent } from './components/inventory-user/inventory-user.component';
-import { SsuChalanCreationComponent } from './components/chalan/ssu-chalan-creation/ssu-chalan-creation.component';
-import { ForgotPassComponent } from './authentication/forgot-pass/forgot-pass.component';
-import { ResetPassComponent } from './authentication/reset-pass/reset-pass.component';
-import { SsuLoginAuthGuard } from './Service/ssuLogin-auth-guard';
+import { NotFoundComponent } from './Feature/not-found/not-found.component';
+import { AuthGuard } from './Guards/auth.guard';
+//import { RoleGuard } from './Guards/role.guard';
 
 const routes: Routes = [
-  //{ path: '', redirectTo: '/login', pathMatch: 'full' },
   {
-    path: ' ',
+    path: '',
     pathMatch: 'full',
-    component: LoginComponent,
+    redirectTo: '/inventory-dashboard',
+    data: {
+      roles: ['admin'],
+    },
   },
   {
-    path: 'login',
-    component: LoginComponent,
+    path: 'auth',
+    loadChildren: () =>
+      import('./Feature/authentication/authentication.module').then(
+        (mod) => mod.AuthenticationModule
+      ),
+    // canActivate: [AuthGuard],
+    data: {
+      roles: ['admin'],
+    },
   },
   {
-    path: 'signup',
-    component: SignupComponent,
+    path: 'inventory-dashboard',
+    loadChildren: () =>
+      import('./Feature/dashboard/dashboard.module').then(
+        (mod) => mod.DashboardModule
+      ),
+
+    canActivate: [AuthGuard],
+    data: {
+      roles: ['admin'],
+    },
   },
   {
-    path: 'forgot-pass',
-    component: ForgotPassComponent,
+    path: 'inventory',
+    loadChildren: () =>
+      import('./Feature/sample-section-unit/sample-section-unit.module').then(
+        (mod) => mod.SampleSectionUnitModule
+      ),
+    canActivate: [AuthGuard],
+    data: {
+      roles: ['admin'],
+    },
   },
   {
-    path: 'reset-pass',
-    component: ResetPassComponent,
+    path: 'inventory-budget',
+    loadChildren: () =>
+      import('./Feature/budget/budget.module').then((mod) => mod.BudgetModule),
+
+    canActivate: [AuthGuard],
+    data: {
+      roles: ['admin'],
+    },
   },
   {
-    path: 'home',
-    component: HomeComponent,
-    //canActivate: [AuthGard],
-  },
-  {
-    path: 'inventories',
-    component: InventoryComponent,
-    //canActivate: [AuthGard],
-  },
-  {
-    path: 'depot-list',
-    component: AllDepotsInfoComponent,
-    //canActivate: [AuthGard],
-  },
-  {
-    path: 'budget',
-    component: BudgetComponent,
-    canActivate: [AuthGard],
-  },
-  {
-    path: 'budget-show',
-    component: ShowBudgetComponent,
-    // canActivate: [AuthGard],
-  },
-  {
-    path: 'depot-budget',
-    component: DepotBudgetComponent,
-    // canActivate: [AuthGard],
+    path: 'inventory-depots',
+    loadChildren: () =>
+      import('./Feature/depots/depots.module').then((mod) => mod.DepotsModule),
+
+    canActivate: [AuthGuard],
+    data: {
+      roles: ['admin', 'depot'],
+    },
   },
   {
     path: 'inventory-user',
-    component: InventoryUserComponent,
-    //canActivate: [AuthGard],
-  },
-  {
-    path: 'ssu-chalan',
-    component: SsuChalanCreationComponent,
-    //canActivate: [AuthGard],
+    loadChildren: () =>
+      import('./Feature/user/user.module').then((mod) => mod.UserModule),
+
+    canActivate: [AuthGuard],
+    data: {
+      roles: ['admin'],
+    },
   },
 
-  { path: '**', component: LoginComponent },
+  {
+    path: '**',
+    pathMatch: 'full',
+    component: NotFoundComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers: [AuthGard],
+  providers: [AuthGuard],
 })
 export class AppRoutingModule {}

@@ -1,0 +1,15 @@
+<div
+  class="specific-depot-container"
+  fxFlex
+  fxLayout="row"
+  fxLayoutAlign="center"
+  fxLayoutGap="10px"
+>
+  <div fxFlex="17%">
+    <app-menubar></app-menubar>
+  </div>
+  <div class="specific-depot-content" fxFlex="80%" fxLayout="column">
+    <app-depot-wise-budget-table fxFlex="100%" [depotData]="dataItems">
+    </app-depot-wise-budget-table>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+.form-group {
+  margin: 5px 7px;
+  ::ng-deep .allStore {
+    font-weight: 500;
+    padding-right: 10px;
+    color: blue;
+  }
+}
+:host::ng-deep .p-datatable-wrapper {
+  height: calc(100vh - 150px);
+  ::ng-deep .row-header {
+    height: 2rem;
+    font-size: 14px;
+  }
+  td {
+    font-size: 12px;
+  }
+}

@@ -1,0 +1,62 @@
+<div class="reset-pass-container">
+  <h2 style="text-align: center; font-weight: 500; padding-top: 20px">
+    Reset Password
+  </h2>
+  <form [formGroup]="resetPassForm" (ngSubmit)="onResetPass()">
+    <div class="pass-input-field">
+      <span class="p-float-filled">
+        <label for="newPassword">Enter New Password</label><br />
+        <input
+          id="float-input-newPass"
+          type="password"
+          pInputText
+          formControlName="newPassword"
+        />
+        <span
+          class="input-error"
+          *ngIf="resetPassForm.controls['newPassword'].errors?.['minlength']"
+          >*Password must be at least 6 characters long.
+        </span>
+      </span>
+    </div>
+
+    <div class="pass-input-field">
+      <span class="p-float-filled">
+        <label for="confirmPassword">Confirm Password</label><br />
+        <input
+          id="float-input-retypePass"
+          type="password"
+          pInputText
+          formControlName="confirmPassword"
+          (onChange)="onChangePass()"
+        />
+        <span
+          class="input-error"
+          *ngIf="
+            resetPassForm.controls['confirmPassword']?.touched &&
+            resetPassForm.hasError('required', 'confirmPassword')
+          "
+          >*Confirm Password is required</span
+        >
+        <span
+          class="input-error"
+          *ngIf="
+            onChangePass() &&
+            (resetPassForm.controls['confirmPassword']?.touched ||
+              resetPassForm.controls['confirmPassword']?.dirty)
+          "
+          >*Confirm Password Didn't Match!</span
+        >
+      </span>
+    </div>
+  </form>
+
+  <button
+    (click)="onResetPass()"
+    [disabled]="!resetPassForm.valid"
+    pButton
+    type="button"
+    label="Reset Password"
+    class="p-button-sm"
+  ></button>
+</div>

@@ -1,0 +1,17 @@
+<mat-toolbar>
+  <i
+    class="pi pi-gift"
+    style="font-size: 1.5rem; padding: 5px; color: whitesmoke"
+  ></i>
+  <span class="p-name"> GIFT INVENTORY</span>
+  <span class="example-spacer"></span>
+
+  <div fxFlex fxLayout="row">
+    <ul fxFlex fxLayoutAlign="flex-end" fxLayoutGap="10px">
+      <li *ngIf="isAuth && isLogout">
+        <i class="pi pi-user" style="font-size: 1rem; padding: 5px"></i>
+        <a (click)="onLogout()" cursor="pointer">Log Out</a>
+      </li>
+    </ul>
+  </div>
+</mat-toolbar>
