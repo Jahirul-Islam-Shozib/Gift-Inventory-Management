@@ -8,9 +8,8 @@ describe('BudgetRatioPieChartCardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BudgetRatioPieChartCardComponent ]
-    })
-    .compileComponents();
+      declarations: [BudgetRatioPieChartCardComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(BudgetRatioPieChartCardComponent);
     component = fixture.componentInstance;
