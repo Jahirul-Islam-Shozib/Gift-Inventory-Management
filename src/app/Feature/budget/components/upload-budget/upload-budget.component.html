@@ -19,7 +19,10 @@
           ></i>
           <p class="para">Drag and Drop files to upload</p>
           <p class="para">or</p>
-          <input (change)="selectFile($event)" type="file" />
+          <div>
+            <input (change)="selectFile($event)" type="file" />
+          </div>
+
           <button
             (click)="uploadFile()"
             pButton

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
 import { ShippingInformation } from 'src/app/shared/models/shippingInformation.model';
@@ -9,6 +9,9 @@ import { ShippingInformation } from 'src/app/shared/models/shippingInformation.m
   styleUrls: ['./sample-section-unit-chalan.component.scss'],
 })
 export class SampleSectionUnitChalanComponent implements OnInit {
+
+  @ViewChild('printSection', { static: false })
+  printSection!:ElementRef;
   shippingInfo: ShippingInformation[] = [];
   shippingInformationForm!: FormGroup;
   cols!: any[];
@@ -42,6 +45,14 @@ export class SampleSectionUnitChalanComponent implements OnInit {
     console.log(this.shippingInfo);
   }
   onPrintPage() {
+
+    let printContents = this.printSection.nativeElement.innerHTML;
+    let originalContents = document.body.innerHTML;
+
+    document.body.innerHTML = printContents;
+
     window.print();
+
+    document.body.innerHTML = originalContents;
   }
 }
